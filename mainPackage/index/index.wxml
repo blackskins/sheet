@@ -1,0 +1,59 @@
+<!--mainPackage/index/index.wxml-->
+<!-- banner轮播图 -->
+<view class="slider" bindtap='tt'>
+  <swiper indicator-dots="{{ sliderImg.length > 1 ? true :false }}" autoplay="true" interval="4000" duration="400" circular='true' indicator-color="#fff" indicator-active-color="#2179FC">
+    <swiper-item wx:for="{{ sliderImg }}" wx:key=''>
+      <image src="{{item.url}}" width="355" height="150" mode='aspectFill' />
+    </swiper-item>
+  </swiper>
+  <!-- <swiper indicator-dots="true" autoplay="true" interval="4000" duration="400" circular='true' indicator-color="#fff" indicator-active-color="#2179FC">
+    <swiper-item wx:for="11111" wx:key=''>
+      <image src="/images/banner.jpg" width="355" height="150" mode='aspectFill' />
+    </swiper-item>
+  </swiper> -->
+</view>
+
+<!-- 委托 -->
+<view class='hot-title'>
+  <text class='stick'></text>委托</view>
+
+<view class='service-type'>
+  <image bindtap='toCosmetics' src='/images/s1.jpg'></image>
+  <image bindtap='toTextile' src='/images/s2.jpg'></image>
+</view>
+
+<!-- 关于我们 -->
+<view class='hot-title'>
+  <text class='stick'></text>关于我们</view>
+
+<!-- 视频简介 -->
+<view class='video'>
+  <!-- <video></video> -->
+  <view class='video-content'>
+    <video id="myVideo" src="{{ videoInfo.videoUrl }}"
+      binderror="videoErrorCallback" poster='{{ videoInfo.imgUrl }}' show-center-play-btn controls ></video>
+  </view>
+  <view class='video-txt {{ showTxt ? "hd-text" : "" }}'>{{ videoInfo.content }}
+    <image bindtap='showTxt' src='/images/dao.png' wx:if='{{ showTxt }}'></image>
+  </view>
+</view>
+
+
+
+<!-- 最新资讯 -->
+<view class='hot-title'>
+  <text class='stick'></text>最新资讯</view>
+
+<!-- 资讯列表 -->
+<view class='hot-list' wx:for='{{ hotList }}' wx:key='' data-id='{{ item._id }}' bindtap='toNewsDetail'>
+  <view class='bottom-line'>
+    <view class='list-left'>
+      <image src='{{ item.coverImg }}' mode='aspectFill'></image>
+    </view>
+    <view class='list-right'>
+      <view class='list-title hd-text'>{{ item.title }}</view>
+      <view class='type hd-text'>{{ item.content }}</view>
+      <view class='list-time'>{{ item.createTime }}</view>
+    </view>
+  </view>
+</view>

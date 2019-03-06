@@ -1,0 +1,103 @@
+{
+  "pages": [
+    "mainPackage/index/index",
+    "mainPackage/news/news",
+    "mainPackage/services/services",
+    "mainPackage/profile/profile",
+    "mainPackage/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2090FE",
+    "navigationBarTitleText": "中广测客户服务",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#2179FC",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "mainPackage/index/index",
+        "text": "首页",
+        "iconPath": "/images/index.png",
+        "selectedIconPath": "/images/index1.png"
+      },
+      {
+        "pagePath": "mainPackage/news/news",
+        "text": "资讯",
+        "iconPath": "/images/news.png",
+        "selectedIconPath": "/images/news1.png"
+      },
+      {
+        "pagePath": "mainPackage/services/services",
+        "text": "委托服务",
+        "iconPath": "/images/services.png",
+        "selectedIconPath": "/images/services1.png"
+      },
+      {
+        "pagePath": "mainPackage/profile/profile",
+        "text": "我的",
+        "iconPath": "/images/profile.png",
+        "selectedIconPath": "/images/profile1.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "位置信息可以为你提供定位服务，发现周边客户"
+    }
+  },
+  "subPackages": [
+    {
+      "root": "index_package/",
+      "pages": [
+        "pages/cosmetics/cosmetics",
+        "pages/cosmetics-a/cosmetics-a",
+        "pages/cosmetics-b/cosmetics-b",
+        "pages/textile/textile",
+        "pages/textile-a/textile-a",
+        "pages/textile-b/textile-b",
+        "pages/textile-c/textile-c",
+        "pages/news_detail/news_detail"
+      ]
+    },
+    {
+      "root": "profile_package/",
+      "pages": [
+        "pages/my_code/my_code",
+        "pages/my_report/my_report",
+        "pages/my_coupon/my_coupon",
+        "pages/my_customer/my_customer",
+        "pages/apply/apply"
+      ]
+    },
+    {
+      "root": "order_package/",
+      "pages": [
+        "pages/my_order/my_order",
+        "pages/order_detail/order_detail",
+        "pages/view-logistics/view-logistics",
+        "pages/modify_report/modify_report",
+        "pages/modify_form/modify_form"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "mainPackage/index/index": {
+      "network": "all",
+      "packages": [
+        "index_package/"
+      ]
+    },
+    "mainPackage/profile/profile": {
+      "network": "all",
+      "packages": [
+        "profile_package/",
+        "order_package/"
+      ]
+    }
+  }
+}

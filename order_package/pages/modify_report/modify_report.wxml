@@ -1,0 +1,26 @@
+<!--order_package/pages/modify_report/modify_report.wxml-->
+<form bindsubmit='formSubmit'>
+  <!-- 变更原因 -->
+  <view class='change-reason'>
+    <view class='change-title'>变更原因</view>
+    <view class='change-txt'>
+      <textarea name='reason' class='t1' placeholder='请填写变更原因...' placeholder-class='holder'></textarea>
+    </view>
+  </view>
+
+  <!-- 变更内容 -->
+  <view class='change-reason'>
+    <view class='change-title'>变更内容</view>
+    <view class='change-txt'>
+      <textarea name='content' class='t1' placeholder='请填写变更内容...' placeholder-class='holder'></textarea>
+    </view>
+    <view class='modify-tips'>提示*：报告修改将产生一定的费用</view>
+  </view>
+
+  <!-- 提交申请 -->
+  <view class='submit center'>
+    <view class='sub-btn'>提交申请
+      <button form-type='submit'></button>
+    </view>
+  </view>
+</form>

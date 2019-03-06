@@ -1,0 +1,52 @@
+<!--index_package/pages/textile-a/textile-a.wxml-->
+<form bindsubmit='formSubmit'>
+  <!-- 样品信息 -->
+  <view class='first-part'>
+    <view class='detail-info'>
+      <text>样品信息</text>
+      <image src='../../images/tips.png'></image>
+    </view>
+    <view class='info-item' wx:for='{{ sampleList }}' wx:key=''>
+      <view>{{ item.title }}
+        <text class='import' wx:if='{{ item.isMark == 1 }}'>*</text>
+      </view>
+      <input type='text' name='user' placeholder-class='holder' placeholder='{{ item.holder }}'></input>
+    </view>
+
+    <!-- 添加其他样品信息 -->
+    <view class='else-item center'>
+      <text>添加其他样品信息</text>
+    </view>
+  </view>
+
+<!-- 样品检测 -->
+  <view class='sample-info'>
+    <view class='sample-title'>样品检测
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange1">
+        <radio class="radio" color='#2090FE' wx:for="{{checkType}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+
+  
+  <!-- 委托要求 -->
+  <view class='sample-info'>
+    <view class='sample-title'>其他信息</view>
+    <view class='head-txt'>
+      <textarea placeholder-class='holder' placeholder='填写其他信息'></textarea>
+    </view>
+  </view>
+
+  <!-- 下一步/上一步 -->
+  <view class='sub-box'>
+    <view class='step previous' bindtap='backPage'>上一步</view>
+    <view class='step next' bindtap='toNextPage'>下一步
+      <button class='sub-btn' formType="submit"></button>
+    </view>
+  </view>
+</form>

@@ -1,0 +1,17 @@
+<!--mainPackage/services/services.wxml-->
+<view class='service-list'>
+  <view class='service-item hua' bindtap='toCosmetics'>
+    <view class='icon center'><image src='/images/s-icon1.png'></image></view>
+    <view class='service-title'>
+      <text class='cn'>化妆品委托</text>
+      <text class='en'>Cosmetic Commission</text>
+    </view>
+  </view>
+  <view class='service-item fang'>
+    <view class='icon center'><image src='/images/s-icon2.png'></image></view>
+    <view class='service-title'>
+      <text class='cn'>化妆品委托</text>
+      <text class='en'>Cosmetic Commission</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,235 @@
+/* index_package/pages/cosmetics-b/cosmetics-b.wxss */
+
+page {
+  background-color: #f3f4f5;
+  font-size: 28rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 第二部分 */
+
+.second-part, .sample-info {
+  background-color: #fff;
+}
+
+.detail-info, .first-name {
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+  padding: 20rpx 0rpx;
+  border-bottom: 2rpx solid #e9e9e9;
+}
+
+.detail-info image {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 10rpx;
+}
+
+.import {
+  color: #ff5062;
+}
+
+.else-item {
+  padding: 30rpx;
+}
+
+.else-item text {
+  padding: 6rpx 30rpx;
+  font-weight: 600;
+  background-color: #e3edfc;
+  color: #2090fe;
+}
+
+/* 测试方法 */
+.label-flex{
+  display: flex;
+}
+.ddd{
+  width: 200rpx !important;
+  margin-right: 10rpx;
+}
+.sample-info {
+  padding: 10rpx 30rpx 30rpx 30rpx;
+  line-height: 56rpx;
+  margin: 20rpx 0rpx;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fn {
+  flex-direction: column;
+  flex-wrap: nowrap !important;
+}
+
+.radio,.checkbox{
+  transform: scale(0.9);
+}
+
+.sample-info input {
+  border: 2rpx solid #e9e9e9;
+  width: 360rpx;
+  height: 40rpx;
+  padding: 0rpx 10rpx;
+  margin-top: 4rpx;
+}
+
+.count {
+  display: flex;
+}
+
+.count input {
+  width: 160rpx;
+  margin: 0rpx 10rpx;
+}
+/* 未选中样式 */
+checkbox .wx-checkbox-input {
+  border-radius: 50%;
+}
+/* 报告格式----复选框样式 */
+/* 选中后样式 */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  /* content: ''; */
+  transform: translate(-53%,-53%);
+  border-radius: 50%;
+  background-color: #2090fe;
+  border: 2rpx solid #2090fe;
+}
+.c1{
+  margin-left: 10rpx;
+}
+.c2{
+  margin-left: 6rpx;
+}
+.fu{
+  margin-left: 24rpx;
+}
+/* 报告发送 */
+.send-css{
+  width: 650rpx !important;
+}
+/* 发票类别 */
+.ticket{
+  margin-left: 10rpx;
+  width: 526rpx !important;
+}
+
+/* 其他 */
+.head-txt{
+  padding: 20rpx 0rpx;
+}
+.head-txt textarea{
+  background-color: #F2F3F7;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx;
+  width: 94%;
+  height: 250rpx;
+  color: #333;
+}
+
+/* 提交 */
+.sub-box{
+  width: 92%;
+  height: 118rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-top: 2rpx solid #e9e9e9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+}
+.step{
+  width: 326rpx;
+  height: 72rpx;
+  border-radius: 38rpx;
+  text-align: center;
+  line-height: 76rpx;
+  font-size: 26rpx;
+  border: 2rpx solid #2190FE;
+}
+.previous{
+  color: #2190FE;
+}
+.next{
+  background-color: #2190FE;
+  color: #fff;
+  position: relative;
+}
+.sub-btn{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  /* background-color: cyan; */
+}
+
+/* 委托服务协议 */
+.mask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  transition: all .3s;
+}
+.agreement,.agreement1{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* transform: translate(-50%,-50%); */
+  width: 500rpx;
+  height: 600rpx;
+  border-radius: 14rpx;
+  background-color: #fff;
+  padding: 30rpx 40rpx;
+  transition: all .3s;
+}
+.agreement1{
+  height:200rpx;
+}
+.agreement-title{
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.agreement-txt{
+  margin-top: 20rpx;
+  height: 440rpx;
+  font-size: 26rpx;
+}
+.isAgree{
+  font-size: 30rpx;
+  color: #2090fe;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 2rpx solid #e9e9e9;
+  height: 92rpx;
+  margin-top: 20rpx;
+}
+.isAgree view{
+  width: 50%;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+.cancel-btn{
+  position: relative;
+}
+.cancel-btn::after{
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rpx;
+  background-color: #e9e9e9;
+  height: 40rpx;
+}

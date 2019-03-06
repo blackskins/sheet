@@ -1,0 +1,136 @@
+<!--index_package/pages/cosmetics-a/cosmetics-a.wxml-->
+<form bindsubmit='formSubmit'>
+  <!-- 样品信息 -->
+  <view class='first-part'>
+    <view class='detail-info'>
+      <text>样品信息</text>
+      <image src='../../images/tips.png'></image>
+    </view>
+    <view class='base-info' wx:for='{{ sampleInfo }}' wx:key=''>
+      <view class='info-item'>
+        <view>样品名称{{ sampleInfo.length >1 ? index + 1 :"" }}
+          <text class='import'>*</text>
+        </view>
+        <input type='text' name='name{{ index + 1 }}' value='{{ item.sampleName }}' placeholder-class='holder' placeholder='请填写样品名称'></input>
+      </view>
+      <view class='info-item'>
+        <view>样品批号{{ sampleInfo.length >1 ? index + 1 :"" }}</view>
+        <input type='text' name='num{{ index + 1 }}' value='{{ item.sampleBatch }}' placeholder-class='holder' placeholder='请填写样品批号'></input>
+      </view>
+      <view class='info-item'>
+        <view>样品个数{{ sampleInfo.length >1 ? index + 1 :"" }}
+          <text class='import'>*</text>
+        </view>
+        <input type='number' name='count{{ index + 1 }}' value='{{ item.sampleNumber }}' placeholder-class='holder' placeholder='请填写样品个数'></input>
+      </view>
+      <view class='info-item'>
+        <view>样品量{{ sampleInfo.length >1 ? index + 1 :"" }}</view>
+        <input type='text' name='weight{{ index + 1 }}' value='{{ item.sampleSize }}' placeholder-class='holder' placeholder='请填写样品量'></input>
+      </view>
+      <view style='height:{{ index == 6 ? "0":"10" }}rpx;background:#e9e9e9;'></view>
+    </view>
+
+    <!-- 添加其他样品信息 -->
+    <view class='else-item center' bindtap='addSampleInfo' wx:if='{{ sampleList.length < 7 }}'>
+      <text>添加其他样品信息</text>
+    </view>
+  </view>
+
+  <!-- 样品类别 -->
+  <view class='sample-info'>
+    <view class='sample-title'>样品类别</view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange1">
+        <radio class="radio" color='#2090FE' wx:for="{{sampleTypes}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <input wx:if='{{ sample_type == "其他" }}' type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 样品性状 -->
+  <view class='sample-info'>
+    <view class='sample-title'>样品性状</view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange2">
+        <radio class="radio" color='#2090FE' wx:for="{{sampleStatus}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <input type='text' cursor-spacing='16rpx' wx:if='{{ sample_status == "其他" }}' name='status' placeholder-class='holder' maxlength='8' placeholder='请填写'></input>
+      </radio-group>
+    </view>
+  </view>
+
+
+  <!-- 样品来源 -->
+  <view class='sample-info'>
+    <view class='sample-title'>样品来源</view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange3">
+        <radio class="radio" color='#2090FE' wx:for="{{sampleOrigin}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+
+
+  <!-- 样品保存 -->
+  <view class='sample-info'>
+    <view class='sample-title'>样品保存
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange4">
+        <radio class="radio" color='#2090FE' wx:for="{{sampleSave}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <input type='text' cursor-spacing='16rpx' class='save' name='save' placeholder-class='holder' maxlength='6' placeholder='输入温度'></input>℃
+      </radio-group>
+    </view>
+  </view>
+
+
+  <!-- 余样处理 -->
+  <view class='sample-info'>
+    <view class='sample-title'>余样处理</view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange5">
+        <radio class="radio" color='#2090FE' wx:for="{{sampleDeal}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+
+
+  <!-- 样品危险性 -->
+  <view class='sample-info'>
+    <view class='sample-title'>危险性</view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange6">
+        <radio class="radio" color='#2090FE' wx:for="{{sampleDangerous}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <input type='text' cursor-spacing='16rpx' wx:if='{{ sample_dangerous == "其他" }}' name='dangerous' placeholder-class='holder' maxlength='8' placeholder='请填写'></input>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 委托要求 -->
+  <view class='sample-info'>
+    <view class='sample-title'>委托要求</view>
+    <view class='head-txt'>
+      <textarea placeholder-class='holder' cursor-spacing='16rpx' name='requirement' placeholder='其他快递地址请填写'></textarea>
+    </view>
+  </view>
+
+  <!-- 下一步/上一步 -->
+  <view class='sub-box'>
+    <view class='step previous' bindtap='backPage'>上一步</view>
+    <view class='step next'>下一步
+      <button class='sub-btn' formType="submit"></button>
+    </view>
+  </view>
+</form>

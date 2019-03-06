@@ -1,0 +1,85 @@
+/* order_package/pages/view-logistics/view-logistics.wxss */
+page{
+  background-color: #f3f4f5;
+}
+.order-info{
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}
+.item-title{
+  font-size: 28rpx;
+  font-weight: 600;
+  position: relative;
+  padding:0rpx 20rpx;
+  margin-bottom: 30rpx;
+}
+.item-title::before{
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 26rpx;
+  background-color: #2090FE;
+}
+.order-item{
+  font-size: 26rpx;
+  margin-bottom: 16rpx;
+}
+.lt{
+  display: inline-block;
+  width: 160rpx;
+  color: #666666;
+  /* background-color: cyan; */
+}
+.rt{
+  color: #333 !important;
+}
+
+/* 物流跟踪 */
+.logistics{
+  margin-top: 16rpx;
+  background-color: #fff;
+  padding: 20rpx 30rpx 0rpx 30rpx;
+}
+.logistics-detail{
+  position: relative;
+  /* overflow: hidden; */
+}
+.time-line{
+  position: absolute;
+  left: 12rpx;
+  top: 10rpx;
+  width: 2rpx;
+  height: 100%;
+  background-color: #999999;
+}
+.logistics-list{
+  font-size: 26rpx;
+  color: #B3B3B3;
+  padding: 0rpx 0rpx 50rpx 36rpx;
+  position: relative;
+}
+.l-active{
+  color: #2090FE;
+}
+.point{
+  position: absolute;
+  width: 12rpx;
+  height: 12rpx;
+  left: 2rpx;
+  top: 10rpx;
+  transform: translateX(50%);
+  background-color: #999999;
+  border-radius: 50%;
+}
+.p-active{
+  background-color: #2090FE;
+}
+.logistics-title{
+  line-height: 36rpx;
+}
+.logistics-time{
+  margin-top: 20rpx;
+}

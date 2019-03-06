@@ -1,0 +1,30 @@
+<!--profile_package/pages/my_coupon/my_coupon.wxml-->
+<!-- 我的优惠券 -->
+<view class='coupon-box'>
+  <view class='coupon-item' wx:for='{{ couponList }}' wx:key=''>
+    <view class='coupon-price center'>
+      <text class='m-icon'>¥</text>
+      <text class='price'>{{ item.couponPrice }}</text>
+    </view>
+    <view class='coupon-txt center'>
+      <view class='start-time'>可在：{{ item.startTime }}</view>
+      <view class='end-time'>到{{ item.endTime }}使用</view>
+    </view>
+  </view>
+</view>
+<!--加载 -->
+<view class='bottom_jiazai' wx:if="{{loading && page>1}}">
+  <image src='../../../images/loadmore.gif'></image>
+  <text>玩命加载中...</text>
+</view>
+<view class='bottom_jiazai' wx:if="{{nodata && couponList.length>0}}">
+  <text class='no'>无更多优惠券了哦~</text>
+</view>
+
+<!-- 没有数据的状态 -->
+<view class='none-box' wx:if='{{couponList.length==0 && page >1}}'>
+  <view class='none-img'>
+    <image src='/images/nothing.png'></image>
+  </view>
+  <view class='none-txt'>空空如也，暂无优惠券可用哦～</view>
+</view>

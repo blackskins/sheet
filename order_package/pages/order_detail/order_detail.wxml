@@ -1,0 +1,131 @@
+<!--order_package/pages/order_detail/order_detail.wxml-->
+<!-- 收货地址信息 -->
+<view class='address'>
+  <view class='address-icon center'>
+    <image src='../../images/address.png'></image>
+  </view>
+  <view class='address-info'>
+    <view class='user-info'>
+      <text class='user-name hd-text'>金沙包</text>
+      <text class='phone'>15815695458</text>
+    </view>
+    <view class='detail-address'>
+      北京市 北京市 朝阳区 花园路甲220号花园路 甲25号写字楼230室
+    </view>
+  </view>
+</view>
+
+<!-- 订单详情信息 -->
+<view class='order-detail'>
+
+  <view class='num-box'>
+    <view class='order-num'>
+      <view class='order-icon center'>
+        <image src='../../images/order_icon.png'></image>
+      </view>
+      <view class='order-num1'>订单编号：{{ item.orderId }}</view>
+    </view>
+    <view class='order-status' wx:if='{{ orderStatus == 12 }}'>待签名</view>
+    <view class='order-status' wx:if='{{ orderStatus == 14 }}'>待揽收</view>
+    <view class='order-status' wx:if='{{ orderStatus == 20 }}'>待受理</view>
+    <view class='order-status' wx:if='{{ orderStatus == 22 }}'>待付款</view>
+    <view class='order-status' wx:if='{{ orderStatus == 24 }}'>待报告</view>
+    <view class='order-status else-status' wx:if='{{ orderStatus == 30 }}'>发报告</view>
+    <view class='order-status else-status' wx:if='{{ orderStatus == 32 }}'>已完成</view>
+    <view class='order-status' wx:if='{{ orderStatus == 34 }}'>修改中</view>
+  </view>
+
+  <view class='program'>委托项目：纺织品委托</view>
+  <view class='base-info'>
+    <view class='count'>样品数量：3</view>
+    <view class='check-form' bindtap='checkForm'>查看表单</view>
+  </view>
+</view>
+
+<!-- 使用优惠券 -->
+<view class='coupon'>
+  <view class='coupon-left'>
+    <view class='icon-title'>
+      <view class='icon center'>
+        <image src='../../images/coupon.png'></image>
+      </view>
+      <view class='coupon-title'>使用优惠券</view>
+    </view>
+    <view class='coupon-money'>折扣：￥
+      <text>8</text>
+    </view>
+  </view>
+  <view class='coupon-right'>
+    <image src='../../images/pay.png'></image>
+  </view>
+</view>
+<!-- 付款方式 -->
+<!-- 微信支付 -->
+<view class='wx-pay'>
+  <view class='pay-type'>付款方式</view>
+  <view class='pay-title'>
+    <view class='icon-title'>
+      <view class='icon center'>
+        <image src='../../images/wxPay.png'></image>
+      </view>
+      <view class='coupon-title'>微信支付</view>
+    </view>
+    <view class='coupon-right'>
+      <image src='../../images/pay.png'></image>
+    </view>
+  </view>
+  <view class='pay-count' wx:if='{{ true }}'>总计：<text>￥326</text></view>
+  <view class='pay-title money-count' wx:else>
+    <view class='icon-title'>
+      <view class='icon center'>
+        <image src='../../images/pay_count.png'></image>
+      </view>
+      <view class='coupon-title'>订单金额</view>
+    </view>
+    <view class='money'>￥325</view>
+  </view>
+</view>
+
+<!-- 线下支付 -->
+<view class='outline-pay'>
+  <view class='line-left'>
+    <view class='line-title'>线下支付(银行转账、现金)</view>
+    <view class='card-num'>转账银行卡 454542113453546563253215</view>
+  </view>
+  <view class='up-btn'>上传</view>
+</view>
+
+<!-- 底部按钮 -->
+
+<view class='btn-box' wx:if='{{ orderStatus == 12 }}'>
+  <view class='cancel'>取消受理</view>
+  <view class='input-name'>签名</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 14 }}'>
+  <view class='cancel'>取消</view>
+  <view class='input-name'>联系客服</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 20 }}'>
+  <view class='cancel'>查看快递</view>
+  <view class='input-name'>联系客服</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 22 }}'>
+  <view class='cancel'>联系客服</view>
+  <view class='input-name'>立即付款</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 24 }}'>
+  <view class='cancel'>查看物流</view>
+  <view class='input-name'>联系客服</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 30 }}'>
+  <view class='cancel'>下载报告</view>
+  <view class='input-name'>报告修改</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 32 }}'>
+  <!-- <view class='cancel'>取消受理</view> -->
+  <view class='input-name'>签名</view>
+</view>
+<view class='btn-box' wx:if='{{ orderStatus == 34 }}'>
+  <view class='cancel'>查看新报告</view>
+  <view class='input-name'>联系客服</view>
+</view>

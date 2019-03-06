@@ -1,0 +1,53 @@
+<!--mainPackage/news/news.wxml-->
+<view class='search-box center'>
+  <view class='bg'>
+    <view class='input-mask' catchtap='bindSearch' wx:if='{{ inputMask }}'></view>
+    <view class='key-box' style='transform:{{ translate }};left:{{ left }}'>
+      <view class='search-icon center'>
+        <image src='/images/search_icon.png'></image>
+      </view>
+      <view class='input'>
+        <input style='width:{{ inputWidth }}' bindinput='inputKeyWord' focus='{{ inputFocus }}' type='text' value='{{ keyWord }}' placeholder='请输入关键词搜索' placeholder-class='holder' confirm-type='search' bindconfirm='searchKeyWord'></input>
+      </view>
+    </view>
+    <view class='clear-input center' bindtap='clearInput' wx:if='{{ clearIcon }}'>
+      <image src='../../images/cancel_icon1.png'></image>
+    </view>
+  </view>
+</view>
+
+<!-- 资讯列表 -->
+<scroll-view scroll-y style='height:{{ scrollHeight }}px;position:relative' bindscrolltolower='reachBottom'>
+  <view class='item-content'>
+    <view class='hot-list' style='height:{{currentIndex == index? itemHeight:defaultHeight }}rpx;transform:{{ currentIndex == index ? translateX : "none"}};transition:{{ nothing }}' wx:for='{{ newsList }}' wx:key='' data-id='{{ item._id }}' catchtap='toNewsDetail'>
+      <view class='bottom-line'>
+        <view class='list-left'>
+          <image src='{{ item.coverImg }}' mode='aspectFill'></image>
+        </view>
+        <view class='list-right'>
+          <view class='list-title hd-text'>{{ item.title }}</view>
+          <view class='type hd-text'>{{ item.content }}</view>
+          <view class='bot-box'>
+            <view class='list-time'>{{ item.createTime }}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--加载 -->
+  <view class='bottom_jiazai' wx:if="{{loading && page>1}}">
+    <image src='../../../images/loadmore.gif'></image>
+    <text>玩命加载中...</text>
+  </view>
+  <view class='bottom_jiazai' wx:if="{{nodata && newsList.length>0}}">
+    <text class='no'>已加载全部内容</text>
+  </view>
+
+  <!-- 没有数据的状态 -->
+  <view class='none-box' wx:if='{{newsList.length==0 && page >1}}'>
+    <view class='none-img'>
+      <image src='/images/nothing.png'></image>
+    </view>
+    <view class='none-txt'>空空如也，可以前往商品详情添加哦～</view>
+  </view>
+</scroll-view>

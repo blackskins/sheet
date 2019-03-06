@@ -1,0 +1,7 @@
+<!--profile_package/pages/my_code/my_code.wxml-->
+<view class='code-box center'>
+  <view class='code-img'>
+    <image src='{{ codeUrl }}'></image>
+  </view>
+  <view class='txt'>扫一扫上面的二维码图案，加我好友</view>
+</view>

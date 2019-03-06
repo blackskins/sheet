@@ -1,0 +1,24 @@
+/* profile_package/pages/my_code/my_code.wxss */
+page{
+  background-color: #f3f4f5;
+}
+.code-box{
+  width: 660rpx;
+  height: 700rpx;
+  background-color: #fff;
+  flex-direction: column;
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+}
+.code-img,.code-img image{
+  width: 510rpx;
+  height: 510rpx;
+  /* background-color: #999; */
+}
+.txt{
+  margin-top: 40rpx;
+  font-size: 26rpx;
+  color: #333;
+}

@@ -1,0 +1,13 @@
+<!--order_package/pages/modify_form/modify_form.wxml-->
+<view class='list-num'>
+  <view class='title-name'>样品序号</view>
+  <view class='title-value'>样品一</view>
+</view>
+
+<view class='res-front'>
+  <view class='title-name'>样品名称</view>
+  <view class='name-balue'>海蓝湾之谜护肤品</view>
+</view>
+<view class='res'>
+  <view class=''>修改为</view>
+</view>

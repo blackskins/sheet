@@ -1,0 +1,38 @@
+<!--mainPackage/profile/profile.wxml-->
+<!-- 头部基本信息 -->
+<view class='basic-info'>
+  <view class='avatar center'>
+    <image src='{{ userData.headImg }}'></image>
+  </view>
+  <view class='nick-name'>昵称：{{ userData.nick }}</view>
+  <view class='my-code' bindtap='toMyCode'>
+    <view class='code'>
+      <image src='/images/code.png'></image>
+    </view>
+    <text>我的二维码</text>
+  </view>
+</view>
+
+<!-- 我的订单 -->
+<view class='menu-list' bindtap='toMyOrder' data-id='0'>
+  <view class='icon center'>
+    <image src='/images/order1.png'></image>
+  </view>
+  <text class='menu-title'>我的订单</text>
+</view>
+
+<!-- 订单状态 -->
+<view class='order-status'>
+  <view class='item-status center' wx:for='{{ orderStatus }}' wx:key='' bindtap='toMyOrder' data-id='{{ item.id }}'>
+    <image src='{{ item.img }}'></image>
+    <text class='order-title'>{{ item.title }}</text>
+  </view>
+</view>
+
+<!-- 功能列表项 -->
+<view class='menu-list' wx:for='{{ listItem }}' wx:key='' bindtap='toListPage' data-id='{{ item.id }}'>
+  <view class='icon center'>
+    <image src='{{ item.img }}'></image>
+  </view>
+  <text class='menu-title'>{{ item.title }}</text>
+</view>

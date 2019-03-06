@@ -1,0 +1,8 @@
+<!--index_package/pages/news_detail/news_detail.wxml-->
+<view class='rich-page'>
+  <view class='title'>{{ richPage.title }}</view>
+  <view class='create-time'>{{ richPage.createTime }}</view>
+  <view class='rich-text'>
+    <rich-text nodes='{{ richPage.content }}' space='nbsp'></rich-text>
+  </view>
+</view>

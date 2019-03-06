@@ -1,0 +1,35 @@
+<!--profile_package/pages/my_customer/my_customer.wxml-->
+<!-- 我的客户 -->
+<view class='customer-list' wx:for='{{ customerList }}' wx:key=''>
+  <view class='customer-item'>
+    <view class='top-time'>
+      <view class='time-box'>
+        <view class='icon-box center'><image src='../../images/date.png'></image></view>
+        <view class='time'>{{ item.time }}</view>
+      </view>
+      <view class='count'>
+        共委托<text>{{ item.count }}</text>次
+      </view>
+    </view>
+    <view class='user-info'>
+      <view class='user-name'>{{ item.name }}</view>
+      <view class='cost'>共消费￥{{ item.price }}</view>
+    </view>
+  </view>
+</view>
+<!--加载 -->
+<view class='bottom_jiazai' wx:if="{{loading && page>1}}">
+  <image src='../../../images/loadmore.gif'></image>
+  <text>玩命加载中...</text>
+</view>
+<view class='bottom_jiazai' wx:if="{{nodata && customerList.length>0}}">
+  <text class='no'>无更多信息了哦~</text>
+</view>
+
+<!-- 没有数据的状态 -->
+<view class='none-box' wx:if='{{customerList.length==0 && page >1}}'>
+  <view class='none-img'>
+    <image src='/images/nothing.png'></image>
+  </view>
+  <view class='none-txt'>空空如也，暂无客户信息哦～</view>
+</view>

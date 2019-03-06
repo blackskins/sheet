@@ -1,0 +1,79 @@
+<!--order_package/pages/my_order/my_order.wxml-->
+<view class='tab-box'>
+  <block wx:for='{{ itemStatus }}' wx:key=''>
+    <view class='tab-item {{ currentIndex == index ?"active":"" }}' bindtap='chooseItem' data-index='{{ index }}'>{{ item }}</view>
+  </block>
+</view>
+
+<scroll-view scroll-y style='height:{{ scrollHeight }}px'>
+  <view class="slider">
+    <swiper current='{{ currentIndex }}' duration="400" bindchange='changeItem'>
+      <swiper-item wx:for="{{ itemStatus }}" wx:key=''>
+        <scroll-view scroll-y style='height:{{ scrollHeight }}px'>
+          <view class='order-item' wx:for='{{ currentIndex == 0 ? allOrderList : orderList }}' wx:key=''>
+            <view class='num-box'>
+              <view class='order-num'>
+                <view class='order-icon center'>
+                  <image src='../../images/order_icon.png'></image>
+                </view>
+                <view class='order-num1'>订单编号：{{ item.orderId }}</view>
+              </view>
+              <view class='order-status' wx:if='{{ item.status == 12 }}'>待签名</view>
+              <view class='order-status' wx:if='{{ item.status == 14 }}'>待揽收</view>
+              <view class='order-status' wx:if='{{ item.status == 20 }}'>待受理</view>
+              <view class='order-status' wx:if='{{ item.status == 22 }}'>待付款</view>
+              <view class='order-status' wx:if='{{ item.status == 24 }}'>待报告</view>
+              <view class='order-status else-status' wx:if='{{ item.status == 30 }}'>发报告</view>
+              <view class='order-status else-status' wx:if='{{ item.status == 32 }}'>已完成</view>
+              <view class='order-status' wx:if='{{ item.status == 34 }}'>修改中</view>
+            </view>
+            <view class='order-info'>
+              <view class='order-title'>{{ item.entrust }}</view>
+              <view class='order-date'>
+                <view class='submit-time'>提交时间：{{ item.createTime }}</view>
+                <view class='change-status' wx:if='{{ item.status == 30 }}'>{{ item.updateStatus == 10 ? "申请修改中" : "" || item.updateStatus == 20 ? "申请修改通过" : "" || item.updateStatus == 30 ? "驳回修改": "" }}</view>
+              </view>
+              <view class='bottom-box'>
+                <view class='update-info'>修改委托单</view>
+                <view class='link'>联系客服
+                  <button open-type='contact'></button>
+                </view>
+                <view class='check-detail'>查看详情</view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</scroll-view>
+
+<!-- 创建委托单的画布 -->
+<!-- <view style='width:0px;height:0px;opacity:0;margin-top:1000px'> -->
+<!-- <view style='width:{{  }}px;height:{{  }}px;opacity:0;margin-top:1000px'>
+  <canvas canvas-id='canvas1' style='width=750px;height=1206px'></canvas>
+</view>
+<view style='width:0px;height:0px;opacity:0;margin-top:1000px'>
+  <canvas canvas-id='canvas2' style="width: 750px; height: 1206px;"></canvas>
+</view> -->
+
+<!-- 画布1 -->
+<view class='canvas' wx:if='{{ false }}'>
+  <canvas class='' canvas-id='canvas-1' style='width:1500px;height:2115px'></canvas>
+  <cover-view class='save' bindtap='saveImg' >保存</cover-view>
+</view>
+<!-- 画布2 -->
+<view class='canvas' wx:if='{{ false }}'>
+  <canvas class='' canvas-id='canvas-2' style='width:1700px;height:2517px'></canvas>
+  <cover-view class='save' bindtap='saveImg1' >保存</cover-view>
+</view>
+<!-- 画布3 -->
+<view class='canvas' wx:if='{{ false }}'>
+  <canvas class='' canvas-id='canvas-3' style='width:1500px;height:2115px'></canvas>
+  <cover-view class='save' bindtap='saveImg2'>保存</cover-view>
+</view>
+<!-- 画布4 -->
+<view class='canvas' wx:if='{{ false }}'>
+  <canvas class='' canvas-id='canvas-4' style='width:1500px;height:2115px'></canvas>
+  <cover-view class='save' bindtap='saveImg3'>保存</cover-view>
+</view>

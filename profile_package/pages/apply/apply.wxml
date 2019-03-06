@@ -1,0 +1,45 @@
+<!--profile_package/pages/apply/apply.wxml-->
+<form bindsubmit='formSubmit'>
+  <view class='item-box'>
+    <view class='info-item'>
+      <view>姓名
+        <text class='import'>*</text>
+      </view>
+      <input type='text' name='user' placeholder-class='holder' placeholder='请填写姓名'></input>
+    </view>
+    <view class='info-item'>
+      <view>电话
+        <text class='import'>*</text>
+      </view>
+      <input type='number' name='phone' placeholder-class='holder' placeholder='请填写电话'></input>
+    </view>
+    <view class='info-item'>
+      <view>身份证号
+        <text class='import'>*</text>
+      </view>
+      <input type='idcard' name='idCard' placeholder-class='holder' placeholder='请填写身份证号'></input>
+    </view>
+    <view class='info-item'>
+      <view>邮箱
+      </view>
+      <input type='text' name='email' placeholder-class='holder' placeholder='请填写邮箱'></input>
+    </view>
+  </view>
+  <!-- 提交审核 -->
+  <view class='sub-box center'>
+      <view class='next'>提交审核
+        <button class='sub-btn' formType="submit"></button>
+      </view>
+  </view>
+</form>
+
+<!-- 提交表单时的提示弹窗 -->
+<view class='mask' wx:if='{{ agreement }}' style='opacity:{{ opacity }}'>
+  <view class='tips-window' style='transform:{{ scale }}'>
+    <view class='tips'>确定提交吗？</view>
+    <view class='btn-box'>
+      <view class='cancel' bindtap='cancel'>取消</view>
+      <view class='confirm' bindtap='confirm'>确定</view>
+    </view>
+  </view>
+</view>

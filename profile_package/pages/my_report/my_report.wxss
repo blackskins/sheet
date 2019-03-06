@@ -1,0 +1,108 @@
+/* profile_package/pages/my_report/my_report.wxss */
+page{
+  background-color: #F3F4F5;
+}
+/* 时间线 */
+.date-box{
+  /* padding: 0rpx 30rpx; */
+  margin-bottom: 20rpx;
+  background-color: #fff;
+}
+.top{
+  padding:0rpx 30rpx;
+  height: 96rpx; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx #e9e9e9 solid;
+}
+.date-img image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.date-time{
+  font-size: 26rpx;
+  color: #333;
+  margin-left: 14rpx;
+}
+.right,.right image{
+  width: 28rpx;
+  height: 14rpx;
+  transition: all .3s ease-in-out;
+}
+
+/* 订单项部分 */
+.content-box{
+  overflow: hidden;
+  transition: all .3s ease-in-out;
+}
+.list-item{
+  margin-left: 30rpx;
+  /* padding-right: 30rpx; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 180rpx;
+  border-bottom: 2rpx #e9e9e9 solid;
+  /* background-color: cyan; */
+}
+.list-item:last-child{
+  border: none;
+}
+.bottom-left{
+  display: flex;
+  align-items: center;
+}
+.icon-box,.icon-box image{
+  width: 88rpx;
+  height: 88rpx;
+}
+.main{
+  margin-left: 20rpx;
+  line-height: 44rpx;
+}
+.title{
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+.order-num,.order-date{
+  font-size: 26rpx;
+  color: #9B9B9B;
+}
+.bottom-right{
+  width: 108rpx;
+  height: 108rpx;
+}
+.bottom-right image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+/* 下载报告时的弹窗 */
+/* .mask{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  background-color: rgba(0, 0, 0, .7);
+}
+.tips-window{
+  width: 500rpx;
+  height: 220rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  padding: 0rpx 40rpx; 
+}
+.tips{
+  font-size: 30rpx;
+  height: 122rpx;
+  line-height: 122rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #e9e9e9;
+} */

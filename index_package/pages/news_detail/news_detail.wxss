@@ -1,0 +1,25 @@
+/* index_package/pages/news_detail/news_detail.wxss */
+.rich-page{
+  padding: 30rpx;
+}
+.title{
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 40rpx;
+}
+.create-time{
+  font-size: 26rpx;
+  color: #9b9b9b;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.para{
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+  color: #333;
+  line-height: 48rpx;
+}
+.content-img{
+  width: 690rpx;
+}

@@ -1,0 +1,39 @@
+/* profile_package/pages/my_customer/my_customer.wxss */
+page{
+  background-color: #f3f4f5;
+}
+.customer-list{
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  line-height: 48rpx;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+.top-time{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.time-box{
+  display: flex;
+}
+.icon-box image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.time{
+  margin-left: 14rpx;
+}
+.count text{
+  font-weight: 600;
+  color: #FF5466;
+}
+.user-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user-name{
+  font-size: 30rpx;
+  font-weight: 600;
+}

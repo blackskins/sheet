@@ -1,0 +1,35 @@
+/* profile_package/pages/my_coupon/my_coupon.wxss */
+page{
+  background-color: #f3f4f5;
+}
+.coupon-box{
+  padding: 0rpx 30rpx;
+}
+.coupon-item{
+  background: url('http://daiyanjia.oss-cn-shenzhen.aliyuncs.com/e910de1b7ffe4a8a800daed0b3478873.png') no-repeat;
+  background-size: 100% 156rpx;
+  margin-top: 20rpx;
+  display: flex;
+}
+.coupon-price{
+  color: #fff;
+  width: 30%;
+  /* background-color: red; */
+  height: 156rpx;
+}
+.m-icon{
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+.price{
+  font-size: 50rpx;
+}
+.coupon-txt{
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #666;
+  width: 70%;
+  height: 156rpx;
+  flex-direction: column;
+  line-height: 46rpx;
+}

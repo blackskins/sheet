@@ -1,0 +1,177 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.5.2",
+	"appid": "wxe8e8fbd81548c7da",
+	"projectname": "%E5%A7%94%E6%89%98%E5%8D%95v1",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 18,
+			"list": [
+				{
+					"id": -1,
+					"name": "资讯",
+					"pathName": "mainPackage/news/news",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "委托服务",
+					"pathName": "mainPackage/services/services",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "mainPackage/profile/profile",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "化妆品委托",
+					"pathName": "index_package/pages/cosmetics/cosmetics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "样品信息表",
+					"pathName": "index_package/pages/cosmetics-a/cosmetics-a",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "服务要求信息表",
+					"pathName": "index_package/pages/cosmetics-b/cosmetics-b",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "纺织品委托",
+					"pathName": "index_package/pages/textile/textile",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "纺织品样品信息",
+					"pathName": "index_package/pages/textile-a/textile-a",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "纺织品第三页信息",
+					"pathName": "index_package/pages/textile-b/textile-b",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "化妆品服务",
+					"pathName": "index_package/pages/textile-c/textile-c",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的二维码",
+					"pathName": "profile_package/pages/my_code/my_code",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的报告",
+					"pathName": "profile_package/pages/my_report/my_report",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "优惠券",
+					"pathName": "profile_package/pages/my_coupon/my_coupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的客户",
+					"pathName": "profile_package/pages/my_customer/my_customer",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "申请成为业务员",
+					"pathName": "profile_package/pages/apply/apply",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "order_package/pages/my_order/my_order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "order_package/pages/order_detail/order_detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "查看物流",
+					"pathName": "order_package/pages/view-logistics/view-logistics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报告修改",
+					"pathName": "order_package/pages/modify_report/modify_report",
+					"scene": null
+				}
+			]
+		}
+	}
+}

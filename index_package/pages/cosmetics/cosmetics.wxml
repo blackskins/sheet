@@ -1,0 +1,84 @@
+<!--index_package/pages/cosmetics/cosmetics.wxml-->
+<form bindsubmit='formSummt'>
+  <view class='first-party'>
+    <view class='detail-info'>
+      <text>委托方信息</text>
+      <image src='../../images/tips.png'></image>
+    </view>
+    <view class='first-name'>
+      <text>委托方：</text>
+      <input name='firstName' type='text' placeholder-class='holder' placeholder='请填写委托方'></input>
+    </view>
+    <view class='head'>报告抬头：</view>
+    <view class='radio'>
+      <radio-group class="radio-group" bindchange="radioChange1">
+        <radio class='same' color='#2090FE' value='0'>与委托方相同</radio>
+        <radio class='else' color='#2090FE' value='1'>其他</radio>
+      </radio-group>
+    </view>
+    <view class='head-txt' wx:if='{{ rhStatus == 1 }}'>
+      <textarea placeholder-class='holder' name='reportHeader' placeholder='其他抬头请填写'></textarea>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class='basic-box'>
+    <view class='info-item'>
+      <view>联系电话
+        <text class='import'>*</text>
+      </view>
+      <input type='number' name='phone' placeholder-class='holder' placeholder='请填写联系电话'></input>
+    </view>
+    <view class='info-item'>
+      <view>E-mail</view>
+      <input type='text' name='email' placeholder-class='holder' placeholder='请填写E-mail'></input>
+    </view>
+    <view class='info-item'>
+      <view>联系人
+        <text class='import'>*</text>
+      </view>
+      <input type='text' name='user' placeholder-class='holder' placeholder='请填写联系人'></input>
+    </view>
+    <view class='info-item'>
+      <view>联系地址</view>
+      <input type='text' name='address' placeholder-class='holder' placeholder='请填写联系地址'></input>
+    </view>
+  </view>
+
+  <view class='basic-box'>
+    <view class='info-item'>
+      <view>传真</view>
+      <input type='text' name='fax' placeholder-class='holder' placeholder='请填写传真'></input>
+    </view>
+    <view class='info-item'>
+      <view>邮政编码</view>
+      <input type='number' name='postCode' placeholder-class='holder' placeholder='请填写邮政编码'></input>
+    </view>
+  </view>
+
+  <view class='basic-box'>
+    <view class='head'>快递地址
+      <text class='import'>*</text>
+    </view>
+    <picker mode='region' bindchange='bindRegionChange' value='{{ region }}' >
+      <view class='area'><text class='a-title'> 省 市 区：</text><text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text></view>
+    </picker>
+    <view class='radio'>
+      <radio-group bindchange="radioChange2">
+        <radio class='rd' color='#2090FE' value='0'>与联系地址相同</radio>
+        <radio class='rd' color='#2090FE' value='1'>其他</radio>
+      </radio-group>
+    </view>
+    
+    <view class='head-txt' wx:if="{{ exStatus == 1 }}">
+      <textarea placeholder-class='holder' name='detailAddress' placeholder='请填写详细的快递地址'></textarea>
+    </view>
+  </view>
+
+  <!-- 下一步 -->
+  <view class='sub-box center'>
+    <view class='next'>下一步
+      <button class='sub-btn' formType="submit"></button>
+    </view>
+  </view>
+</form>

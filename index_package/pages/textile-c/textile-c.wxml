@@ -1,0 +1,189 @@
+<!--index_package/pages/textile-c/textile-c.wxml-->
+<form bindsubmit='formSubmit'>
+  <view class='second-part'>
+    <view class='detail-info'>
+      <text>服务要求</text>
+      <image src='../../images/tips.png'></image>
+    </view>
+
+    <!-- 是否退余样 -->
+    <view class='sample-info'>
+      <view class='sample-title'>是否退余样
+        <text class='import'>*</text>
+      </view>
+      <view class='sample-box'>
+        <radio-group class="radio-group" bindchange="radioChange1">
+          <radio class="radio" color='#2090FE' wx:for="{{restSample}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+            <text>{{item.value}}</text>
+          </radio>
+        </radio-group>
+      </view>
+    </view>
+  </view>
+
+  <!-- 判定标准 -->
+  <view class='sample-info'>
+    <view class='sample-title'>判断标准
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange2">
+        <radio class="radio" color='#2090FE' wx:for="{{judge}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <radio class="radio" color='#2090FE'>
+          <text>(产品)判定标准</text>
+        </radio>
+        <input type='text' name='judge' placeholder-class='holder' maxlength='12' placeholder='请填写标准'></input>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 服务时限 -->
+  <view class='sample-info'>
+    <view class='sample-title'>服务时限
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group fn" bindchange="radioChange3">
+        <radio class="radio" color='#2090FE' wx:for="{{serviceTime}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <radio class="radio" color='#2090FE' wx:for="{{hurryTime}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 报告格式 -->
+  <view class='sample-info'>
+    <view class='sample-title'>报告格式
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group fn" bindchange="radioChange4">
+        <radio class="radio" color='#2090FE' wx:for="{{report}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+      <checkbox-group class="radio-group fn" bindchange="checkboxChange">
+        <label class="">
+          <checkbox class="checkbox c1" color='#fff'>
+            <view class='count'>
+              <text>副本</text>
+              <input type='number' maxlength='4' placeholder-class='holder' placeholder='请填写数量'></input>
+              <text>(20元/份)</text>
+            </view>
+          </checkbox>
+        </label>
+        <label class="">
+          <checkbox class="checkbox c2" color='#fff'>
+            <view class='count'>
+              <text>附照片</text>
+              <input type='number' maxlength='4' placeholder-class='holder' placeholder='请填写数量'></input>
+              <text>(加收50元/张)</text>
+            </view>
+          </checkbox>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <!-- 报告类别 -->
+  <view class='sample-info'>
+    <view class='sample-title'>报告类别
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange2">
+        <radio class="radio" color='#2090FE' wx:for="{{reportType}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <radio class="radio" color='#2090FE'>
+          <text>含非认证项目</text>
+        </radio>
+        <radio class="radio" color='#2090FE'>
+          <text>含非认证认可项目</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 报告发送 -->
+  <view class='sample-info'>
+    <view class='sample-title'>报告发送
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange2">
+        <radio class="radio" color='#2090FE' wx:for="{{reportSend}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <input type='text' name='report' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 发票抬头 -->
+  <view class='sample-info'>
+    <view class='sample-title'>发票抬头
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange3">
+        <radio class="radio" color='#2090FE' wx:for="{{ticketType}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+        <input type='text' name='report' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 发票类别 -->
+  <view class='sample-info'>
+    <view class='sample-title'>发票类别
+      <text class='import'>*</text>
+    </view>
+    <view class='sample-box'>
+      <radio-group class="radio-group" bindchange="radioChange3">
+        <radio class="radio" color='#2090FE'>
+          <text>普票</text>
+        </radio>
+        <input type='text' class='ticket' name='report' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
+        <radio class="radio" color='#2090FE'>
+          <text>专票(需提供开票资料)</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+
+  <!-- 其他 -->
+  <view class='sample-info'>
+    <view class='sample-title'>其他</view>
+    <view class='head-txt'>
+      <textarea placeholder-class='holder' placeholder='请输入'></textarea>
+    </view>
+  </view>
+
+  <!-- 提交/上一步 -->
+  <view class='sub-box'>
+    <view class='step previous' bindtap='backPage'>上一步</view>
+    <view class='step next'>提交
+      <button class='sub-btn' formType="submit"></button>
+    </view>
+  </view>
+</form>
+
+
+<!-- 委托协议 -->
+<view class='mask' catchtouchmove='stopMove' wx:if='{{ agreement }}' style='opacity:{{ opacity }}'>
+  <view class='agreement' style='transform:{{ scale }}'>
+    <view class='agreement-title center'>委托服务协议</view>
+    <scroll-view scroll-y class='agreement-txt'>协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容</scroll-view>
+    <view class='isAgree'>
+      <view class='cancel-btn' catchtap='cancel'>取消</view>
+      <view class='agree-btn' catchtap='agree'>同意</view>
+    </view>
+  </view>
+</view>
