@@ -11,27 +11,27 @@
         <view>样品名称{{ sampleInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>
         </view>
-        <input type='text' name='name{{ index + 1 }}' value='{{ item.sampleName }}' placeholder-class='holder' placeholder='请填写样品名称'></input>
+        <input type='text' name='name{{ index + 1 }}' value='{{ item.sampleName }}'  bindblur='blurName' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品名称'></input>
       </view>
       <view class='info-item'>
         <view>样品批号{{ sampleInfo.length >1 ? index + 1 :"" }}</view>
-        <input type='text' name='num{{ index + 1 }}' value='{{ item.sampleBatch }}' placeholder-class='holder' placeholder='请填写样品批号'></input>
+        <input type='text' name='num{{ index + 1 }}' value='{{ item.sampleBatch }}'  bindblur='blurNum' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品批号'></input>
       </view>
       <view class='info-item'>
         <view>样品个数{{ sampleInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>
         </view>
-        <input type='number' name='count{{ index + 1 }}' value='{{ item.sampleNumber }}' placeholder-class='holder' placeholder='请填写样品个数'></input>
+        <input type='number' name='count{{ index + 1 }}' value='{{ item.sampleNumber }}'  bindblur='blurCount' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品个数'></input>
       </view>
       <view class='info-item'>
         <view>样品量{{ sampleInfo.length >1 ? index + 1 :"" }}</view>
-        <input type='text' name='weight{{ index + 1 }}' value='{{ item.sampleSize }}' placeholder-class='holder' placeholder='请填写样品量'></input>
+        <input type='text' name='weight{{ index + 1 }}' value='{{ item.sampleSize }}'  bindblur='blurWeight' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品量'></input>
       </view>
       <view style='height:{{ index == 6 ? "0":"10" }}rpx;background:#e9e9e9;'></view>
     </view>
 
     <!-- 添加其他样品信息 -->
-    <view class='else-item center' bindtap='addSampleInfo' wx:if='{{ sampleList.length < 7 }}'>
+    <view class='else-item center' bindtap='addSampleInfo' wx:if='{{ sampleInfo.length < 7 }}'>
       <text>添加其他样品信息</text>
     </view>
   </view>

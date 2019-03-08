@@ -29,28 +29,30 @@
       </view>
     </view>
     <view class='sample-box' style='max-height:{{ height1 }}rpx'>
-      <radio-group class="radio-group fn" bindchange="radioChange1">
-        <radio class="radio" color='#2090FE' value="" checked="">
+      <checkbox-group class="radio-group fn" bindchange="radioChange1">
+        <checkbox class="radio" color='#2090FE' value="常规套餐" checked="">
           <text>常规套餐（GB 1840 + 纤维含量 + 标识）</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <checkbox class="radio" color='#2090FE' value="GB18401全项" checked="">
           <text>GB 18401全项</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <checkbox class="radio" color='#2090FE' value="产品标识" checked="">
           <text>产品标识</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>GB 31701</text>
-            <radio-group class="radio-group" bindchange="radioChange1a">
-              (
-              <radio class="radio" color='#2090FE' wx:for="{{gb2}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>)
-            </radio-group>
-          </view>
-        </radio>
-      </radio-group>
+        </checkbox>
+        <view class='gb31' style='display:flex;'>
+          <checkbox class="radio" color='#2090FE' value="GB31701" checked="">
+            <view class='con'>
+              <text>GB 31701</text>
+            </view>
+          </checkbox>
+          <radio-group class="radio-group" bindchange="radioChange1a" wx:if='{{ showOne }}'>
+            (
+            <radio class="radio" color='#2090FE' wx:for="{{gb2}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>)
+          </radio-group>
+        </view>
+      </checkbox-group>
     </view>
   </view>
 
@@ -63,12 +65,12 @@
       </view>
     </view>
     <view class='sample-box' style='max-height:{{ height2 }}rpx'>
-      <radio-group class="radio-group" bindchange="radioChange2">
-        <radio class="radio" color='#2090FE' wx:for="{{fibrillar}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+      <checkbox-group class="radio-group" bindchange="radioChange2">
+        <checkbox class="radio" color='#2090FE' wx:for="{{fibrillar}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
-        </radio>
+        </checkbox>
         <!-- <input type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input> -->
-      </radio-group>
+      </checkbox-group>
     </view>
   </view>
 
@@ -81,45 +83,53 @@
       </view>
     </view>
     <view class='sample-box' style='max-height:{{ height3 }}rpx'>
-      <radio-group class="radio-group" bindchange="radioChange3a">
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>耐摩擦</text>
-            <radio-group class="radio-group" bindchange="radioChange3a">
-              （
-              <radio class="radio" color='#2090FE' wx:for="{{swet}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>）
-            </radio-group>
-          </view>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+      <checkbox-group class="radio-group" bindchange="radioChange3">
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="耐摩擦" checked="">
+            <view class='con'>
+              <text>耐摩擦</text>
+            </view>
+          </checkbox>
+          <radio-group wx:if='{{ show3a }}' class="radio-group" bindchange="radioChange3a">
+            （
+            <radio class="radio" color='#2090FE' wx:for="{{swet}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>）
+          </radio-group>
+        </view>
+        <checkbox class="radio" color='#2090FE' value="耐水" checked="">
           <text>耐水</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <checkbox class="radio" color='#2090FE' value="耐皂洗" checked="">
           <text>耐皂洗</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>耐汗渍</text>
-            <radio-group class="radio-group" bindchange="radioChange3a">
-              （
-              <radio class="radio" color='#2090FE' wx:for="{{ph}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>）
-            </radio-group>
-          </view>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <text>耐唾液</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="耐汗渍" checked="">
+            <view class='con'>
+              <text>耐汗渍</text>
+            </view>
+          </checkbox>
+          <radio-group wx:if='{{ show3b }}' class="radio-group" bindchange="radioChange3b">
+            （
+            <radio class="radio" color='#2090FE' wx:for="{{ph}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>）
+          </radio-group>
+        </view>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="耐唾液" checked="">
+            <text>耐唾液</text>
+          </checkbox>
+        </view>
+        <checkbox class="radio" color='#2090FE' value="耐光" checked="">
           <text>耐光</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <text>耐干旱</text>
-        </radio>
-      </radio-group>
+        </checkbox>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="耐干旱" checked="">
+            <text>耐干旱</text>
+          </checkbox>
+        </view>
+      </checkbox-group>
     </view>
   </view>
 
@@ -132,12 +142,12 @@
       </view>
     </view>
     <view class='sample-box' style='max-height:{{ height4 }}rpx'>
-      <radio-group class="radio-group" bindchange="radioChange4">
-        <radio class="radio" color='#2090FE' wx:for="{{chemistry}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+      <checkbox-group class="radio-group" bindchange="radioChange4">
+        <checkbox class="radio" color='#2090FE' wx:for="{{chemistry}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
-        </radio>
+        </checkbox>
         <!-- <input type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input> -->
-      </radio-group>
+      </checkbox-group>
     </view>
   </view>
 
@@ -152,58 +162,65 @@
       </view>
     </view>
     <view class='sample-box' style='max-height:{{ height5 }}rpx'>
-      <radio-group class="radio-group" bindchange="radioChange5a">
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>撕破强力</text>
-            <radio-group class="radio-group" bindchange="radioChange5b">
-              （
-              <radio class="radio" color='#2090FE' wx:for="{{phy1}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>）
-              <!-- <input type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input> -->
-            </radio-group>
-          </view>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <text>顶破强力</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>断裂强力</text>
-            <radio-group class="radio-group" bindchange="radioChange5c">
-              （
-              <radio class="radio" color='#2090FE' wx:for="{{phy2}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>）
-              <!-- <input type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input> -->
-            </radio-group>
-          </view>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <text>纰裂程度</text>
-        </radio>
+      <checkbox-group class="radio-group" bindchange="radioChange5">
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="撕破强力" checked="">
+            <view class='con'>
+              <text>撕破强力</text>
+            </view>
+          </checkbox>
+          <radio-group class="radio-group" bindchange="radioChange5a">
+            （
+            <radio class="radio" color='#2090FE' wx:for="{{phy1}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>）
+            <!-- <input type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input> -->
+          </radio-group>
+        </view>
 
-        <radio class="radio" color='#2090FE' value="" checked="">
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="断裂强力" checked="">
+            <view class='con'>
+              <text>断裂强力</text>
+            </view>
+          </checkbox>
+          <radio-group class="radio-group" bindchange="radioChange5b">
+            （
+            <radio class="radio" color='#2090FE' wx:for="{{phy2}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>）
+            <!-- <input type='text' name='type' placeholder-class='holder' maxlength='8' placeholder='请填写'></input> -->
+          </radio-group>
+        </view>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="顶破强力" checked="">
+            <text>顶破强力</text>
+          </checkbox>
+        </view>
+        <checkbox class="radio" color='#2090FE' value="纰裂程度" checked="">
+          <text>纰裂程度</text>
+        </checkbox>
+
+        <checkbox class="radio" color='#2090FE' value="后档接缝强力" checked="">
           <text>后档接缝强力</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <checkbox class="radio" color='#2090FE' value="起毛起球" checked="">
           <text>起毛起球（标注正反面）</text>
-        </radio>
-        <radio-group class="radio-group" bindchange="radioChange5d">
+        </checkbox>
+        <radio-group class="radio-group" bindchange="radioChange5c">
           【
-          <radio class="radio" color='#2090FE' value="" checked="">
+          <radio class="radio" color='#2090FE' value="马丁代尔" checked="">
             <text>马丁代尔</text>
           </radio>
-          <radio class="radio" color='#2090FE' value="" checked="">
+          <radio class="radio" color='#2090FE' value="圆轨迹" checked="">
             <text>圆轨迹</text>
           </radio>
-          <radio class="radio" color='#2090FE' value="" checked="">
+          <radio class="radio" color='#2090FE' value="箱式" checked="">
             <view class='con'>
               <text>箱式</text>
-              <radio-group class="radio-group" bindchange="radioChange5e">
+              <radio-group class="radio-group" bindchange="radioChange5d">
                 （
-                <radio class="radio" color='#2090FE' wx:for="{{phy3}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                <radio class="radio" color='#2090FE' wx:for="{{phy3}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
                   <text>{{item.value}}</text>
                 </radio>）
               </radio-group>
@@ -211,45 +228,52 @@
           </radio>
           】
         </radio-group>
-
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>耐磨性能</text>
-            <radio-group class="radio-group" bindchange="radioChange5f">
-              （
-              <radio class="radio" color='#2090FE' wx:for="{{phy4}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>）
-            </radio-group>
-          </view>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <text>纱支</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="耐磨性能" checked="">
+            <view class='con'>
+              <text>耐磨性能</text>
+            </view>
+          </checkbox>
+          <radio-group class="radio-group" bindchange="radioChange5e">
+            （
+            <radio class="radio" color='#2090FE' wx:for="{{phy4}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>）
+          </radio-group>
+        </view>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="纱支" checked="">
+            <text>纱支</text>
+          </checkbox>
+        </view>
+        <checkbox class="radio" color='#2090FE' value="水洗尺寸变化率" checked="">
           <text>水洗尺寸变化率</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <checkbox class="radio" color='#2090FE' value="洗后扭斜/曲" checked="">
           <text>洗后扭斜/曲</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <text>水洗后外观</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        </checkbox>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="水洗后外观" checked="">
+            <text>水洗后外观</text>
+          </checkbox>
+        </view>
+        <checkbox class="radio" color='#2090FE' value="捻度" checked="">
           <text>捻度</text>
-        </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
-          <view class='con'>
-            <text>外观质量</text>
-            <radio-group class="radio-group" bindchange="radioChange5g">
-              （
-              <radio class="radio" color='#2090FE' wx:for="{{phy5}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                <text>{{item.value}}</text>
-              </radio>）
-            </radio-group>
-          </view>
-        </radio>
-      </radio-group>
+        </checkbox>
+        <view class='gb31'>
+          <checkbox class="radio" color='#2090FE' value="外观质量" checked="">
+            <view class='con'>
+              <text>外观质量</text>
+            </view>
+          </checkbox>
+          <radio-group class="radio-group" bindchange="radioChange5f">
+            （
+            <radio class="radio" color='#2090FE' wx:for="{{phy5}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+              <text>{{item.value}}</text>
+            </radio>）
+          </radio-group>
+        </view>
+      </checkbox-group>
     </view>
   </view>
 
@@ -257,7 +281,7 @@
   <view class='sample-info'>
     <view class='sample-title'>其他信息</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' placeholder='填写其他信息'></textarea>
+      <textarea placeholder-class='holder' name='otherInfo' placeholder='填写其他信息'></textarea>
     </view>
   </view>
 
@@ -267,8 +291,13 @@
       <text>检测方法</text>
     </view>
     <view class='sample-box'>
-      <radio-group class="radio-group" bindchange="radioChange4">
-        <radio class="radio" color='#2090FE' wx:for="{{checkFn}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+      <radio-group class="radio-group" bindchange="radioChange6">
+        <radio class="radio" color='#2090FE' wx:for="{{checkFn}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+          <text>{{item.value}}</text>
+        </radio>
+      </radio-group>
+      <radio-group class="radio-group" bindchange="radioChange6a">
+        <radio class="radio" color='#2090FE' wx:for="{{standard}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
         <input type='text' name='type' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
@@ -283,14 +312,14 @@
       <text>判断标准</text>
     </view>
     <view class='sample-box'>
-      <radio-group class="radio-group fn" bindchange="radioChange5">
-        <radio class="radio" color='#2090FE' value="" checked="">
+      <radio-group class="radio-group fn" bindchange="radioChange7">
+        <radio class="radio" color='#2090FE' value="不判定" checked="">
           <text>不判定</text>
         </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        <radio class="radio" color='#2090FE' value="判定" checked="">
           <view class='con'>
             <text>判定</text>
-            <radio-group class="radio-group child" bindchange="radioChange5a">
+            <radio-group class="radio-group child" bindchange="radioChange7a">
               (
               <radio class="radio" color='#2090FE' wx:for="{{judge1}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
@@ -298,10 +327,12 @@
             </radio-group>
           </view>
         </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+      </radio-group>
+      <radio-group  class="radio-group fn" bindchange="radioChange77">
+        <radio class="radio" color='#2090FE' value="GB18401" checked="">
           <view class='con'>
             <text>GB 18401</text>
-            <radio-group class="radio-group child" bindchange="radioChange5b">
+            <radio-group class="radio-group child" bindchange="radioChange7b">
               (
               <radio class="radio" color='#2090FE' wx:for="{{judge2}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
@@ -309,10 +340,10 @@
             </radio-group>
           </view>
         </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        <radio class="radio" color='#2090FE' value="GB31701" checked="">
           <view class='con'>
             <text>GB 31701</text>
-            <radio-group class="radio-group child" bindchange="radioChange5c">
+            <radio-group class="radio-group child" bindchange="radioChange7c">
               (
               <radio class="radio" color='#2090FE' wx:for="{{judge3}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
@@ -320,10 +351,10 @@
             </radio-group>
           </view>
         </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        <radio class="radio" color='#2090FE' value="牛仔服装" checked="">
           <view class='con'>
             <text>牛仔服装</text>
-            <radio-group class="radio-group child" bindchange="radioChange5d">
+            <radio-group class="radio-group child" bindchange="radioChange7d">
               (
               <radio class="radio" color='#2090FE' wx:for="{{judge4}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
@@ -331,7 +362,7 @@
             </radio-group>
           </view>
         </radio>
-        <radio class="radio" color='#2090FE' value="" checked="">
+        <radio class="radio" color='#2090FE' value="产品标准" checked="">
           <view class='con'>
             <text>产品标准</text>
             <input type='text' name='type' placeholder-class='holder' placeholder='请填写'></input>
@@ -343,7 +374,7 @@
             </radio-group> -->
           </view>
         </radio>
-        <radio-group class="radio-group child" bindchange="radioChange5e">
+        <radio-group class="radio-group child" bindchange="radioChange7e">
           (
           <radio class="radio" color='#2090FE' wx:for="{{judge5}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
             <text>{{item.value}}</text>
@@ -358,7 +389,7 @@
   <!-- 下一步/上一步 -->
   <view class='sub-box'>
     <view class='step previous' bindtap='backPage'>上一步</view>
-    <view class='step next' bindtap='toNextPage'>下一步
+    <view class='step next'>下一步
       <button class='sub-btn' formType="submit"></button>
     </view>
   </view>

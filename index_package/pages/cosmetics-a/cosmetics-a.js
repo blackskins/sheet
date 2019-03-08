@@ -218,14 +218,14 @@ Page({
         value: '其他'
       }
     ],
-    sampleInfo: [//样品信息项
-        {
-          sampleName: '',
-          sampleBatch: '',
-          sampleNumber:'',
-          sampleSize:''
-        }
-    ], 
+    sampleInfo: [ //样品信息项
+      {
+        sampleName: '',
+        sampleBatch: '',
+        sampleNumber: '',
+        sampleSize: ''
+      }
+    ],
     sample_type: '', //样品类别
     sample_status: '', //样品性状
     status_value: '', //其他样品性状的值
@@ -259,9 +259,42 @@ Page({
       delta: 1
     })
   },
+  // 操作样品名称
+  blurName(e) {
+    console.log(e)
+    let index = e.currentTarget.dataset.index
+    let str = `sampleInfo[${index}].sampleName`
+    this.setData({
+      [str]: e.detail.value
+    })
+  },
+  blurNum(e) {
+    console.log(e)
+    let index = e.currentTarget.dataset.index
+    let str = `sampleInfo[${index}].sampleBatch`
+    this.setData({
+      [str]: e.detail.value
+    })
+  },
+  blurCount(e) {
+    console.log(e)
+    let index = e.currentTarget.dataset.index
+    let str = `sampleInfo[${index}].sampleNumber`
+    this.setData({
+      [str]: e.detail.value
+    })
+  },
+  blurWeight(e) {
+    console.log(e)
+    let index = e.currentTarget.dataset.index
+    let str = `sampleInfo[${index}].sampleSize`
+    this.setData({
+      [str]: e.detail.value
+    })
+  },
   // 增加样品信息
   addSampleInfo() {
-    let sampleList = this.data.sampleList
+    let sampleInfo = this.data.sampleInfo
     wx.showModal({
       title: '样品信息',
       content: '是否要增加样品信息项',
@@ -271,16 +304,16 @@ Page({
       cancelText: '取消',
       success: (res) => {
         if (res.confirm) { //确定
-          sampleList.push({
+          sampleInfo.push({
             sampleName: '',
             sampleBatch: '',
             sampleNumber: '',
             sampleSize: ''
           })
           this.setData({
-            sampleList: sampleList,
+            sampleInfo: sampleInfo,
           }, () => {
-            if (sampleList.length == 7) {
+            if (sampleInfo.length == 7) {
               $.prompt('只能添加七个样品项哦~', 3500)
             }
           })
@@ -365,19 +398,8 @@ Page({
       })
     }
 
-    // 动态往数组里面添加样品信息项数据
-    let len = this.data.infoList.length
-    let sampleList = []
-    for (let i = 0; i < len; i++) {
-      sampleList.push({
-        sampleName: e.detail.value['name' + (i + 1)],
-        sampleBatch: e.detail.value['num' + (i + 1)],
-        sampleNumber: e.detail.value['count' + (i + 1)],
-        sampleSize: e.detail.value['weight' + (i + 1)]
-      })
-    }
     let data2 = {
-      sample: sampleList,
+      sample: this.data.sampleInfo,
       sampleType: this.data.sample_type,
       sampleCharacter: this.data.sample_status,
       source: this.data.sample_origin,
@@ -388,34 +410,35 @@ Page({
     }
     console.log(data2)
     //  return
+    // 动态往数组里面添加样品信息项数据
+    let sampleInfo = this.data.sampleInfo
+    let len = sampleInfo.length
     if (len > 0) {
       for (let i = 0; i < len; i++) {
-        if (sampleList[i].sampleName == '') {
+        if (sampleInfo[i].sampleName == '') {
           if (len == 1) {
             $.prompt(`请填写样品名称`)
+            return
           } else if (len > 1) {
             $.prompt(`请填写样品${i+1}的名称`)
+            return
           }
-          break;
-        } else if (sampleList[i].sampleNumber == '') {
+        } else if (sampleInfo[i].sampleNumber == '') {
           if (len == 1) {
             $.prompt(`请填写样品个数`)
+            return
           } else if (len > 1) {
             $.prompt(`请填写样品${i+1}的个数`)
+            return
           }
-          break;
         }
       }
-    } else if (data2.sampleType == '其他' && e.detail.value.type == '') {
+    }
+    if (data2.sampleType == '其他' && e.detail.value.type == '') {
       $.prompt('请填写其他类别')
       return
-    } else if (data2.sampleName == '') {
-      $.prompt('请填写样品名称')
-      return
-    } else if (data2.sampleNumber == '') {
-      $.prompt('请填写样品个数')
-      return
-    } else if (data2.sampleCharacter == '' || (this.data.sample_status == '其他' && e.detail.value.status == '')) {
+    }
+    if (data2.sampleCharacter == '' || this.data.sample_status == '其他' && e.detail.value.status == '') {
       if (data2.sampleCharacter == '') {
         $.prompt('请选择样品性状')
         return
@@ -423,7 +446,8 @@ Page({
         $.prompt('请填写其他样品性状')
         return
       }
-    } else if (data2.storageType == '' || (this.data.sample_save == '低温' && e.detail.value.save == '')) {
+    }
+    if (data2.storageType == '' || this.data.sample_save == '低温' && e.detail.value.save == '') {
       if (data2.storageType == '') {
         $.prompt('请选择样品保存方式')
         return
@@ -431,11 +455,11 @@ Page({
         $.prompt('请填写低温保存的温度')
         return
       }
-    } else if (data2.danger == '其他' && e.detail.value.dangerous == '') {
+    }
+    if (data2.danger == '其他' && e.detail.value.dangerous == '') {
       $.prompt('请填写其他可能的危险性')
       return
     }
-
     console.log(data2)
     // 合并对象
     function extend(target, source) {
@@ -447,8 +471,12 @@ Page({
     let data3 = extend(this.data.data1, data2)
     console.log(data3)
     // return
-    wx.navigateTo({
-      url: '../cosmetics-b/cosmetics-b',
+    this.setData({
+      data: data3
+    }, () => {
+      wx.navigateTo({
+        url: '../cosmetics-b/cosmetics-b',
+      })
     })
   }
 })

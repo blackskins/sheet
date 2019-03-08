@@ -130,6 +130,10 @@ page{
 }
 
 /* 综合子集合 */
+.gb31{
+  display: flex;
+  padding-left: 26rpx;
+}
 .child{
   padding-left: 18rpx; 
 }

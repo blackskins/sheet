@@ -105,7 +105,7 @@ Page({
     opacity1: 0,
     scale1: 'translate(-50%,-50%) scale(0.3)',
 
-    testMethod: '', //测试方
+    testMethod: '', //测试方法
     judgementStandard: '', //判定标准
     serviceTimeLimit: '', //服务时限
     detailTime: '', //加急-->具体时间
@@ -126,7 +126,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    //获取页面栈
+    var pages = getCurrentPages();
+    var Page = pages[pages.length - 1]; //当前页
+    if (pages.length > 1) { //说明有上一页存在
+      //上一个页面实例对象
+      var prePage = pages[pages.length - 2];
+      //关键在这里，调用上一页的函数
+      // console.log(prePage.data.data)
+      this.setData({
+        data3: prePage.data.data
+      })
+    }
   },
 
   // 样品保存
@@ -327,7 +338,6 @@ Page({
       })
     }
     let data4 = {
-      orderType: '10', //提交表单的类型(10=>化妆品检测，20=>纺织品检测)
       testMethod: this.data.testMethod, //测试方法
       judgementStandard: this.data.judgementStandard, //判断标准
       serviceTimeLimit: this.data.serviceTimeLimit, //服务时限
@@ -344,7 +354,7 @@ Page({
     if (data4.testMethod == '') {
       $.prompt('请选择样品测试方法')
       return
-    } else if (data4.judgementStandard == '' || (this.data.judgementStandard == "判定" && e.detail.value.judge == '')) {
+    } else if (data4.judgementStandard == '' || this.data.judgementStandard == "判定" && e.detail.value.judge == '') {
       if (data4.judgementStandard == '') {
         $.prompt('请选择判断标准')
         return
@@ -352,7 +362,7 @@ Page({
         $.prompt('请填写判断标准')
         return
       }
-    } else if (data4.serviceTimeLimit == '' || (this.data.serviceTimeLimit == "加急" && this.data.detailTime == '')) {
+    } else if (data4.serviceTimeLimit == '' || this.data.serviceTimeLimit == "加急" && this.data.detailTime == '') {
       if (data4.serviceTimeLimit == '') {
         $.prompt('请选择服务时限')
         return
@@ -360,7 +370,7 @@ Page({
         $.prompt('其选择加急的服务时限')
         return
       }
-    } else if (this.data.reportFormMode == '' || (this.data.copyCount == '副本' && e.detail.value.copyCount == '') || (this.data.photoCount == '附照片' && e.detail.value.photoCount == '')) {
+    } else if (this.data.reportFormMode == '' || this.data.copyCount == '副本' && e.detail.value.copyCount == '' || this.data.photoCount == '附照片' && e.detail.value.photoCount == '') {
       if (this.data.reportFormMode == '') {
         $.prompt('请选择报告格式')
         return
@@ -374,7 +384,7 @@ Page({
     } else if (data4.reportType == '') {
       $.prompt('请选择报告类别')
       return
-    } else if (data4.reportSendMode == '' || (this.data.reportType == '其他' && e.detail.value.reportSendMode == '')) {
+    } else if (data4.reportSendMode == '' || this.data.reportSendMode == '其他' && e.detail.value.reportSendMode == '') {
       if (data4.reportSendMode == '') {
         $.prompt('请选择报告发送方式')
         return
@@ -382,7 +392,7 @@ Page({
         $.prompt('请填写报告发送的其他方式')
         return
       }
-    } else if (data4.invoiceRise == '' || (this.data.invoiceRise == '其他' && e.detail.value.invoiceRise == '')) {
+    } else if (data4.invoiceRise == '' || this.data.invoiceRise == '其他' && e.detail.value.invoiceRise == '') {
       if (data4.invoiceRise == '') {
         $.prompt('请选择发票抬头')
         return
@@ -390,8 +400,7 @@ Page({
         $.prompt('请填写发票抬头')
         return
       }
-      return
-    } else if (data4.invoiceType == '' || (this.data.invoiceType == '普票' && e.detail.value.invoiceType == '')) {
+    } else if (data4.invoiceType == '' || this.data.invoiceType == '普票' && e.detail.value.invoiceType == '') {
       if (data4.invoiceType == '') {
         $.prompt('请选择发票类型')
         return
@@ -401,9 +410,25 @@ Page({
       }
     }
     console.log(data4)
-    return
+    // 合并对象
+    function extend(target, source) {
+      for (var obj in source) {
+        target[obj] = source[obj];
+      }
+      return target;
+    }
+    let data5a = extend(this.data.data3, data4)
+    let data5b = {
+      entrust:{cmtEntrust:data5a}
+    }
+    let data5 = extend(data5b,{
+      orderType: '10', //提交表单的类型(10=>化妆品检测，20=>纺织品检测)
+    })
+    console.log(data5)
+    // return
     this.setData({
-      agreement: true
+      agreement: true,
+      data5
     }, () => {
       this.setData({
         opacity: 1,
@@ -427,8 +452,18 @@ Page({
   // 同意服务协议
   agree() {
     this.closeWindow()
+    var data = this.data.data5
     submit_data.submitCosmetics(data, (res) => {
       console.log(res)
+      if(res.code != 0){
+        $.prompt(res.msg)
+      }
+      $.prompt('提交成功')
+      setTimeout(()=>{
+        wx.switchTab({
+          url: '../../../mainPackage/index/index',
+        })
+      },1500)
     })
   },
   // 不同意服务协议

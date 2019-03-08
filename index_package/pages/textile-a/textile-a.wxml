@@ -6,46 +6,73 @@
       <text>样品信息</text>
       <image src='../../images/tips.png'></image>
     </view>
-    <view class='info-item' wx:for='{{ sampleList }}' wx:key=''>
-      <view>{{ item.title }}
-        <text class='import' wx:if='{{ item.isMark == 1 }}'>*</text>
+    <view class='sample-box' wx:for='{{ spinInfo }}' wx:key=''>
+      <view class='info-item'>
+        <view>样品名称{{ spinInfo.length >1 ? index + 1 :"" }}
+          <text class='import'>*</text>
+        </view>
+        <input type='text' name='sampleName{{ index + 1 }}' value='{{item.sampleName}}' bindblur='blurName' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品名称'></input>
       </view>
-      <input type='text' name='user' placeholder-class='holder' placeholder='{{ item.holder }}'></input>
+      <view class='info-item'>
+        <view>商标{{ spinInfo.length >1 ? index + 1 :"" }}</view>
+        <input type='text' name='brand{{ index + 1 }}' value='{{item.brand}}' bindblur='blurBrand' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写商标'></input>
+      </view>
+      <view class='info-item'>
+        <view>样品数量{{ spinInfo.length >1 ? index + 1 :"" }}
+          <text class='import'>*</text>
+        </view>
+        <input type='text' name='samplenumber{{ index + 1 }}' value='{{item.samplenumber}}' bindblur='blurCount' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品数量'></input>
+      </view>
+      <view class='info-item'>
+        <view>颜色及描述{{ spinInfo.length >1 ? index + 1 :"" }}
+         <text class='import'>*</text>
+        </view>
+        <input type='text' name='color{{ index + 1 }}' value='{{item.color}}' bindblur='blurColor' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写颜色及描述'></input>
+      </view>
+      <view class='info-item'>
+        <view>原料成分{{ spinInfo.length >1 ? index + 1 :"" }}</view>
+        <input type='text' name='component{{ index + 1 }}' value='{{item.component}}' bindblur='blurComponent' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写原料成分'></input>
+      </view>
+      <view class='info-item last-item'>
+        <view>货号/款号{{ spinInfo.length >1 ? index + 1 :"" }}
+          <text class='import'>*</text>
+        </view>
+        <input type='text' name='itemNumber{{ index + 1 }}' value='{{item.itemNumber}}' bindblur='blurNum' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写货号/款号'></input>
+      </view>
     </view>
-
     <!-- 添加其他样品信息 -->
-    <view class='else-item center'>
+    <view class='else-item center' bindtap='addSampleInfo' wx:if='{{ spinInfo.length < 7 }}'>
       <text>添加其他样品信息</text>
     </view>
   </view>
 
-<!-- 样品检测 -->
+  <!-- 样品检测 -->
   <view class='sample-info'>
     <view class='sample-title'>样品检测
       <text class='import'>*</text>
     </view>
     <view class='sample-box'>
       <radio-group class="radio-group" bindchange="radioChange1">
-        <radio class="radio" color='#2090FE' wx:for="{{checkType}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+        <radio class="radio" color='#2090FE' wx:for="{{checkType}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
       </radio-group>
     </view>
   </view>
 
-  
+
   <!-- 委托要求 -->
   <view class='sample-info'>
     <view class='sample-title'>其他信息</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' placeholder='填写其他信息'></textarea>
+      <textarea placeholder-class='holder' name='otherInfo' placeholder='填写其他信息'></textarea>
     </view>
   </view>
 
   <!-- 下一步/上一步 -->
   <view class='sub-box'>
     <view class='step previous' bindtap='backPage'>上一步</view>
-    <view class='step next' bindtap='toNextPage'>下一步
+    <view class='step next'>下一步
       <button class='sub-btn' formType="submit"></button>
     </view>
   </view>

@@ -10,7 +10,7 @@
       <view>委托方
         <text class='import'>*</text>
       </view>
-      <input hidden='{{ !hide }}' name='first-name' type='text' placeholder-class='holder' placeholder='请填写委托方'></input>
+      <input hidden='{{ !hide }}' name='firstName' type='text' placeholder-class='holder' placeholder='请填写委托方'></input>
     </view>
     <view class='info-item'>
       <view>委托方地址</view>
@@ -26,7 +26,7 @@
       <view>电话/手机
         <text class='import'>*</text>
       </view>
-      <input  hidden='{{ !hide }}'type='number' name='phone' placeholder-class='holder' placeholder='请填写联系人电话'></input>
+      <input  hidden='{{ !hide }}'type='text' name='phone' placeholder-class='holder' placeholder='请填写联系人电话'></input>
     </view>
     <view class='info-item'>
       <view>E-mail/QQ</view>
@@ -39,10 +39,10 @@
     <view class='sample-title'>生产单位</view>
     <view class='sample-box'>
       <radio-group class="radio-group" bindchange="radioChange1">
-        <radio class="radio" color='#2090FE' wx:for="{{ unit }}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+        <radio class="radio" color='#2090FE' wx:for="{{ unit }}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
-        <input hidden='{{ !hide }}' type='text'  class='unit' name='type' placeholder-class='holder' maxlength='24' placeholder='请填写'></input>
+        <input wx:if='{{ productionUnit == "其他" }}' type='text'  class='unit' name='productionUnit' placeholder-class='holder' maxlength='24' placeholder='请填写'></input>
       </radio-group>
     </view>
   </view>
@@ -52,21 +52,24 @@
     <view class='sample-title'>报告寄送地址
       <text class='import'>*</text>
     </view>
+    <picker mode='region' bindchange='bindRegionChange' value='{{ region }}' >
+      <view class='area'><text class='a-title'> 省 市 区：</text><text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text></view>
+    </picker>
     <view class='sample-box'>
       <radio-group bindchange="radioChange2">
-        <radio class="radio" color='#2090FE' wx:for="{{ address }}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+        <radio class="radio" color='#2090FE' wx:for="{{ address }}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
       </radio-group>
     </view>
     <view class='head-txt'>
-      <textarea hidden='{{ !hide }}' placeholder-class='holder' placeholder='其他快递地址请填写'></textarea>
+      <textarea wx:if='{{ reportSendingAddress == "其他" }}' name='reportSendingAddress' placeholder-class='holder' placeholder='其他快递地址请填写'></textarea>
     </view>
   </view>
 
   <!-- 下一步 -->
   <view class='sub-box center'>
-    <view bindtap='toNextPage' class='next'>下一步
+    <view class='next'>下一步
       <button class='sub-btn' formType="submit"></button>
     </view>
   </view>

@@ -40,7 +40,8 @@
       <input type='text' name='user' placeholder-class='holder' placeholder='请填写联系人'></input>
     </view>
     <view class='info-item'>
-      <view>联系地址</view>
+      <view>联系地址
+      <text class='import'>*</text></view>
       <input type='text' name='address' placeholder-class='holder' placeholder='请填写联系地址'></input>
     </view>
   </view>

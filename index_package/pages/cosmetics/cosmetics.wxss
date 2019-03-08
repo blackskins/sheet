@@ -44,6 +44,7 @@ page{
   width: 94%;
   height: 180rpx;
   color: #333;
+  font-size: 26rpx !important;
 }
 /* 基本信息 */
 .basic-box{
