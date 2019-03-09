@@ -235,14 +235,11 @@ Page({
       return target;
     }
     let data2 = extend(this.data.data1, data)
-    this.setData({
-      data2
-    })
     console.log(data2)
 
     // return
     this.setData({
-      data2:data2
+      data2
     },()=>{
       wx.navigateTo({
         url: '../textile-b/textile-b',

@@ -277,11 +277,11 @@
     </view>
   </view>
 
-  <!-- 其他信息 -->
+  <!-- 其他项目 -->
   <view class='sample-info'>
-    <view class='sample-title'>其他信息</view>
+    <view class='sample-title'>其他项目</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='otherInfo' placeholder='填写其他信息'></textarea>
+      <textarea placeholder-class='holder' name='otherproject' placeholder='填写其他项目信息'></textarea>
     </view>
   </view>
 
@@ -300,7 +300,7 @@
         <radio class="radio" color='#2090FE' wx:for="{{standard}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
-        <input type='text' name='type' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
+        <input type='text' wx:if='{{ testMode1 == "其他" }}' name='type' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
       </radio-group>
     </view>
   </view>
@@ -319,22 +319,22 @@
         <radio class="radio" color='#2090FE' value="判定" checked="">
           <view class='con'>
             <text>判定</text>
-            <radio-group class="radio-group child" bindchange="radioChange7a">
+            <radio-group class="radio-group child" wx:if='{{ determineMethod == "判定" }}' bindchange="radioChange7a">
               (
-              <radio class="radio" color='#2090FE' wx:for="{{judge1}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+              <radio class="radio" color='#2090FE' wx:for="{{judge1}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
               </radio>)
             </radio-group>
           </view>
         </radio>
       </radio-group>
-      <radio-group  class="radio-group fn" bindchange="radioChange77">
+      <radio-group  class="radio-group fn" bindchange="radioChange77" wx:if='{{ determineMethod1 == "委托方指定" && determineMethod == "判定" }}'>
         <radio class="radio" color='#2090FE' value="GB18401" checked="">
           <view class='con'>
             <text>GB 18401</text>
-            <radio-group class="radio-group child" bindchange="radioChange7b">
+            <radio-group wx:if='{{ determineMethod0 == "GB18401" }}' class="radio-group child" bindchange="radioChange7b">
               (
-              <radio class="radio" color='#2090FE' wx:for="{{judge2}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+              <radio class="radio" color='#2090FE' wx:for="{{judge2}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
               </radio>)
             </radio-group>
@@ -343,9 +343,9 @@
         <radio class="radio" color='#2090FE' value="GB31701" checked="">
           <view class='con'>
             <text>GB 31701</text>
-            <radio-group class="radio-group child" bindchange="radioChange7c">
+            <radio-group wx:if='{{ determineMethod0 == "GB31701" }}' class="radio-group child" bindchange="radioChange7c">
               (
-              <radio class="radio" color='#2090FE' wx:for="{{judge3}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+              <radio class="radio" color='#2090FE' wx:for="{{judge3}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
               </radio>)
             </radio-group>
@@ -354,9 +354,9 @@
         <radio class="radio" color='#2090FE' value="牛仔服装" checked="">
           <view class='con'>
             <text>牛仔服装</text>
-            <radio-group class="radio-group child" bindchange="radioChange7d">
+            <radio-group wx:if='{{ determineMethod0 == "牛仔服装" }}' class="radio-group child" bindchange="radioChange7d">
               (
-              <radio class="radio" color='#2090FE' wx:for="{{judge4}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+              <radio class="radio" color='#2090FE' wx:for="{{judge4}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
                 <text>{{item.value}}</text>
               </radio>)
             </radio-group>
@@ -365,7 +365,7 @@
         <radio class="radio" color='#2090FE' value="产品标准" checked="">
           <view class='con'>
             <text>产品标准</text>
-            <input type='text' name='type' placeholder-class='holder' placeholder='请填写'></input>
+            <input wx:if='{{ determineMethod0 == "产品标准" }}' type='text' name='standard' placeholder-class='holder' placeholder='请填写'></input>
             <!-- <radio-group class="radio-group child" bindchange="radioChange5e">
               (
               <radio class="radio" color='#2090FE' wx:for="{{judge5}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
@@ -374,12 +374,12 @@
             </radio-group> -->
           </view>
         </radio>
-        <radio-group class="radio-group child" bindchange="radioChange7e">
+        <radio-group wx:if='{{ determineMethod0 == "产品标准" }}' class="radio-group child" bindchange="radioChange7e">
           (
-          <radio class="radio" color='#2090FE' wx:for="{{judge5}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <radio class="radio" color='#2090FE' wx:for="{{judge5}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
             <text>{{item.value}}</text>
           </radio>
-          <input type='text' name='type' placeholder-class='holder' placeholder='请填写'></input>
+          <input wx:if='{{ determineMethod5 == "其他" }}' type='text' name='elseLevel' placeholder-class='holder' placeholder='请填写'></input>
           )
         </radio-group>
       </radio-group>

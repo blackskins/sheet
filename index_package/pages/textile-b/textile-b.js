@@ -272,6 +272,15 @@ Page({
     physicsPerformance4:'',
     physicsPerformance5: '',
     physicsPerformance6: '',
+    testMode:'',//检测方法
+    testMode1:'',//委托方指定的检测方法
+    determineMethod: '',//判断的标准
+    determineMethod0: '',//委托方指定的判断方法
+    determineMethod1: '',//
+    determineMethod2: '',//
+    determineMethod3: '',//
+    determineMethod4: '',//
+    determineMethod5: '',//
   },
 
   /**
@@ -290,6 +299,18 @@ Page({
       rotate4: 'rotate(0deg)',
       rotate5: 'rotate(0deg)',
     })
+    //获取页面栈
+    var pages = getCurrentPages();
+    var Page = pages[pages.length - 1]; //当前页
+    if (pages.length > 1) { //说明有上一页存在
+      //上一个页面实例对象
+      var prePage = pages[pages.length - 2];
+      //关键在这里，调用上一页的函数
+      // console.log(prePage.data.data)
+      this.setData({
+        data2: prePage.data.data2
+      })
+    }
   },
   // 综合
   radioChange1(e) {
@@ -437,43 +458,43 @@ Page({
     })
   },
   radioChange7(e){
-    console.log(e.detail,value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod: e.detail.value
     })
   },
   radioChange77(e) {
-    console.log(e.detail, value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod0: e.detail.value
     })
   },
   radioChange7a(e) {
-    console.log(e.detail, value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod1: e.detail.value
     })
   },
   radioChange7b(e) {
-    console.log(e.detail, value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod2: e.detail.value
     })
   },
   radioChange7c(e) {
-    console.log(e.detail, value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod3: e.detail.value
     })
   },
   radioChange7d(e) {
-    console.log(e.detail, value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod4: e.detail.value
     })
   },
   radioChange7e(e) {
-    console.log(e.detail, value)
+    console.log(e.detail.value)
     this.setData({
       determineMethod5: e.detail.value
     })
@@ -554,7 +575,7 @@ Page({
     /*------- 综合Begin---------*/
     let comprehensive = this.data.comprehensive
     let len = comprehensive.length;
-    console.log(comprehensive)
+    // console.log(comprehensive)
     for (let i = 0; i < len; i++) {
       if (comprehensive[i] == 'GB31701' && this.data.comprehensive1 != '' || comprehensive[i] == '全项' || comprehensive[i] == '理化性能') {
         // console.log('进来了')
@@ -566,20 +587,20 @@ Page({
       }
     }
     comprehensive = comprehensive.toString() //数组转换成字符串
-    console.log(comprehensive)
+    // console.log(comprehensive)
     /*------- 综合End---------*/
 
     /*------- 纤维成分B---------*/
     let fiberContent = this.data.fiberContent
     console.log(fiberContent)
     fiberContent = fiberContent.toString()
-    console.log(fiberContent)
+    // console.log(fiberContent)
     /*------- 纤维成分E---------*/
 
     /*------- 色牢度B---------*/
     let colorFastness = this.data.colorFastness
     let len1 = colorFastness.length;
-    console.log(colorFastness)
+    // console.log(colorFastness)
     // 耐摩擦
     for (let i = 0; i < len1; i++) {
       if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 != '' || this.data.colorFastness1 == '干' || this.data.colorFastness1 == '湿') {
@@ -590,7 +611,7 @@ Page({
         return
       }
     }
-    console.log(colorFastness, "阿萨家")
+    // console.log(colorFastness, "阿萨家")
     // 耐汗渍 
     colorFastness.forEach((item, index) => {
       if (item == '耐汗渍') {
@@ -612,13 +633,13 @@ Page({
     let chem = this.data.chem
     console.log(chem)
     chem = chem.toString()
-    console.log(chem)
+    // console.log(chem)
     /*----------- 化学成分E---------*/
 
     /*----------- 物理性能B---------*/
     let physicsPerformance = this.data.physicsPerformance
     let len2 = physicsPerformance.length
-    console.log(physicsPerformance)
+    // console.log(physicsPerformance)
 
     
     for (let i = 0; i < len2; i++) {//撕破强力
@@ -686,52 +707,115 @@ Page({
     }
 
     physicsPerformance = physicsPerformance.toString()
-    console.log(physicsPerformance)
+    // console.log(physicsPerformance)
     /*----------- 物理性能E---------*/
 
 
     /*------------检测方法B-----------------*/
     let testMode = this.data.testMode
-    if(testMode == '委托方指定'){
-      if(!this.data.testMode1){
-        $.prompt('请选择检测方法的标准')
-        return
-      }else{
-        if(this.data.testMode1 == '其他'){
-          if(e.detail.value.type != ''){
-            testMode = e.detail.value.type
-          }else{
-            $.prompt('请填写检测方法中的其他标准')
-            return
+    if(testMode == ''){
+      $.prompt('请选择检测方法')
+      return
+    }else{
+      if(testMode == '委托方指定'){
+        if(this.data.testMode1 == ''){
+          $.prompt('请选择检测方法的标准')
+          return
+        }else{
+          if(this.data.testMode1 == '其他'){
+            if(e.detail.value.type != ''){
+              testMode = e.detail.value.type
+            }else{
+              $.prompt('请填写检测方法中的其他标准')
+              return
+            }
           }
+          testMode = this.data.testMode1
         }
-        testMode = this.data.testMode1
       }
     }
+    // console.log(testMode)
     /*------------检测方法E-----------------*/
 
     /*------------判断标准B-----------------*/
     let determineMethod = this.data.determineMethod
-    if(determineMethod == '判定'){
-      if(this.data.determineMethod1 == ''){
-        $.prompt('请选择判断标准的')
-        return
-      }else{
-        if(this.data.determineMethod1 == '服务方决定'){
-          determineMethod = this.data.determineMethod1
+    if(determineMethod == ''){
+      $.prompt('请选择判断标准')
+      return
+    }else{
+      if(determineMethod == '判定'){
+        if(this.data.determineMethod1 == ''){
+          $.prompt('请选择判断标准的主体')
+          return
         }else{
-          for(let i = 0;i<4;i++){
-            if (this.data.determineMethod0 == 'GB18401'){
-              // sdklfsdlkfjlalkjlksdjflsdkfjlskdfslkdfjsdlkfjslakfjsdlkfjsdlkfjsldkfjsdlfjsldfjsdl;fj
+          if(this.data.determineMethod1 == '服务方决定'){
+            determineMethod = this.data.determineMethod1
+          }else{
+            if(this.data.determineMethod0 == ''){
+              $.prompt('请选择委托方指定的判断标准')
+              return
+            }else{
+              if (this.data.determineMethod0 == 'GB18401'){
+                if(this.data.determineMethod2 == ''){
+                  $.prompt('请选择判断标准GB 18401的类型');
+                  return
+                }else{
+                  determineMethod = `18401${this.data.determineMethod2}`
+                }
+              } else if (this.data.determineMethod0 == 'GB31701'){
+                if (this.data.determineMethod3 == '') {
+                  $.prompt('请选择判断标准GB 31701的类型');
+                  return
+                } else {
+                  determineMethod = `31701${this.data.determineMethod3}`
+                }
+              } else if (this.data.determineMethod0 == '牛仔服装') {
+                if (this.data.determineMethod4 == '') {
+                  $.prompt('请选择判断标准牛仔服装的类型');
+                  return
+                } else {
+                  determineMethod = this.data.determineMethod4
+                }
+              } else if (this.data.determineMethod0 == '产品标准') {
+                if (e.detail.value.standard == '') {
+                  $.prompt('请填写判断标准的产品标准');
+                  return
+                } else {
+                  if(this.data.determineMethod5 == ''){
+                    $.prompt('请选择产品标准的级别')
+                    return
+                  }else{
+                    if(this.data.determineMethod5 == '其他'){
+                      if (e.detail.value.elseLevel == ''){
+                        $.prompt('请填写产品标准中其他的级别')
+                        return
+                      }else{
+                        this.determineMethod == `${e.detail.value.standard}/${e.detail.value.elseLevel}`
+                      }
+                    }else{
+                      this.data.determineMethod = `${e.detail.value.standard}/${this.data.determineMethod5}`
+                    }
+                  }
+                }
+              }
             }
           }
         }
+        // determineMethod = this.data.determineMethod1
       }
-      determineMethod = this.data.determineMethod1
     }
+    // console.log(determineMethod)
 
     /*------------判断标准E-----------------*/
-    return
+
+
+    /*------------其他项目B-----------------*/
+
+    // if()
+    /*------------其他项目E-----------------*/
+
+
+    // return
     let data = {
       comprehensive: comprehensive,
       fiberContent: fiberContent,
@@ -739,8 +823,23 @@ Page({
       chem: chem,
       physicsPerformance: physicsPerformance,
       testMode: testMode,
-      determineMethod
+      determineMethod,
+      otherproject:e.detail.value.otherproject
     }
+    console.log(data+'111111111')
+
+    // 合并对象
+    function extend(target, source) {
+      for (var obj in source) {
+        target[obj] = source[obj];
+      }
+      return target;
+    }
+    let data3 = extend(this.data.data2, data)
+    this.setData({
+      data3
+    })
+    console.log(data3+'333333333')
     return
     wx.navigateTo({
       url: '../textile-c/textile-c',

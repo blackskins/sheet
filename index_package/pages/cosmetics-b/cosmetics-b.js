@@ -202,16 +202,6 @@ Page({
       })
     }
   },
-  copyCount() {
-    this.setData({
-      copyFocus: true
-    })
-  },
-  copyCount() {
-    this.setData({
-      photoFocus: true
-    })
-  },
   // 报告类别
   radioChange5(e) {
     console.log(e.detail.value)

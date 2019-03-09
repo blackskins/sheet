@@ -73,8 +73,11 @@ page {
 
 .count {
   display: flex;
+  margin-left: 20rpx;
 }
-
+.count1{
+  margin-left: 12rpx;
+}
 .count input {
   width: 160rpx;
   margin: 0rpx 10rpx;

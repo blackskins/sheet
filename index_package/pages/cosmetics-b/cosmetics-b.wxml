@@ -108,23 +108,22 @@
         <radio class="radio" color='#2090FE' value='非认证认可报告'>
           <text>非认证认可报告</text>
         </radio>
-        <radio class="radio" color='#2090FE' value='认证报告' checked='{{ father5a }}'>
+        <radio class="radio" color='#2090FE' value='认证报告'>
           <text>认证报告</text>
         </radio>
-        (
-        <checkbox-group class="radio-group" bindchange='checkboxChange5a'>
-          <checkbox class="checkbox" color='#2090FE' value='含非认证项目' checked='{{ children5a }}'>
-            <text>含非认证项目)</text>
-          </checkbox>
+        
+        <checkbox-group wx:if='{{ reportType == "认证报告" }}' class="radio-group" bindchange='checkboxChange5a'>
+          (<checkbox class="checkbox" color='#2090FE' value='含非认证项目'>
+            <text>含非认证项目</text>
+          </checkbox>)
         </checkbox-group>
-        <radio class="radio" color='#2090FE' value='认证认可报告' checked='{{ father5b }}'>
+        <radio class="radio" color='#2090FE' value='认证认可报告'>
           <text>认证认可报告</text>
         </radio>
-        （
-        <checkbox-group class="radio-group">
-          <checkbox class="checkbox" color='#2090FE' value='含非认证认可项目' checked='{{ children5b }}'>
-            <text>含非认证认可项目）</text>
-          </checkbox>
+        <checkbox-group wx:if='{{ reportType == "认证认可报告" }}' class="radio-group" bindchange='checkboxChange5b'>
+          （<checkbox class="checkbox" color='#2090FE' value='含非认证认可项目'>
+            <text>含非认证认可项目</text>
+          </checkbox>）
         </checkbox-group>
       </radio-group>
     </view>
@@ -167,7 +166,7 @@
     </view>
     <view class='sample-box'>
       <radio-group class="radio-group" bindchange="radioChange8">
-        <radio class="radio" color='#2090FE' value='普票'>
+        <radio class="radio tickets" color='#2090FE' value='普票'>
           <text>普票</text>
         </radio>
         <input type='text' class='ticket' name='invoiceType' placeholder-class='holder' placeholder='请填写'></input>

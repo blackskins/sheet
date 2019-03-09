@@ -99,10 +99,10 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border: 2rpx solid #2090fe;
 }
 .c1{
-  margin-left: 10rpx;
+  margin-left: 28rpx;
 }
 .c2{
-  margin-left: 6rpx;
+  margin-left: 26rpx;
 }
 .fu{
   margin-left: 24rpx;
@@ -112,9 +112,12 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   width: 650rpx !important;
 }
 /* 发票类别 */
+.tickets{
+  margin-left: 10rpx;
+}
 .ticket{
   margin-left: 10rpx;
-  width: 526rpx !important;
+  width: 510rpx !important;
 }
 
 /* 其他 */
