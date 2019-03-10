@@ -51,7 +51,9 @@
 
   <!-- 样品性状 -->
   <view class='sample-info'>
-    <view class='sample-title'>样品性状</view>
+    <view class='sample-title'>样品性状
+    <text class='import'>*</text>
+    </view>
     <view class='sample-box'>
       <radio-group class="radio-group" bindchange="radioChange2">
         <radio class="radio" color='#2090FE' wx:for="{{sampleStatus}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">

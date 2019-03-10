@@ -299,6 +299,9 @@ Page({
       rotate4: 'rotate(0deg)',
       rotate5: 'rotate(0deg)',
     })
+    
+  },
+  onShow(){
     //获取页面栈
     var pages = getCurrentPages();
     var Page = pages[pages.length - 1]; //当前页
@@ -826,7 +829,8 @@ Page({
       determineMethod,
       otherproject:e.detail.value.otherproject
     }
-    console.log(data+'111111111')
+    console.log(data)
+    console.log('111111111')
 
     // 合并对象
     function extend(target, source) {
@@ -839,8 +843,8 @@ Page({
     this.setData({
       data3
     })
-    console.log(data3+'333333333')
-    return
+    console.log('333333333')
+    console.log(data3)
     wx.navigateTo({
       url: '../textile-c/textile-c',
     })

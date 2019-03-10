@@ -1,0 +1,64 @@
+/* index_package/pages/get_coupon/get_coupon.wxss */
+
+page {
+  background-color: #f3f4f5;
+}
+
+.coupon-box {
+  padding: 0rpx 30rpx;
+}
+
+.coupon-item {
+  background: url('http://daiyanjia.oss-cn-shenzhen.aliyuncs.com/e910de1b7ffe4a8a800daed0b3478873.png') no-repeat;
+  background-size: 100% 156rpx;
+  margin-top: 20rpx;
+  display: flex;
+}
+
+.coupon-price {
+  color: #fff;
+  width: 30%;
+  /* background-color: red; */
+  height: 156rpx;
+}
+
+.m-icon {
+  font-size: 26rpx;
+  margin-right: 10rpx;
+}
+
+.price {
+  font-size: 50rpx;
+}
+
+.coupon-txt {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #666;
+  width: 55%;
+  height: 156rpx;
+  flex-direction: column;
+  line-height: 46rpx;
+}
+
+.get, .get1 {
+  width: 15%;
+  flex-direction: column;
+  height: 156rpx;
+  font-size: 30rpx;
+}
+
+/* 等待领取 */
+
+.get {
+  font-weight: 600;
+  background-color: rgb(32, 144, 254);
+  color: #fff;
+}
+
+/* 已领取 */
+
+.get1 {
+  background-color: #e9e9e9;
+  color: #666;
+}

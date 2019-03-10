@@ -1,5 +1,7 @@
 // index_package/pages/textile-c/textile-c.js
 var $ = require('../../../utils/common.js')
+import { Submit_data } from './textile-c_model.js'
+var submit_data = new Submit_data()
 Page({
 
   /**
@@ -134,6 +136,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this._getServiceContent()
+  },
+  onShow(){
     //获取页面栈
     var pages = getCurrentPages();
     var Page = pages[pages.length - 1]; //当前页
@@ -143,11 +148,20 @@ Page({
       //关键在这里，调用上一页的函数
       // console.log(prePage.data.data)
       this.setData({
-        data2: prePage.data.data2
+        data3: prePage.data.data3
       })
     }
   },
-
+  // 获取服务协议说明
+  _getServiceContent(){
+    let status = 20
+    submit_data.getServiceContent(status,(res)=>{
+      console.log(res)
+      this.setData({
+        sheetData:res.data
+      })
+    })
+  },
   // 上一步
   backPage() {
     wx.navigateBack({
@@ -363,12 +377,16 @@ Page({
       }
       return target;
     }
-    let data4 = extend(this.data.data3, data)
-   
+    let data4a = extend(this.data.data3, data)
+    let data4b = {
+      entrust:{spinEntrust:data4a}
+    }
+    let data4 = extend(data4b,{orderType:'20'})
     console.log(data4)
-    return
+    // return
     this.setData({
-      agreement: true
+      agreement: true,
+      data:data4
     }, () => {
       this.setData({
         opacity: 1,
@@ -392,7 +410,19 @@ Page({
   // 同意服务协议
   agree() {
     this.closeWindow()
-
+    let data = this.data.data
+    submit_data.submitTextile(data,(res)=>{
+      console.log(res)
+      if (res.code != 0) {
+        $.prompt(res.msg)
+      }
+      $.prompt('提交成功')
+      setTimeout(() => {
+        wx.switchTab({
+          url: '../../../mainPackage/index/index',
+        })
+      }, 1500)
+    })
   },
   // 不同意服务协议
   cancel() {

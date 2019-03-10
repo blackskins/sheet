@@ -206,6 +206,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   margin-top: 20rpx;
   height: 440rpx;
   font-size: 26rpx;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 .isAgree{
   font-size: 30rpx;

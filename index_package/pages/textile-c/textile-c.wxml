@@ -170,8 +170,8 @@
 <!-- 委托协议 -->
 <view class='mask' catchtouchmove='stopMove' wx:if='{{ agreement }}' style='opacity:{{ opacity }}'>
   <view class='agreement' style='transform:{{ scale }}'>
-    <view class='agreement-title center'>委托服务协议</view>
-    <scroll-view scroll-y class='agreement-txt'>协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容</scroll-view>
+    <view class='agreement-title center'>{{ sheetData.title }}</view>
+    <scroll-view scroll-y class='agreement-txt'>{{ sheetData.content }}</scroll-view>
     <view class='isAgree'>
       <view class='cancel-btn' catchtap='cancel'>取消</view>
       <view class='agree-btn' catchtap='agree'>同意</view>

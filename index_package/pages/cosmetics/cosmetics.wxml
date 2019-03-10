@@ -5,11 +5,15 @@
       <text>委托方信息</text>
       <image src='../../images/tips.png'></image>
     </view>
-    <view class='first-name'>
-      <text>委托方：</text>
+    <view class='info-item'>
+      <view>委托方
+        <text class='import'>*</text>
+      </view>
       <input name='firstName' type='text' placeholder-class='holder' placeholder='请填写委托方'></input>
     </view>
-    <view class='head'>报告抬头：</view>
+    <view class='head'>报告抬头
+      <text class='import'>*</text>
+    </view>
     <view class='radio'>
       <radio-group class="radio-group" bindchange="radioChange1">
         <radio class='same' color='#2090FE' value='0'>与委托方相同</radio>
@@ -41,7 +45,8 @@
     </view>
     <view class='info-item'>
       <view>联系地址
-      <text class='import'>*</text></view>
+        <text class='import'>*</text>
+      </view>
       <input type='text' name='address' placeholder-class='holder' placeholder='请填写联系地址'></input>
     </view>
   </view>
@@ -61,8 +66,11 @@
     <view class='head'>快递地址
       <text class='import'>*</text>
     </view>
-    <picker mode='region' bindchange='bindRegionChange' value='{{ region }}' >
-      <view class='area'><text class='a-title'> 省 市 区：</text><text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text></view>
+    <picker mode='region' bindchange='bindRegionChange' value='{{ region }}'>
+      <view class='area'>
+        <text class='a-title'> 省 市 区：</text>
+        <text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text>
+      </view>
     </picker>
     <view class='radio'>
       <radio-group bindchange="radioChange2">
@@ -70,7 +78,7 @@
         <radio class='rd' color='#2090FE' value='1'>其他</radio>
       </radio-group>
     </view>
-    
+
     <view class='head-txt' wx:if="{{ exStatus == 1 }}">
       <textarea placeholder-class='holder' name='detailAddress' placeholder='请填写详细的快递地址'></textarea>
     </view>

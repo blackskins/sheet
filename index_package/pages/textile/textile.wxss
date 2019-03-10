@@ -67,7 +67,7 @@ page{
 }
 .info-item view,.first-name text{
   display: inline-block;
-  width: 160rpx;
+  width: 180rpx;
   /* background-color: cyan; */
 }
 .info-item input{

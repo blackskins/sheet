@@ -1,6 +1,6 @@
 <!--index_package/pages/textile/textile.wxml-->
 <form bindsubmit='formSummt'>
-<!-- 基本信息 -->
+  <!-- 基本信息 -->
   <view class='first-party'>
     <view class='detail-info'>
       <text>委托方信息</text>
@@ -13,7 +13,9 @@
       <input hidden='{{ !hide }}' name='firstName' type='text' placeholder-class='holder' placeholder='请填写委托方'></input>
     </view>
     <view class='info-item'>
-      <view>委托方地址</view>
+      <view>委托方地址
+        <text class='import'>*</text>
+      </view>
       <input hidden='{{ !hide }}' type='text' name='address' placeholder-class='holder' placeholder='请填写委托方地址'></input>
     </view>
     <view class='info-item'>
@@ -26,7 +28,7 @@
       <view>电话/手机
         <text class='import'>*</text>
       </view>
-      <input  hidden='{{ !hide }}'type='text' name='phone' placeholder-class='holder' placeholder='请填写联系人电话'></input>
+      <input hidden='{{ !hide }}' type='text' name='phone' placeholder-class='holder' placeholder='请填写联系人电话'></input>
     </view>
     <view class='info-item'>
       <view>E-mail/QQ</view>
@@ -34,7 +36,7 @@
     </view>
   </view>
 
-<!-- 生产单位 -->
+  <!-- 生产单位 -->
   <view class='sample-info'>
     <view class='sample-title'>生产单位</view>
     <view class='sample-box'>
@@ -42,7 +44,7 @@
         <radio class="radio" color='#2090FE' wx:for="{{ unit }}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
-        <input wx:if='{{ productionUnit == "其他" }}' type='text'  class='unit' name='productionUnit' placeholder-class='holder' maxlength='24' placeholder='请填写'></input>
+        <input wx:if='{{ productionUnit == "其他" }}' type='text' class='unit' name='productionUnit' placeholder-class='holder' maxlength='24' placeholder='请填写'></input>
       </radio-group>
     </view>
   </view>
@@ -52,8 +54,11 @@
     <view class='sample-title'>报告寄送地址
       <text class='import'>*</text>
     </view>
-    <picker mode='region' bindchange='bindRegionChange' value='{{ region }}' >
-      <view class='area'><text class='a-title'> 省 市 区：</text><text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text></view>
+    <picker mode='region' bindchange='bindRegionChange' value='{{ region }}'>
+      <view class='area'>
+        <text class='a-title'> 省 市 区：</text>
+        <text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text>
+      </view>
     </picker>
     <view class='sample-box'>
       <radio-group bindchange="radioChange2">

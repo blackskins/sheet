@@ -67,6 +67,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+  onShow(){
     //获取页面栈
     var pages = getCurrentPages();
     var Page = pages[pages.length - 1]; //当前页
@@ -80,7 +83,6 @@ Page({
       })
     }
   },
- 
   
   // 上一步
   backPage() {

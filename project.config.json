@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -169,6 +169,13 @@
 					"id": -1,
 					"name": "报告修改",
 					"pathName": "order_package/pages/modify_report/modify_report",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "获取可用优惠券",
+					"pathName": "index_package/pages/get_coupon/get_coupon",
 					"scene": null
 				}
 			]

@@ -296,7 +296,7 @@
           <text>{{item.value}}</text>
         </radio>
       </radio-group>
-      <radio-group class="radio-group" bindchange="radioChange6a">
+      <radio-group wx:if='{{ testMode == "委托方指定" }}' class="radio-group" bindchange="radioChange6a">
         <radio class="radio" color='#2090FE' wx:for="{{standard}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>

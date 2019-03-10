@@ -20,4 +20,10 @@ Page({
       url: '../../index_package/pages/cosmetics/cosmetics',
     })
   },
+  // 跳转到纺织品委托
+  toTextile() {
+    wx.navigateTo({
+      url: '../../index_package/pages/textile/textile',
+    })
+  },
 })

@@ -21,7 +21,7 @@
         <view>样品数量{{ spinInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>
         </view>
-        <input type='text' name='samplenumber{{ index + 1 }}' value='{{item.samplenumber}}' bindblur='blurCount' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品数量'></input>
+        <input type='number' name='samplenumber{{ index + 1 }}' value='{{item.samplenumber}}' bindblur='blurCount' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品数量'></input>
       </view>
       <view class='info-item'>
         <view>颜色及描述{{ spinInfo.length >1 ? index + 1 :"" }}

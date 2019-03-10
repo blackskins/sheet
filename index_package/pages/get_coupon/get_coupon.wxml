@@ -1,5 +1,5 @@
-<!--profile_package/pages/my_coupon/my_coupon.wxml-->
-<!-- 我的优惠券 -->
+<!--index_package/pages/get_coupon/get_coupon.wxml-->
+<!-- 可用优惠券 -->
 <view class='coupon-box'>
   <view class='coupon-item' wx:for='{{ couponList }}' wx:key=''>
     <view class='coupon-price center'>
@@ -9,6 +9,15 @@
     <view class='coupon-txt center'>
       <view class='start-time'>可在：{{ item.startTime }}</view>
       <view class='end-time'>到 {{ item.endTime }} 使用</view>
+    </view>
+    <view class='get center' wx:if='{{ item.isGet }}' bindtap='getTicket' data-index='{{ index }}'>
+      <text>领</text>
+      <text>取</text>
+    </view>
+    <view class='get1 center' wx:else>
+      <text>已</text>
+      <text>领</text>
+      <text>取</text>
     </view>
   </view>
 </view>

@@ -8,6 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    opacity: 0,//背景蒙层的透明度
+    animate: 'none',//删除图片 动画弹窗
+    showCoupon:false,
     showTxt:true,
     hotList:[
       {
@@ -46,6 +49,40 @@ Page({
     this._getIndexSliderImg()//获取轮播图
     this._getVideoInfo()//获取视频简介
     this._getLatestInfo()//获取最新的三条咨询
+    this.setData({
+      opacity:1,
+      animate:'animate .3s',
+      showCoupon:true
+    })
+  },
+  // 去领取优惠券
+  getCoupon(){
+    this.setData({
+      opacity:0,
+      animate:'back .5s'
+    },()=>{
+      setTimeout(()=>{
+        this.setData({
+          showCoupon:false
+        })
+        wx.navigateTo({
+          url: '../../index_package/pages/get_coupon/get_coupon',
+        })
+      },500)
+    })
+  },
+  // 取消领取
+  cancel(){
+    this.setData({
+      opacity:0,
+      animate:'back .5s'
+    },()=>{
+      setTimeout(()=>{
+        this.setData({
+          showCoupon:false
+        })
+      },500)
+    })
   },
   // 获取轮播图
   _getIndexSliderImg(){
@@ -105,6 +142,10 @@ Page({
     wx.navigateTo({
       url: '../../index_package/pages/news_detail/news_detail?id='+id,
     })
+  },
+  // 禁止蒙层可滑动
+  stopMove(){
+    return false
   },
   /**
    * 用户点击右上角分享

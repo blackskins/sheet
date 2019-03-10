@@ -30,8 +30,7 @@
 <view class='video'>
   <!-- <video></video> -->
   <view class='video-content'>
-    <video id="myVideo" src="{{ videoInfo.videoUrl }}"
-      binderror="videoErrorCallback" poster='{{ videoInfo.imgUrl }}' show-center-play-btn controls ></video>
+    <video id="myVideo" src="{{ videoInfo.videoUrl }}" binderror="videoErrorCallback" poster='{{ videoInfo.imgUrl }}' show-center-play-btn controls></video>
   </view>
   <view class='video-txt {{ showTxt ? "hd-text" : "" }}'>{{ videoInfo.content }}
     <image bindtap='showTxt' src='/images/dao.png' wx:if='{{ showTxt }}'></image>
@@ -54,6 +53,17 @@
       <view class='list-title hd-text'>{{ item.title }}</view>
       <view class='type hd-text'>{{ item.content }}</view>
       <view class='list-time'>{{ item.createTime }}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 领取优惠券弹窗 -->
+<view class='window' style='opacity:{{ opacity }}' catchtouchmove='stopMove' wx:if='{{ showCoupon }}'>
+  <view class='coupon' style='animation:{{ animate }}'>
+    <view class='coupon-txt center'>您有优惠券未领取</view>
+    <view class='use-btn'>
+      <view class='center' bindtap='cancel'>取消</view>
+      <view class='center' bindtap='getCoupon'>去领取</view>
     </view>
   </view>
 </view>

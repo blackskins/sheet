@@ -126,6 +126,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this._getServiceContent()
+  },
+  onShow(){
     //获取页面栈
     var pages = getCurrentPages();
     var Page = pages[pages.length - 1]; //当前页
@@ -139,7 +142,16 @@ Page({
       })
     }
   },
-
+  // 获取服务协议说明
+  _getServiceContent() {
+    let status = 10
+    submit_data.getServiceContent(status, (res) => {
+      console.log(res)
+      this.setData({
+        sheetData: res.data
+      })
+    })
+  },
   // 样品保存
   radioChange1(e) {
     console.log(e.detail.value)
