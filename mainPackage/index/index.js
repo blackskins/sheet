@@ -49,10 +49,26 @@ Page({
     this._getIndexSliderImg()//获取轮播图
     this._getVideoInfo()//获取视频简介
     this._getLatestInfo()//获取最新的三条咨询
-    this.setData({
-      opacity:1,
-      animate:'animate .3s',
-      showCoupon:true
+    this._checkCouponList()
+  },
+  // 查看优惠券接口是否有优惠券可领取
+  _checkCouponList(){
+    let page = 1;
+    let pageSize = 10;
+    index_model.getCouponList(page, pageSize, (res) => {
+      console.log(res)
+      if (res.code != 0) {
+        $.prompt(res.msg, 2500)
+        return false
+      }
+      if(res.data.length>0){
+        this.setData({
+          opacity: 1,
+          animate: 'animate .3s',
+          showCoupon: true
+        })
+      }
+      
     })
   },
   // 去领取优惠券

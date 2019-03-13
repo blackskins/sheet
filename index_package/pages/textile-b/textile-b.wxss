@@ -127,6 +127,7 @@ page{
   width: 94%;
   height: 180rpx;
   color: #333;
+  line-height: 38rpx !important;
 }
 
 /* 综合子集合 */

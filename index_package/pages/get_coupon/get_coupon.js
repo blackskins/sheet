@@ -35,7 +35,6 @@ Page({
     if (page == 1) {
       $.openLoad();
     }
-    $.openLoad()
     get_coupon_model.getCouponList(page, pageSize, (res) => {
       console.log(res)
       if (res.code != 0) {
@@ -77,8 +76,8 @@ Page({
     })
   },
   // 触底加载
-  onReachBottom: () => {
-    this._getCoupon()
+  onReachBottom:() => {
+    this._getCouponList()
   },
   // 领取优惠券
   getTicket(e){

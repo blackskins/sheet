@@ -42,8 +42,10 @@ page{
   border-radius: 10rpx;
   padding: 2% 3%;
   width: 94%;
-  height: 180rpx;
+  height: 100rpx;
   color: #333;
+  font-size: 26rpx;
+  line-height: 36rpx !important;
 }
 
 .unit{

@@ -60,15 +60,8 @@
         <text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text>
       </view>
     </picker>
-    <view class='sample-box'>
-      <radio-group bindchange="radioChange2">
-        <radio class="radio" color='#2090FE' wx:for="{{ address }}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
-          <text>{{item.value}}</text>
-        </radio>
-      </radio-group>
-    </view>
     <view class='head-txt'>
-      <textarea wx:if='{{ reportSendingAddress == "其他" }}' name='reportSendingAddress' placeholder-class='holder' placeholder='其他快递地址请填写'></textarea>
+      <textarea name='reportSendingAddress' placeholder-class='holder' placeholder='请填写详细地址'></textarea>
     </view>
   </view>
 

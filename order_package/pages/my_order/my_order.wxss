@@ -89,7 +89,7 @@ page {
   background-color: #ff5062;
   width: 106rpx;
   height: 42rpx;
-  border-radius: 10rpx;
+  border-radius: 6rpx;
   text-align: center;
   line-height: 42rpx;
 }
@@ -128,7 +128,7 @@ page {
   line-height: 50rpx;
   text-align: center;
   padding: 0rpx 16rpx;
-  border-radius: 18rpx;
+  border-radius: 10rpx;
   margin-left: 20rpx;
 }
 .update-info,.link{

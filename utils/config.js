@@ -5,5 +5,5 @@ class Config {
 }
 
 Config.restUrl = "https://fenxi.weishangshouji.cn";
-export{Config}
+export{ Config }
 

@@ -101,6 +101,7 @@ Page({
       this.setData({
         userData: res.data
       })
+      wx.setStorageSync('openId', res.data.openId)
     })
   },
   // 跳转到我的二维码页面

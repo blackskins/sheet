@@ -115,8 +115,8 @@ button {
 /*加载中  */
 
 .bottom_jiazai image {
-  width: 30rpx;
-  height: 30rpx;
+  width: 30rpx !important;
+  height: 30rpx !important;
   vertical-align: middle;
   margin-top: -5rpx;
   margin-right: 10rpx;
@@ -205,8 +205,8 @@ button {
   transform: translate(-50%,-50%);  
 }
 .none-img image{
-  width: 100%;
-  height: 195rpx;
+  width: 100% !important;
+  height: 195rpx !important;
 }
 .none-txt{
   font-size: 26rpx;

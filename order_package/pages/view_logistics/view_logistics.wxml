@@ -4,22 +4,22 @@
   <view class='item-title'>订单信息</view>
   <view class='order-item'>
     <text class='lt'>订单编号</text>
-    <text class='rt'>549856865846565845</text>
+    <text class='rt'>{{ orderInfo.orderId }}</text>
   </view>
 
   <view class='order-item'>
     <text class='lt'>下单时间</text>
-    <text class='rt'>2019-02-21 15:25:32</text>
+    <text class='rt'>{{ orderInfo.creatime }}</text>
   </view>
 
   <view class='order-item'>
     <text class='lt'>快递</text>
-    <text class='rt'>申通快递</text>
+    <text class='rt'>{{ orderInfo.expressCompany }}</text>
   </view>
 
   <view class='order-item'>
     <text class='lt'>快递单号</text>
-    <text class='rt'>54985658945846565845</text>
+    <text class='rt'>{{ orderInfo.mailno }}</text>
   </view>
 </view>
 
@@ -31,9 +31,9 @@
     <view class='logistics-list {{ index == 0 ? "l-active":"" }}'>
       <view class='point {{ index == 0 ? "p-active":"" }}'></view>
       <view class='logistics-title'>
-        {{ item.title }}
+        {{ item.remark }}
       </view>
-      <view class='logistics-time'>{{ item.createTime }}</view>
+      <view class='logistics-time'>{{ item.accept_time }}</view>
     </view>
   </view>
 </view>

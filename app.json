@@ -80,9 +80,10 @@
       "pages": [
         "pages/my_order/my_order",
         "pages/order_detail/order_detail",
-        "pages/view-logistics/view-logistics",
+        "pages/view_logistics/view_logistics",
         "pages/modify_report/modify_report",
-        "pages/modify_form/modify_form"
+        "pages/modify_form/modify_form",
+        "pages/handwriting/handwriting"
       ]
     }
   ],

@@ -58,12 +58,19 @@
 </view>
 
 <!-- 领取优惠券弹窗 -->
-<view class='window' style='opacity:{{ opacity }}' catchtouchmove='stopMove' wx:if='{{ showCoupon }}'>
-  <view class='coupon' style='animation:{{ animate }}'>
+<cover-view class='window' style='opacity:{{ opacity }}' catchtouchmove='stopMove' wx:if='{{ showCoupon }}'>
+  <!-- <view class='coupon' style='animation:{{ animate }}'>
     <view class='coupon-txt center'>您有优惠券未领取</view>
     <view class='use-btn'>
       <view class='center' bindtap='cancel'>取消</view>
       <view class='center' bindtap='getCoupon'>去领取</view>
     </view>
-  </view>
-</view>
+  </view> -->
+  <cover-view class='popup' style='animation:{{ animate }}'>
+    <cover-image class='pop-img' src='/images/coupon.png'></cover-image>
+    <cover-view class='pop-cancel' bindtap='cancel'>
+      <cover-image src='/images/del_coupon.png'></cover-image>
+    </cover-view>
+    <cover-view class='pop-get' bindtap='getCoupon'>去领取</cover-view>
+  </cover-view>
+</cover-view>

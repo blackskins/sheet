@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -159,9 +159,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 17,
 					"name": "查看物流",
-					"pathName": "order_package/pages/view-logistics/view-logistics",
+					"pathName": "order_package/pages/view_logistics/view_logistics",
 					"query": "",
 					"scene": null
 				},
@@ -176,6 +176,28 @@
 					"id": -1,
 					"name": "获取可用优惠券",
 					"pathName": "index_package/pages/get_coupon/get_coupon",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权页",
+					"pathName": "mainPackage/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单签名",
+					"pathName": "order_package/pages/handwriting/handwriting",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "优惠劵",
+					"pathName": "profile_package/pages/my_coupon/my_coupon",
+					"query": "",
 					"scene": null
 				}
 			]

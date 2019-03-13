@@ -1,97 +1,64 @@
 // order_package/pages/my_order/my_order.js
+import { My_order_model } from './my_order_model.js'
+var my_order_model = new My_order_model()
+var $ = require('../../../utils/common.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isFirst:true,
+    canvasImg:'',//签名的临时路径
     currentIndex: 0, //当前状态下标索引
     itemStatus: [
-      '全部',
-      '待签名',
-      '待揽收',
-      '待受理',
-      '待付款',
-      '待报告',
-      '发报告',
-      '已完成',
-      '修改中'
+      {
+        title:'全部',
+        status:0,
+      },
+      {
+        title: '待签名',
+        status: 12,
+      },
+      {
+        title: '待揽收',
+        status: 14,
+      },
+      {
+        title: '待受理',
+        status: 20,
+      },
+      {
+        title: '待付款',
+        status: 22,
+      },
+      {
+        title: '待报告',
+        status: 24,
+      },
+      {
+        title: '发报告',
+        status: 30,
+      },
+      {
+        title: '已完成',
+        status: 32,
+      },
+      {
+        title: '修改中',
+        status: 34,
+      }
     ],
     scrollHeight: '', //实时获取设备scroll-view的高度
     currentOrderStatus: 0,
     orderList: [], //订单状态列表
-    allOrderList: [
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 12,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 14,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 20,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 22,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 24,
-        updateStatus: 20
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 30,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 12,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 20,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 32,
-        updateStatus: 10
-      },
-      {
-        orderId: '34Z1MQ-190128034047720',
-        createTime: '2019-02-21 17:40:47',
-        entrust: '北京盈客通天下科技有限公司广州分公司',
-        status: 34,
-        updateStatus: 10
-      },
-    ]
+    allOrderList: [],
+    page: 1,
+    pageSize: 10,
+    loading_state: false,
+    loading: false,
+    nodata: false,
+    isMore: true
   },
 
   /**
@@ -105,10 +72,140 @@ Page({
       scrollHeight: height,
       currentIndex: options.id
     })
+    console.log(options.id)
+    // return
+    if(options.id == 0){
+      let page = this.data.page
+      this._getAllOrderList(page)
+    }else{
+      let list = this.data.itemStatus
+      let status = list[options.id].status
+      let page = this.data.page
+      this._getOrderStatusList(status,page)
+    }
+    // 生成画布
     // this.drawSth()
     // this.canvas2()
     // this.canvas3()
     this.canvas4()
+  },
+  onShow(options){
+    let isFirst = this.data.isFirst
+    if(isFirst){
+      this.setData({
+        isFirst:false
+      })
+      if (options.id == 0) {
+        let page = this.data.page
+        this._getAllOrderList(page)
+      } else {
+        let list = this.data.itemStatus
+        let status = list[options.id].status
+        let page = this.data.page
+        this._getOrderStatusList(status, page)
+      }
+    }else{
+      console.log('6666')
+    }
+    
+  },
+  // 获取全部订单数据
+  _getAllOrderList(page){
+    var page = page
+    var pageSize = this.data.pageSize
+    var list = this.data.allOrderList
+    var loading = true
+    var isMore = true
+    var time = 0
+    var nodata = false
+    if (page == 1) {
+      $.openLoad();
+    }
+    my_order_model.getAllOrderList(page,pageSize,(res)=>{
+      console.log(res)
+      if(res.code != 0){
+        $.prompt(res.msg,2500)
+        return
+      }
+      let allOrderList = res.data
+      let len = allOrderList.length
+      if (len < 10) {
+        isMore = false
+        nodata = true
+        loading = false
+      }
+      if (page == 1) {
+        list = allOrderList
+      } else {
+        list = allOrderList ? list.concat(allOrderList) : list
+        time = 500
+      }
+      setTimeout(() => {
+        this.setData({
+          allOrderList: list,
+          page: parseInt(page) + 1,
+          isMore: isMore,
+          loading: loading,
+          loading_state: false,
+          nodata: nodata
+        }, () => {
+          if (page == 1) {
+            $.closeLoad()
+          }
+        })
+      },
+        time
+      )
+    })
+  },
+  // 获取不同订单状态的数据
+  _getOrderStatusList(status,page) {
+    var page = page
+    var pageSize = this.data.pageSize
+    var list = this.data.orderList
+    var loading = true
+    var isMore = true
+    var time = 0
+    var nodata = false
+    if (page == 1) {
+      $.openLoad();
+    }
+    my_order_model.getOrderStatusList(page, pageSize, status,(res) => {
+      console.log(res)
+      if (res.code != 0) {
+        $.prompt(res.msg, 2500)
+        return
+      }
+      let orderList = res.data
+      let len = orderList.length
+      if (len < 10) {
+        isMore = false
+        nodata = true
+        loading = false
+      }
+      if (page == 1) {
+        list = orderList
+      } else {
+        list = orderList ? list.concat(orderList) : list
+        time = 500
+      }
+      setTimeout(() => {
+        this.setData({
+          orderList: list,
+          page: parseInt(page) + 1,
+          isMore: isMore,
+          loading: loading,
+          loading_state: false,
+          nodata: nodata
+        }, () => {
+          if (page == 1) {
+            $.closeLoad()
+          }
+        })
+      },
+        time
+      )
+    })
   },
   // 选择当前状态的订单列表
   chooseItem(e) {
@@ -116,12 +213,54 @@ Page({
     this.setData({
       currentIndex: currentIndex
     })
+    if(currentIndex == 0){
+      let page = 1
+      this._getAllOrderList(page)
+    }else{
+      let page = 1
+      let list = this.data.itemStatus
+      let status = list[currentIndex].status
+      this._getOrderStatusList(status,page)
+    }
   },
   // 切换订单状态列表
   changeItem(e) {
     // console.log(e)
+    let currentIndex = e.detail.current
     this.setData({
-      currentIndex: e.detail.current
+      currentIndex: currentIndex
+    })
+    if (currentIndex == 0) {
+      let page = 1
+      this._getAllOrderList(page)
+    } else {
+      let page = 1
+      let list = this.data.itemStatus
+      let status = list[currentIndex].status
+      this._getOrderStatusList(status, page)
+    }
+  },
+  // 订单触底加载更多
+  reachBottom(){
+    console.log('进来了.......')
+    let currentIndex = this.data.currentIndex
+    if (currentIndex == 0) {
+      let page = this.data.page
+      this._getAllOrderList(page)
+    } else {
+      let page = this.data.page
+      let list = this.data.itemStatus
+      let status = list[currentIndex].status
+      this._getOrderStatusList(status, page)
+    }
+  },
+  // 跳转到订单详情页
+  orderDetail(e){
+    let orderId = e.currentTarget.dataset.id
+    let status = this.data.itemStatus[this.data.currentIndex].status
+    wx.navigateTo({
+      // url: '../order_detail/order_detail?orderId=' + orderId + '&status=' + status,
+      url: `../order_detail/order_detail?orderId=${orderId}&status=${status}`,
     })
   },
   // 保存画布
@@ -137,12 +276,12 @@ Page({
           success: function(res) {
             $.prompt('成功保存到手机本地相册', 2500)
           },
-          fail: function(res) {
+          fail:(res)=> {
             console.log('授权失败')
             console.log(res)
             if (res.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
               console.log("打开设置窗口");
-              that.setData({
+              this.setData({
                 isAuth: false
               })
               wx.setStorageSync('isPath', 'no');
@@ -160,6 +299,7 @@ Page({
     wx.showLoading({
       title: '正在保存...',
     })
+    
     wx.canvasToTempFilePath({
       canvasId: 'canvas-3',
       quality: 1,
@@ -168,7 +308,7 @@ Page({
         var canvasImg = res.tempFilePath
         wx.saveImageToPhotosAlbum({
           filePath: canvasImg,
-          success: function (res) {
+          success:(res)=> {
             wx.hideLoading()
             // $.prompt('成功保存到手机本地相册', 2500)
             wx.showToast({
@@ -176,12 +316,12 @@ Page({
               duration:2500
             })
           },
-          fail: function (res) {
+          fail:(res)=> {
             console.log('授权失败')
             console.log(res)
             if (res.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
               console.log("打开设置窗口");
-              that.setData({
+              this.setData({
                 isAuth: false
               })
               wx.setStorageSync('isPath', 'no');
@@ -216,12 +356,12 @@ Page({
               duration: 2500
             })
           },
-          fail: function (res) {
+          fail:(res)=> {
             console.log('授权失败')
             console.log(res)
             if (res.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
               console.log("打开设置窗口");
-              that.setData({
+              this.setData({
                 isAuth: false
               })
               wx.setStorageSync('isPath', 'no');

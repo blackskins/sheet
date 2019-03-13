@@ -131,6 +131,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   width: 94%;
   height: 250rpx;
   color: #333;
+  line-height: 38rpx !important;
 }
 
 /* 提交 */
@@ -182,6 +183,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   height: 100%;
   background-color: rgba(0, 0, 0, .7);
   transition: all .3s;
+  z-index: 1000;
 }
 .agreement,.agreement1{
   position: absolute;
@@ -194,6 +196,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   background-color: #fff;
   padding: 30rpx 40rpx;
   transition: all .3s;
+  z-index: 10000;
 }
 .agreement1{
   height:200rpx;

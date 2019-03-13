@@ -42,9 +42,10 @@ page{
   border-radius: 10rpx;
   padding: 10rpx 20rpx;
   width: 94%;
-  height: 180rpx;
+  height: 120rpx;
   color: #333;
   font-size: 26rpx !important;
+  line-height: 38rpx;
 }
 /* 基本信息 */
 .basic-box{
@@ -67,6 +68,10 @@ page{
 }
 .import{
   color: #FF5062;
+}
+.info-item input{
+  width: 520rpx;
+  /* background-color: cyan; */
 }
 .rd{
   transform: scale(.8);

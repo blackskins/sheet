@@ -72,15 +72,8 @@
         <text class='region {{ region.length > 0 ? "r-active" :"" }}'>{{ region.length > 0 ? region[0] +' '+region[1] + ' ' + region[2] : "请点击这里选择省市区..."}}</text>
       </view>
     </picker>
-    <view class='radio'>
-      <radio-group bindchange="radioChange2">
-        <radio class='rd' color='#2090FE' value='0'>与联系地址相同</radio>
-        <radio class='rd' color='#2090FE' value='1'>其他</radio>
-      </radio-group>
-    </view>
-
-    <view class='head-txt' wx:if="{{ exStatus == 1 }}">
-      <textarea placeholder-class='holder' name='detailAddress' placeholder='请填写详细的快递地址'></textarea>
+    <view class='head-txt'>
+      <textarea placeholder-class='holder' name='expressAddress' placeholder='请填写详细的快递地址'></textarea>
     </view>
   </view>
 

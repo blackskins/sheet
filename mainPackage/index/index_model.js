@@ -30,6 +30,20 @@ class Index_model extends Base{
     }
     this.request(params)
   }
+  // 获取可用优惠券列表
+  getCouponList(page, pageSize, callback) {
+    let params = {
+      url: '/user/AllCoupon',
+      data: {
+        page: page,
+        pageSize: pageSize
+      },
+      sCallback: (res) => {
+        callback && callback(res)
+      }
+    }
+    this.request(params)
+  }
 }
 export{
   Index_model

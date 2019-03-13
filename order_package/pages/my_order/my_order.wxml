@@ -1,7 +1,7 @@
 <!--order_package/pages/my_order/my_order.wxml-->
 <view class='tab-box'>
   <block wx:for='{{ itemStatus }}' wx:key=''>
-    <view class='tab-item {{ currentIndex == index ?"active":"" }}' bindtap='chooseItem' data-index='{{ index }}'>{{ item }}</view>
+    <view class='tab-item {{ currentIndex == index ?"active":"" }}' bindtap='chooseItem' data-index='{{ index }}'>{{ item.title }}</view>
   </block>
 </view>
 
@@ -9,7 +9,7 @@
   <view class="slider">
     <swiper current='{{ currentIndex }}' duration="400" bindchange='changeItem'>
       <swiper-item wx:for="{{ itemStatus }}" wx:key=''>
-        <scroll-view scroll-y style='height:{{ scrollHeight }}px'>
+        <scroll-view scroll-y style='height:{{ scrollHeight }}px' bindscrolltolower='reachBottom'>
           <view class='order-item' wx:for='{{ currentIndex == 0 ? allOrderList : orderList }}' wx:key=''>
             <view class='num-box'>
               <view class='order-num'>
@@ -38,9 +38,26 @@
                 <view class='link'>联系客服
                   <button open-type='contact'></button>
                 </view>
-                <view class='check-detail'>查看详情</view>
+                <view class='check-detail' bindtap='orderDetail' data-id='{{ item.orderId }}'>查看详情</view>
               </view>
             </view>
+          </view>
+
+          <!--加载 -->
+          <view class='bottom_jiazai' wx:if="{{loading && page>1}}">
+            <image src='../../../images/loadmore.gif'></image>
+            <text>玩命加载中...</text>
+          </view>
+          <view class='bottom_jiazai' wx:if="{{ currentIndex == 0 ? nodata && allOrderList.length>0 : nodata && orderList.length>0 }}">
+            <text class='no'>没有更多订单数据了哦~</text>
+          </view>
+
+          <!-- 没有数据的状态 -->
+          <view class='none-box' wx:if='{{ currentIndex == 0 ? allOrderList.length == 0 : orderList.length == 0 }}'>
+            <view class='none-img'>
+              <image src='/images/nothing.png'></image>
+            </view>
+            <view class='none-txt'>空空如也，暂无订单记录哦～</view>
           </view>
         </scroll-view>
       </swiper-item>
@@ -60,12 +77,12 @@
 <!-- 画布1 -->
 <view class='canvas' wx:if='{{ false }}'>
   <canvas class='' canvas-id='canvas-1' style='width:1500px;height:2115px'></canvas>
-  <cover-view class='save' bindtap='saveImg' >保存</cover-view>
+  <cover-view class='save' bindtap='saveImg'>保存</cover-view>
 </view>
 <!-- 画布2 -->
 <view class='canvas' wx:if='{{ false }}'>
   <canvas class='' canvas-id='canvas-2' style='width:1700px;height:2517px'></canvas>
-  <cover-view class='save' bindtap='saveImg1' >保存</cover-view>
+  <cover-view class='save' bindtap='saveImg1'>保存</cover-view>
 </view>
 <!-- 画布3 -->
 <view class='canvas' wx:if='{{ false }}'>

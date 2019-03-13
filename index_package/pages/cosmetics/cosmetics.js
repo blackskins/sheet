@@ -34,13 +34,6 @@ Page({
       rhStatus: e.detail.value
     })
   },
-  // 选择快递地址方式
-  radioChange2(e) {
-    console.log(e)
-    this.setData({
-      exStatus: e.detail.value
-    })
-  },
   // 保存表单数据
   formSummt(e) {
     console.log(e)
@@ -52,17 +45,6 @@ Page({
     } else if (this.data.rhStatus == 1) {
       this.setData({
         reportHeader: e.detail.value.reportHeader
-      })
-    }
-
-    // 快递地址
-    if(this.data.exStatus == 0){
-      this.setData({
-        expressAddress:e.detail.value.contactAddress
-      })
-    }else if(this.data.exStatus == 1){
-      this.setData({
-        expressAddress: e.detail.value.detailAddress
       })
     }
     let data1 = {
@@ -79,7 +61,7 @@ Page({
       contactAddress: e.detail.value.address,
       fax: e.detail.value.fax,
       postalCode: e.detail.value.postCode,
-      expressAddress: this.data.expressAddress
+      expressAddress: e.detail.value.expressAddress
     }
 
     // var reg = /^1(3|4|5|7|8)\d{9}$/; //简略的正则匹配手机号
@@ -114,12 +96,8 @@ Page({
     } else if(!this.data.region.length){
       $.prompt('请选择快递地址的省市区')
       return 
-    } else if (this.data.exStatus == '' || (this.data.exStatus == 1 && this.data.expressAddress == '')) {
-      if(this.data.exStatus == ''){
-        $.prompt('请选择快递地址')
-      } else if (this.data.exStatus == 1 && this.data.expressAddress == ''){
-        $.prompt('请填写详细的快递地址')
-      }
+    } else if (e.detail.value.expressAddress == '') {
+      $.prompt('请填写详细的快递地址')
       return 
     }
     // console.log(data1)
