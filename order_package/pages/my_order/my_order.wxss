@@ -161,9 +161,6 @@ page {
   background-color: #fff;
   overflow: scroll;
 }
-.canvas canvas{
-  /* background-color: #FF8A4F; */
-}
 
 .save{
   position: fixed;

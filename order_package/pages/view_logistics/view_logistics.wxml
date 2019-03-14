@@ -3,22 +3,22 @@
 <view class='order-info'>
   <view class='item-title'>订单信息</view>
   <view class='order-item'>
-    <text class='lt'>订单编号</text>
+    <text class='lt'>订单编号：</text>
     <text class='rt'>{{ orderInfo.orderId }}</text>
   </view>
 
   <view class='order-item'>
-    <text class='lt'>下单时间</text>
+    <text class='lt'>下单时间：</text>
     <text class='rt'>{{ orderInfo.creatime }}</text>
   </view>
 
   <view class='order-item'>
-    <text class='lt'>快递</text>
+    <text class='lt'>快 递：</text>
     <text class='rt'>{{ orderInfo.expressCompany }}</text>
   </view>
 
   <view class='order-item'>
-    <text class='lt'>快递单号</text>
+    <text class='lt'>快递单号：</text>
     <text class='rt'>{{ orderInfo.mailno }}</text>
   </view>
 </view>

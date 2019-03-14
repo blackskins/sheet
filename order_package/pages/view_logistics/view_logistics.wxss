@@ -29,7 +29,9 @@ page{
 }
 .lt{
   display: inline-block;
-  width: 160rpx;
+  margin-right: 30rpx;
+  text-align: right;
+  width: 140rpx;
   color: #666666;
   /* background-color: cyan; */
 }
