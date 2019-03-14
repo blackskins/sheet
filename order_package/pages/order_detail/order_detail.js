@@ -293,9 +293,15 @@ Page({
   },
   // 页面卸载
   onUnload(){
+    if (this.data.orderStatus != 22) {
+      return false
+    }
     this.cancelCoupon()//取消使用优惠券
   },
   onHide() {//取消使用优惠券
+    if(this.data.orderStatus != 22){
+      return false
+    }
     let _id = this.data.orderData.orderId
     if (this.data.isCoupon) {
       let couponId = this.data.couponData.couponId
@@ -944,19 +950,90 @@ Page({
     ctx.strokeRect(1300, 842, 20, 20)
 
     // 危险性
-    ctx.strokeRect(320, 897, 20, 20)
-    ctx.strokeRect(400, 897, 20, 20)
-    ctx.strokeRect(670, 897, 20, 20)
-    ctx.strokeRect(760, 897, 20, 20)
-    ctx.strokeRect(860, 897, 20, 20)
-    ctx.strokeRect(1030, 897, 20, 20)
-    ctx.strokeRect(1150, 897, 20, 20)
-    ctx.strokeRect(1250, 897, 20, 20)
-    ctx.strokeRect(1370, 897, 20, 20)
+    if(data.danger == '无'){
+      ctx.fillRect(320, 897, 20, 20);
+      ctx.fill()
+    }else{
+      ctx.strokeRect(320, 897, 20, 20)
+    }
 
-    ctx.strokeRect(320, 932, 20, 20)
-    ctx.strokeRect(440, 932, 20, 20)
-    ctx.strokeRect(550, 932, 20, 20)
+    if (data.danger == '未知') {
+      ctx.fillRect(400, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(400, 897, 20, 20)
+    }
+
+    if (data.danger == '易燃') {
+      ctx.fillRect(670, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(670, 897, 20, 20)
+    }
+
+    if (data.danger == '刺激性气味') {
+      ctx.fillRect(760, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(760, 897, 20, 20)
+    }
+
+    if (data.danger == '氧化性') {
+      ctx.fillRect(860, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(860, 897, 20, 20)
+    }
+
+    if (data.danger == '毒性') {
+      ctx.fillRect(1030, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1030, 897, 20, 20)
+    }
+
+    if (data.danger == '感染性') {
+      ctx.fillRect(1150, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1150, 897, 20, 20)
+    }
+
+    if (data.danger == '放射性') {
+      ctx.fillRect(1250, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1250, 897, 20, 20)
+    }
+
+    if (data.danger == '放射性') {
+      ctx.fillRect(1370, 897, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1370, 897, 20, 20)
+    }
+
+    if (data.danger == '腐蚀性') {
+      ctx.fillRect(320, 932, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 932, 20, 20)
+    }
+
+    if (data.danger == '磁性') {
+      ctx.fillRect(440, 932, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(440, 932, 20, 20)
+    }
+
+    if (data.danger == '磁性') {
+      ctx.fillRect(550, 932, 20, 20);
+      ctx.fill()
+    } else {
+      ctx.strokeRect(550, 932, 20, 20)
+    }
+    // ctx.strokeRect(550, 932, 20, 20)
 
     // ctx.setFillStyle('#ccc')
     // ctx.fillRect(340, 425, 20, 20);

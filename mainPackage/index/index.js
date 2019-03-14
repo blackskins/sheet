@@ -12,32 +12,7 @@ Page({
     animate: 'none',//删除图片 动画弹窗
     showCoupon:false,
     showTxt:true,
-    hotList:[
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content:'北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime:'2019-02-11 14:20',
-        img:'/images/icon1.png'
-      },
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content: '北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime: '2019-02-11 14:20',
-        img:'/images/icon2.png'
-      },
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content: '北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime: '2019-02-11 14:20',
-        img:'/images/icon3.png'
-      },
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content: '北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime: '2019-02-11 14:20',
-        img:'/images/icon4.png'
-      }
-    ],
+    hotList:[],
     sliderImg:'',
     videoInfo:''
   },
