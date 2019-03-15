@@ -1877,47 +1877,244 @@ Page({
 
 
     //委托要求----->综合
-    ctx.strokeRect(270, 840, 20, 20)
-    ctx.strokeRect(750, 840, 20, 20)
-    ctx.strokeRect(970, 840, 20, 20)
-    ctx.strokeRect(1160, 840, 20, 20)
-    ctx.strokeRect(1330, 840, 20, 20)
-    ctx.strokeRect(1450, 840, 20, 20)
+    let arr = new Array()
+    arr = data.comprehensive.split(',');
+    for(let i = 0;i<arr.length;i++){
+      if(arr[i] == '常规套餐'){
+        ctx.fillRect(270, 840, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 840, 20, 20)
+      }
+      if (arr[i] == 'GB18401') {
+        ctx.fillRect(750, 840, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(750, 840, 20, 20)
+      }
+      if (arr[i] == '产品标识') {
+        ctx.fillRect(970, 840, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(970, 840, 20, 20)
+      }
+      if (arr[i] == '全项') {
+        ctx.fillRect(1160, 840, 20, 20)
+        ctx.fillRect(1330, 840, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1160, 840, 20, 20)
+        ctx.strokeRect(1330, 840, 20, 20)
+      }
+      if (arr[i] == '物理性能') {
+        ctx.fillRect(1160, 840, 20, 20)
+        ctx.fillRect(1450, 840, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1160, 840, 20, 20)
+        ctx.strokeRect(1450, 840, 20, 20)
+      }
+    }
 
     //委托要求----->纤维含量
-    ctx.strokeRect(270, 900, 20, 20)
-    ctx.strokeRect(450, 900, 20, 20)
-    ctx.strokeRect(700, 900, 20, 20)
+    let arr2 = [];
+    arr2 = data.fiberContent.split(',')
+    for(let j = 0;j<arr2.length;j++){
+      if(arr2[i] == '纤维含量'){
+        ctx.fillRect(270, 900, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 900, 20, 20)
+      }
+
+      if (arr2[i] == '棉麻纤维含量') {
+        ctx.fillRect(450, 900, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(450, 900, 20, 20)
+      }
+
+      if (arr2[i] == '特种毛含量') {
+        ctx.fillRect(700, 900, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(700, 900, 20, 20)
+      }
+    }
 
     //委托要求----->色牢度
-    ctx.strokeRect(270, 960, 20, 20)
-    ctx.strokeRect(420, 960, 20, 20)
-    ctx.strokeRect(500, 960, 20, 20)
-    ctx.strokeRect(600, 960, 20, 20)
-    ctx.strokeRect(700, 960, 20, 20)
-    ctx.strokeRect(840, 960, 20, 20)
-    ctx.strokeRect(920, 960, 20, 20)
-    ctx.strokeRect(1020, 960, 20, 20)
-    ctx.strokeRect(1160, 960, 20, 20)
-    ctx.strokeRect(1300, 960, 20, 20)
-    ctx.strokeRect(1420, 960, 20, 20)
+    let arr3 = []
+    arr3 = data.colorFastness.split(',')
+    for(let k = 0;k<arr3.length;k++){
+      if(arr3[i] == '干'){
+        ctx.fillRect(270, 960, 20, 20)
+        ctx.fillRect(420, 960, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 960, 20, 20)
+        ctx.strokeRect(420, 960, 20, 20)
+      }
 
+      if (arr3[i] == '湿') {
+        ctx.fillRect(270, 960, 20, 20)
+        ctx.fillRect(500, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(270, 960, 20, 20)
+        ctx.strokeRect(500, 960, 20, 20)
+      }
+
+      if (arr3[i] == '耐水') {
+        ctx.fillRect(600, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(600, 960, 20, 20)
+      }
+
+      if (arr3[i] == '碱') {
+        ctx.fillRect(700, 960, 20, 20)
+        ctx.fillRect(840, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(700, 960, 20, 20)
+        ctx.strokeRect(840, 960, 20, 20)
+      }
+
+      if (arr3[i] == '酸') {
+        ctx.fillRect(700, 960, 20, 20)
+        ctx.fillRect(920, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(700, 960, 20, 20)
+        ctx.strokeRect(920, 960, 20, 20)
+      }
+
+      if (arr3[i] == '耐皂洗') {
+        ctx.fillRect(1020, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1020, 960, 20, 20)
+      }
+
+      if (arr3[i] == '耐唾液') {
+        ctx.fillRect(1160, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1160, 960, 20, 20)
+      }
+
+      if (arr3[i] == '耐光') {
+        ctx.fillRect(1300, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1300, 960, 20, 20)
+      }
+
+      if (arr3[i] == '耐光汗') {
+        ctx.fillRect(1420, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1420, 960, 20, 20)
+      }
+
+    }
+    
     //委托要求----->化学
-    ctx.strokeRect(270, 1020, 20, 20)
-    ctx.strokeRect(390, 1020, 20, 20)
-    ctx.strokeRect(540, 1020, 20, 20)
-    ctx.strokeRect(660, 1020, 20, 20)
-    ctx.strokeRect(980, 1020, 20, 20)
-    ctx.strokeRect(1160, 1020, 20, 20)
-    ctx.strokeRect(1360, 1020, 20, 20)
+    let arr4 = []
+    arr4 = data.chem.split(',')
+    for(let l = 0;l<arr4.length;l++){
+      if(arr4[i] == '甲醛'){
+        ctx.fillRect(270, 1020, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 1020, 20, 20)
+      }
 
+      if (arr4[i] == 'pH值') {
+        ctx.fillRect(390, 1020, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(390, 1020, 20, 20)
+      }
+
+      if (arr4[i] == '异味') {
+        ctx.fillRect(540, 1020, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(540, 1020, 20, 20)
+      }
+
+      if (arr4[i] == '可分解芳香胺') {
+        ctx.fillRect(660, 1020, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(660, 1020, 20, 20)
+      }
+
+      if (arr4[i] == '邻苯二甲酸酯') {
+        ctx.fillRect(980, 1020, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(980, 1020, 20, 20)
+      }
+
+      if (arr4[i] == '可萃取重金属') {
+        ctx.fillRect(1160, 1020, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1160, 1020, 20, 20)
+      }
+
+      if (arr4[i] == '重金属') {
+        ctx.fillRect(1360, 1020, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1360, 1020, 20, 20)
+      }
+    }
+   
     //委托要求----->物理性能
-    ctx.strokeRect(270, 1075, 20, 20)
-    ctx.strokeRect(430, 1075, 20, 20)
-    ctx.strokeRect(570, 1075, 20, 20)
-    ctx.strokeRect(720, 1075, 20, 20)
-    ctx.strokeRect(870, 1075, 20, 20)
-    ctx.strokeRect(980, 1075, 20, 20)
+    let arr5 = []
+    arr5 = data.physicsPerformance.split(',')
+    for(let m =0;m<arr5.length;m++){
+      if(arr5[i] == '摆锤法'){
+        ctx.fillRect(270, 1075, 20, 20)
+        ctx.fillRect(430, 1075, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 1075, 20, 20)
+        ctx.strokeRect(430, 1075, 20, 20)
+      }
+
+      if (arr5[i] == '单舌法') {
+        ctx.fillRect(270, 1075, 20, 20)
+        ctx.strokeRect(570, 1075, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 1075, 20, 20)
+        ctx.strokeRect(570, 1075, 20, 20)
+      }
+
+      if (arr5[i] == '条样法') {
+        ctx.fillRect(720, 1075, 20, 20)
+        ctx.fillRect(870, 1075, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(720, 1075, 20, 20)
+        ctx.strokeRect(870, 1075, 20, 20)
+      }
+
+      if (arr5[i] == '抓样法') {
+        ctx.fillRect(720, 1075, 20, 20)
+        ctx.strokeRect(980, 1075, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(720, 1075, 20, 20)
+        ctx.strokeRect(980, 1075, 20, 20)
+      }
+    }
+   
+    
     ctx.strokeRect(1120, 1075, 20, 20)
     ctx.strokeRect(1270, 1075, 20, 20)
     ctx.strokeRect(1460, 1075, 20, 20)
