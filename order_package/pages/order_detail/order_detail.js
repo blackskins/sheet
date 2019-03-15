@@ -1027,12 +1027,13 @@ Page({
       ctx.strokeRect(440, 932, 20, 20)
     }
 
-    if (data.danger == '磁性') {
+    if (data.danger != '无' && data.danger != '未知' && data.danger != '易燃' && data.danger != '易爆' && data.danger != '刺激性气体' && data.danger != '氧化性' && data.danger != '毒性' && data.danger != '感染性' && data.danger != '放射性' && data.danger != '腐蚀性' && data.danger != '磁性') {
       ctx.fillRect(550, 932, 20, 20);
       ctx.fill()
     } else {
       ctx.strokeRect(550, 932, 20, 20)
     }
+    
     // ctx.strokeRect(550, 932, 20, 20)
 
     // ctx.setFillStyle('#ccc')
@@ -1113,7 +1114,9 @@ Page({
     ctx.fillText('磁性', 470, 950)
     ctx.fillText('其他：', 580, 950)
     // 其他的值
-    ctx.fillText('我是其他我是其他....', 660, 950)
+    if (data.danger != '无' && data.danger != '未知' && data.danger != '易燃' && data.danger != '易爆' && data.danger != '刺激性气体' && data.danger != '氧化性' && data.danger != '毒性' && data.danger != '感染性' && data.danger != '放射性' && data.danger != '腐蚀性' && data.danger != '磁性'){
+      ctx.fillText(data.danger, 660, 950)
+    }
 
 
     //委托要求的区域
@@ -1128,7 +1131,25 @@ Page({
     ctx.fillText('要求', 46, 1150)
 
     // 委托要求具体细项
-    ctx.fillText('的方式来发动机的开发的理发店里看风景的看见的看甲方鲁大师咖啡店开多开多开上岛咖啡代理商看的咖啡店', 150, 1000)
+    let str = data.requirement
+    let a = 0
+    let height = 965
+    for (let i = 0; i < str.length; i++) {
+      a += 54,
+      height += 35
+      let item = str.substring(a - 54, a)
+      if(i == 8){
+        item = item+'...'
+      }
+      ctx.fillText(item, 150, height)
+      console.log(str.length)
+      console.log(item)
+      console.log(a)
+      if (a > str.length || i == 8) {
+        break;
+      }
+    }
+
 
     // ctx.fillText('颗粒', 350, 770)
     // ctx.fillText('颗粒',350,770)
