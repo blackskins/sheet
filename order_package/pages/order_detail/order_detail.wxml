@@ -172,6 +172,10 @@
   <canvas class='' canvas-id='canvas-1' style='width:1500px;height:2115px'></canvas>
   <!-- <cover-view class='save' bindtap='saveImg'>保存</cover-view> -->
 </view>
+<!-- 画布2 -->
+<view class='canvas' wx:if='{{ true }}'>
+  <canvas class='' canvas-id='canvas-2' style='width:1700px;height:2517px'></canvas>
+</view>
 <!-- 展示表单 -->
 <view class='window' wx:if='{{ showCanvas }}'>
   <view class='canvas-box'>

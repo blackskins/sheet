@@ -408,11 +408,10 @@ Page({
         this.drawSth(data)
         let canvasId = 'canvas-1'
         this.saveImg1(canvasId)
-      } else {
+      } else if(orderType == 20) {
         this.canvas2(data)
         let canvasId = 'canvas-2'
         this.saveImg1(canvasId)
-
       }
     })
     // return
@@ -1224,7 +1223,25 @@ Page({
     ctx.fillText('报告发送', 170, 1568)
     ctx.fillText('其他', 190, 1628)
     // 其他的值
-    ctx.fillText('其他其他其他......', 320, 1608)
+    let str_a = data.other
+    let a1 = 0
+    let height1 = 1573
+    for (let j = 0; j < str_a.length; j++) {
+      a1 += 54,
+        height1 += 35
+      let item = str_a.substring(a1 - 54, a)
+      if (j == 1) {
+        item = item + '...'
+      }
+      ctx.fillText(item, 320, height1)
+      console.log(str_a.length)
+      console.log(item)
+      console.log(a1)
+      if (a1 > str.length || j == 1) {
+        break;
+      }
+    }
+    // ctx.fillText('其他其他其他......', 320, 1608)
 
 
     ctx.fillText('服务费用', 100, 1694)
@@ -1251,40 +1268,177 @@ Page({
     ctx.setStrokeStyle('#666')
 
     // 服务---->测试方法
-    ctx.strokeRect(320, 1310, 20, 20)
-    ctx.strokeRect(550, 1310, 20, 20)
+    if (data.testMethod == '服务方决定') {
+      ctx.fillRect(320, 1310, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1310, 20, 20)
+    }
+
+    if (data.testMethod == '委托方指定') {
+      ctx.fillRect(550, 1310, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(550, 1310, 20, 20)
+    }
 
     // 服务------>判定标准
-    ctx.strokeRect(320, 1352, 20, 20)
-    ctx.strokeRect(500, 1352, 20, 20)
-    ctx.strokeRect(320, 1388, 20, 20)
+    if (data.judgementStandard == '不判定') {
+      ctx.fillRect(320, 1352, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1352, 20, 20)
+    }
+
+    if (data.judgementStandard != '不判定') {
+      ctx.fillRect(500, 1352, 20, 20)
+      ctx.fillRect(320, 1388, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(500, 1352, 20, 20)
+      ctx.strokeRect(320, 1388, 20, 20)
+    }
 
     // 服务------>服务时限
-    ctx.strokeRect(320, 1430, 20, 20)
-    ctx.strokeRect(610, 1430, 20, 20)
-    ctx.strokeRect(900, 1430, 20, 20)
-    ctx.strokeRect(1190, 1430, 20, 20)
+    if (data.serviceTimeLimit == '5个工作日') {
+      ctx.fillRect(320, 1430, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1430, 20, 20)
+    }
+
+    if (data.serviceTimeLimit == '3个工作日') {
+      ctx.fillRect(610, 1430, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(610, 1430, 20, 20)
+    }
+
+    if (data.serviceTimeLimit == '2个工作日') {
+      ctx.fillRect(900, 1430, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(900, 1430, 20, 20)
+    }
+
+    if (data.serviceTimeLimit == '1个工作日') {
+      ctx.fillRect(1190, 1430, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1190, 1430, 20, 20)
+    }
 
     // 服务------>报告格式
-    ctx.strokeRect(320, 1470, 20, 20)
-    ctx.strokeRect(420, 1470, 20, 20)
-    ctx.strokeRect(660, 1470, 20, 20)
-    ctx.strokeRect(860, 1470, 20, 20)
-    ctx.strokeRect(1150, 1470, 20, 20)
+    var str0 = data.reportFormMode
+    console.log(str)
+    let str1 = str0.split('/')
+    console.log(str1)
+    if (str1[0] == '中文') {
+      ctx.fillRect(320, 1470, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1470, 20, 20)
+    }
+
+    if (str1[0] == '英文') {
+      ctx.fillRect(420, 1470, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(420, 1470, 20, 20)
+    }
+
+    if (str1[0] == '中英文') {
+      ctx.fillRect(660, 1470, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(660, 1470, 20, 20)
+    }
+
+    if (str1[1].charAt(str1[1].length - 1) != '0') {//照片
+      ctx.fillRect(860, 1470, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(860, 1470, 20, 20)
+    }
+
+    if (str1[1].charAt(2) != '0') {//副本
+      ctx.fillRect(1180, 1470, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1210, 1470, 20, 20)
+    }
+
 
     //服务------>报告类别
-    ctx.strokeRect(320, 1510, 20, 20)
-    ctx.strokeRect(528, 1510, 20, 20)
-    ctx.strokeRect(682, 1510, 20, 20)
-    ctx.strokeRect(858, 1510, 20, 20)
-    ctx.strokeRect(1060, 1510, 20, 20)
+    if(data.reportType == '非认证认可报告'){
+      ctx.fillRect(320, 1510, 20, 20)
+      ctx.fill()
+    }else{
+      ctx.strokeRect(320, 1510, 20, 20)
+    }
+
+    if (data.reportType == '认证报告' || data.reportType == '认证报告/非认证项目') {
+      ctx.fillRect(528, 1510, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(528, 1510, 20, 20)
+    }
+
+    if (data.reportType == '认证报告/非认证项目') {
+      ctx.fillRect(682, 1510, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(682, 1510, 20, 20)
+    }
+
+    if (data.reportType == '认证认可报告' || data.reportType == '认证认可报告/含非认证认可项目') {
+      ctx.fillRect(858, 1510, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(858, 1510, 20, 20)
+    }
+    if (data.reportType == '认证认可报告/含非认证认可项目') {
+      ctx.fillRect(1060, 1510, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1060, 1510, 20, 20)
+    }
 
     //服务-------->报告发送
-    ctx.strokeRect(320, 1550, 20, 20)
-    ctx.strokeRect(490, 1550, 20, 20)
-    ctx.strokeRect(674, 1550, 20, 20)
-    ctx.strokeRect(906, 1550, 20, 20)
-    ctx.strokeRect(1028, 1550, 20, 20)
+    if (data.reportSendMode == '委托方自取') {
+      ctx.fillRect(320, 1550, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1550, 20, 20)
+    }
+
+    if (data.reportSendMode == '快递到付') {
+      ctx.fillRect(490, 1550, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(490, 1550, 20, 20)
+    }
+
+    if (data.reportSendMode == '快递已付') {
+      ctx.fillRect(674, 1550, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(674, 1550, 20, 20)
+    }
+
+    if (data.reportSendMode == 'email') {
+      ctx.fillRect(906, 1550, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(906, 1550, 20, 20)
+    }
+
+    if (data.reportSendMode == '传真') {
+      ctx.fillRect(1028, 1550, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(1028, 1550, 20, 20)
+    }
 
     //服务-------->付费方式
     ctx.strokeRect(320, 1730, 20, 20)
@@ -1297,12 +1451,34 @@ Page({
     ctx.strokeRect(320, 1780, 20, 20)
 
     //服务------->发票抬头
-    ctx.strokeRect(320, 1834, 20, 20)
-    ctx.strokeRect(570, 1834, 20, 20)
+    if (data.invoiceRise == '与委托方相同') {
+      ctx.fillRect(320, 1834, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1834, 20, 20)
+    }
+
+    if (data.invoiceRise != '与委托方相同') {
+      ctx.fillRect(570, 1834, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(570, 1834, 20, 20)
+    }
 
     //服务------->发票类别
-    ctx.strokeRect(320, 1884, 20, 20)
-    ctx.strokeRect(960, 1884, 20, 20)
+    if (data.invoiceType == '普票') {
+      ctx.fillRect(320, 1884, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(320, 1884, 20, 20)
+    }
+
+    if (data.invoiceType == '专票') {
+      ctx.fillRect(960, 1884, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(960, 1884, 20, 20)
+    }
 
     // 字段名
     ctx.fillText('服务方决定', 350, 1328)
@@ -1311,6 +1487,12 @@ Page({
     ctx.fillText('不判定', 350, 1370)
     ctx.fillText('判定（请在委托要求栏详细列出）', 530, 1370)
     ctx.fillText('判定（产品）标准：', 350, 1405)
+    // 判断标准的值
+    if(data.judgementStandard != '不判定'){
+      ctx.fillText(data.judgementStandard,550,1405)
+    }else{
+      console.log('dddd')
+    }
 
     ctx.fillText('标准时间（五个工作日）', 350, 1448)
     ctx.fillText('3个工作日（加收50%）', 640, 1448)
@@ -1321,7 +1503,13 @@ Page({
     ctx.fillText('英文（加收50元）', 450, 1488)
     ctx.fillText('中英文对照', 690, 1488)
     ctx.fillText('附照片（加收50/张）', 890, 1488)
-    ctx.fillText('副本（20/份）', 1180, 1488)
+    if(str1[1].charAt(str1[1].length -1) != '0'){
+      ctx.fillText(str1[1].charAt(str1[1].length - 1)+'张', 1150, 1488)
+    }
+    ctx.fillText('副本（20/份）', 1240, 1488)
+    if(str1[1].charAt(2) != '0'){
+      ctx.fillText(str1[1].charAt(2)+'份', 1340, 1488)
+    }
 
     ctx.fillText('非认证认可报告', 350, 1528)
     ctx.fillText('认证报告（', 558, 1528)
@@ -1350,15 +1538,21 @@ Page({
     ctx.fillText('与委托方相同', 350, 1852)
     ctx.fillText('其他（必须与付款方一致）：', 600, 1852)
     // 其他的值
-    ctx.fillText('与委托方一样', 920, 1852)
+    if (data.invoiceRise != '与委托方相同'){
+      ctx.fillText(data.invoiceRise, 920, 1852)
+    }
 
     ctx.fillText('普票（税号：', 350, 1902)
+    // 税号的值
+    if(data.invoiceType == '普票'){
+      ctx.fillText(data.invoiceType, 480, 1902)
+    }
     ctx.fillText('）', 900, 1902)
     ctx.fillText('专票（需提供开票资料）', 990, 1902)
     ctx.draw();
   },
   //纺织品表单 ------------------------------------------------=======-------------------------------------------------------------纺织品表单
-  canvas2() {
+  canvas2(data) {
     const ctx = wx.createCanvasContext('canvas-2');
     ctx.setFillStyle('#fff')
     ctx.fillRect(0, 0, 1700, 2517)
@@ -1649,17 +1843,37 @@ Page({
 
 
     // 画小矩形框框(270)
-
+    ctx.beginPath()
     ctx.setLineWidth(2)
     ctx.setStrokeStyle('#666')
 
     // 委托方-->生产单位s
-    ctx.strokeRect(270, 420, 20, 20)
-    ctx.strokeRect(570, 420, 20, 20)
+    if (data.productionUnit == '与委托方相同'){
+      ctx.fillRect(270, 420, 20, 20)
+      ctx.fill()
+    }else{
+      ctx.strokeRect(270, 420, 20, 20)
+    }
+    if (data.productionUnit != '与委托方相同'){
+      ctx.fillRect(570, 420, 20, 20)
+      ctx.fill()
+    }else{
+      ctx.strokeRect(570, 420, 20, 20)
+    }
 
     //委托方---->报告寄送地址
-    ctx.strokeRect(270, 540, 20, 20)
-    ctx.strokeRect(630, 540, 20, 20)
+    if (data.reportSendingAddress == '与委托方地址相同') {
+      ctx.fillRect(270, 540, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(270, 540, 20, 20)
+    }
+    if (data.reportSendingAddress != '与委托方地址相同') {
+      ctx.fillRect(630, 540, 20, 20)
+      ctx.fill()
+    } else {
+      ctx.strokeRect(630, 540, 20, 20)
+    }
 
 
     //委托要求----->综合
@@ -1824,29 +2038,32 @@ Page({
 
     // 对应模快字段下的选项值
     // 委托方信息------>
-    ctx.fillText('北京盈客通天下科技有限公司广州分公司', 270, 320)
+    ctx.fillText(data.entrustName, 270, 320)
 
-    ctx.fillText('北京盈客通天下科技有限公司广州分公司', 270, 380)
+    ctx.fillText(data.entrusAddress, 270, 380)
 
     ctx.fillText('与委托方相同', 300, 438)
     ctx.fillText('其他：', 600, 438)
     // 其他的值
-    ctx.fillText('与委托方相同', 675, 438)
+    if (data.productionUnit != '与委托方相同'){
+      ctx.fillText(data.productionUnit, 675, 438)
+    }
 
-    ctx.fillText('1586666666', 270, 498)
-
+    ctx.fillText(data.phone, 270, 498)
+    
     ctx.fillText('与委托方地址相同', 300, 558)
 
     ctx.fillText('其他：', 660, 558)
     // 其他的值
-    ctx.fillText('广州手机号地方近点领导说卡士大夫卡士大夫了', 740, 558)
-
+    if (data.reportSendingAddress != '与委托方地址相同') {
+      ctx.fillText(data.reportSendingAddress, 740, 558)
+    }
 
     // 样品信息
-    ctx.fillText('样品名称11112', 270, 618);
-    ctx.fillText('颜色及描述。。。。。', 270, 678)
-    ctx.fillText('货款货号货款货号货款货号', 270, 738)
-    ctx.fillText('其他信息其他信息', 270, 798)
+    ctx.fillText(data.sampleName, 270, 618);
+    ctx.fillText(data.color, 270, 678)
+    ctx.fillText(data.samplenumber, 270, 738)
+    ctx.fillText(data.otherInfo, 270, 798)
 
 
     // 委托要求
@@ -2049,6 +2266,7 @@ Page({
   // 保存画布
   saveImg1(canvasId) {
     $.openLoad('报告生成中...')
+    console.log(canvasId)
     wx.canvasToTempFilePath({
       canvasId: canvasId,
       quality: 1,
@@ -2080,9 +2298,11 @@ Page({
         // })
       },
       fail: function (res) {
+        $.closeLoad()
+        $.prompt('查看失败',2500)
         console.log(res)
       }
-    })
+    },this)
   },
 
 })
