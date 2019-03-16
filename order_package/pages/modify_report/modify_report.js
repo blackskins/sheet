@@ -8,13 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderId:'CIDF5P190313044654396'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      orderId:options.orderId
+    })
   },
   formSubmit(e){
     if (e.detail.value.reason == ''){
@@ -35,7 +37,12 @@ Page({
         $.prompt(res.msg,2500)
         return
       }
-      $.prompt('成功提交','success')
+      $.prompt('成功提交')
+      setTimeout(()=>{
+        wx.navigateBack({
+          delta:1
+        })
+      },1500)
     })
   }
 })

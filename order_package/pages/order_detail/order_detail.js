@@ -1920,21 +1920,21 @@ Page({
     let arr2 = [];
     arr2 = data.fiberContent.split(',')
     for(let j = 0;j<arr2.length;j++){
-      if(arr2[i] == '纤维含量'){
+      if(arr2[j] == '纤维含量'){
         ctx.fillRect(270, 900, 20, 20)
         ctx.fill()
       }else{
         ctx.strokeRect(270, 900, 20, 20)
       }
 
-      if (arr2[i] == '棉麻纤维含量') {
+      if (arr2[j] == '棉麻纤维含量') {
         ctx.fillRect(450, 900, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(450, 900, 20, 20)
       }
 
-      if (arr2[i] == '特种毛含量') {
+      if (arr2[j] == '特种毛含量') {
         ctx.fillRect(700, 900, 20, 20)
         ctx.fill()
       } else {
@@ -1946,7 +1946,7 @@ Page({
     let arr3 = []
     arr3 = data.colorFastness.split(',')
     for(let k = 0;k<arr3.length;k++){
-      if(arr3[i] == '干'){
+      if(arr3[k] == '干'){
         ctx.fillRect(270, 960, 20, 20)
         ctx.fillRect(420, 960, 20, 20)
         ctx.fill()
@@ -1955,7 +1955,7 @@ Page({
         ctx.strokeRect(420, 960, 20, 20)
       }
 
-      if (arr3[i] == '湿') {
+      if (arr3[k] == '湿') {
         ctx.fillRect(270, 960, 20, 20)
         ctx.fillRect(500, 960, 20, 20)
         ctx.fill()
@@ -1964,14 +1964,14 @@ Page({
         ctx.strokeRect(500, 960, 20, 20)
       }
 
-      if (arr3[i] == '耐水') {
+      if (arr3[k] == '耐水') {
         ctx.fillRect(600, 960, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(600, 960, 20, 20)
       }
 
-      if (arr3[i] == '碱') {
+      if (arr3[k] == '碱') {
         ctx.fillRect(700, 960, 20, 20)
         ctx.fillRect(840, 960, 20, 20)
         ctx.fill()
@@ -1980,7 +1980,7 @@ Page({
         ctx.strokeRect(840, 960, 20, 20)
       }
 
-      if (arr3[i] == '酸') {
+      if (arr3[k] == '酸') {
         ctx.fillRect(700, 960, 20, 20)
         ctx.fillRect(920, 960, 20, 20)
         ctx.fill()
@@ -1989,28 +1989,28 @@ Page({
         ctx.strokeRect(920, 960, 20, 20)
       }
 
-      if (arr3[i] == '耐皂洗') {
+      if (arr3[k] == '耐皂洗') {
         ctx.fillRect(1020, 960, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(1020, 960, 20, 20)
       }
 
-      if (arr3[i] == '耐唾液') {
+      if (arr3[k] == '耐唾液') {
         ctx.fillRect(1160, 960, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(1160, 960, 20, 20)
       }
 
-      if (arr3[i] == '耐光') {
+      if (arr3[k] == '耐光') {
         ctx.fillRect(1300, 960, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(1300, 960, 20, 20)
       }
 
-      if (arr3[i] == '耐光汗') {
+      if (arr3[k] == '耐光汗') {
         ctx.fillRect(1420, 960, 20, 20)
         ctx.fill()
       } else {
@@ -2023,49 +2023,49 @@ Page({
     let arr4 = []
     arr4 = data.chem.split(',')
     for(let l = 0;l<arr4.length;l++){
-      if(arr4[i] == '甲醛'){
+      if(arr4[l] == '甲醛'){
         ctx.fillRect(270, 1020, 20, 20)
         ctx.fill()
       }else{
         ctx.strokeRect(270, 1020, 20, 20)
       }
 
-      if (arr4[i] == 'pH值') {
+      if (arr4[l] == 'pH值') {
         ctx.fillRect(390, 1020, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(390, 1020, 20, 20)
       }
 
-      if (arr4[i] == '异味') {
+      if (arr4[l] == '异味') {
         ctx.fillRect(540, 1020, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(540, 1020, 20, 20)
       }
 
-      if (arr4[i] == '可分解芳香胺') {
+      if (arr4[l] == '可分解芳香胺') {
         ctx.fillRect(660, 1020, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(660, 1020, 20, 20)
       }
 
-      if (arr4[i] == '邻苯二甲酸酯') {
+      if (arr4[l] == '邻苯二甲酸酯') {
         ctx.fillRect(980, 1020, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(980, 1020, 20, 20)
       }
 
-      if (arr4[i] == '可萃取重金属') {
+      if (arr4[l] == '可萃取重金属') {
         ctx.fillRect(1160, 1020, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(1160, 1020, 20, 20)
       }
 
-      if (arr4[i] == '重金属') {
+      if (arr4[l] == '重金属') {
         ctx.fillRect(1360, 1020, 20, 20)
         ctx.fill()
       } else {
@@ -2077,7 +2077,7 @@ Page({
     let arr5 = []
     arr5 = data.physicsPerformance.split(',')
     for(let m =0;m<arr5.length;m++){
-      if(arr5[i] == '摆锤法'){
+      if(arr5[m] == '摆锤法'){
         ctx.fillRect(270, 1075, 20, 20)
         ctx.fillRect(430, 1075, 20, 20)
         ctx.fill()
@@ -2086,7 +2086,7 @@ Page({
         ctx.strokeRect(430, 1075, 20, 20)
       }
 
-      if (arr5[i] == '单舌法') {
+      if (arr5[m] == '单舌法') {
         ctx.fillRect(270, 1075, 20, 20)
         ctx.strokeRect(570, 1075, 20, 20)
         ctx.fill()
@@ -2095,7 +2095,7 @@ Page({
         ctx.strokeRect(570, 1075, 20, 20)
       }
 
-      if (arr5[i] == '条样法') {
+      if (arr5[m] == '条样法') {
         ctx.fillRect(720, 1075, 20, 20)
         ctx.fillRect(870, 1075, 20, 20)
         ctx.fill()
@@ -2104,7 +2104,7 @@ Page({
         ctx.strokeRect(870, 1075, 20, 20)
       }
 
-      if (arr5[i] == '抓样法') {
+      if (arr5[m] == '抓样法') {
         ctx.fillRect(720, 1075, 20, 20)
         ctx.strokeRect(980, 1075, 20, 20)
         ctx.fill()
@@ -2112,59 +2112,275 @@ Page({
         ctx.strokeRect(720, 1075, 20, 20)
         ctx.strokeRect(980, 1075, 20, 20)
       }
+
+      if (arr5[m] == '炽热程度' ){
+        ctx.strokeRect(1120, 1075, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(1120, 1075, 20, 20)
+      }
+      if (arr5[m] == '后档接缝能力') {
+        ctx.strokeRect(1270, 1075, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1270, 1075, 20, 20)
+      }
+      if (arr5[m] == '顶破强力') {
+        ctx.strokeRect(1460, 1075, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1460, 1075, 20, 20)
+      }
+      
+      // 物理性能----->第二行
+      if(arr5[m] == '马丁代尔'){
+        ctx.fillRect(270, 1120, 20, 20)
+        ctx.fillRect(590, 1120, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 1120, 20, 20)
+        ctx.strokeRect(590, 1120, 20, 20)
+      }
+
+      if (arr5[m] == '圆轨迹') {
+        ctx.fillRect(270, 1120, 20, 20)
+        ctx.fillRect(740, 1120, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(270, 1120, 20, 20)
+        ctx.strokeRect(740, 1120, 20, 20)
+      }
+
+      if (arr5[m] == '精梳') {
+        ctx.fillRect(270, 1120, 20, 20)
+        ctx.fillRect(870, 1120, 20, 20)
+        ctx.fillRect(980, 1120, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(270, 1120, 20, 20)
+        ctx.strokeRect(870, 1120, 20, 20)
+        ctx.strokeRect(980, 1120, 20, 20)
+      }
+
+      if (arr5[m] == '粗梳') {
+        ctx.fillRect(270, 1120, 20, 20)
+        ctx.fillRect(870, 1120, 20, 20)
+        ctx.fillRect(1070, 1120, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(270, 1120, 20, 20)
+        ctx.strokeRect(870, 1120, 20, 20)
+        ctx.strokeRect(1070, 1120, 20, 20)
+      }
+
+      if(arr5[m] == '破损'){
+        ctx.fillRect(1175, 1120, 20, 20)
+        ctx.fillRect(1335, 1120, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1335, 1120, 20, 20)
+      }
+
+      if (arr5[m] == '质损') {
+        ctx.fillRect(1175, 1120, 20, 20)
+        ctx.fillRect(1425, 1120, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1425, 1120, 20, 20)
+      }
+
+      if (arr5[m] == '外观') {
+        ctx.fillRect(1175, 1120, 20, 20)
+        ctx.fillRect(1515, 1120, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1515, 1120, 20, 20)
+      }
+
+      // 物理性能----->第三行
+      if (arr5[m] == '纱支') {
+        ctx.fillRect(270, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(270, 1165, 20, 20)
+      }
+
+      if (arr5[m] == '捻度') {
+        ctx.fillRect(450, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(450, 1165, 20, 20)
+      }
+
+      if (arr5[m] == '水洗尺寸变化率') {
+        ctx.fillRect(630, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(630, 1165, 20, 20)
+      }
+
+      if (arr5[m] == '洗后扭斜/曲') {
+        ctx.fillRect(880, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(880, 1165, 20, 20)
+      }
+
+      if (arr5[m] == '水洗后外观') {
+        ctx.fillRect(1050, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1050, 1165, 20, 20)
+      }
+
+      if (arr5[m] == '含规格') {
+        ctx.fillRect(1250, 1165, 20, 20)
+        ctx.fillRect(1400, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1250, 1165, 20, 20)
+        ctx.strokeRect(1400, 1165, 20, 20)
+      }
+
+      if (arr5[m] == '不含规格') {
+        ctx.fillRect(1250, 1165, 20, 20)
+        ctx.fillRect(1510, 1165, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1250, 1165, 20, 20)
+        ctx.strokeRect(1510, 1165, 20, 20)
+      }
     }
    
     
-    ctx.strokeRect(1120, 1075, 20, 20)
-    ctx.strokeRect(1270, 1075, 20, 20)
-    ctx.strokeRect(1460, 1075, 20, 20)
 
+    
 
-    ctx.strokeRect(270, 1120, 20, 20)
-    ctx.strokeRect(590, 1120, 20, 20)
-    ctx.strokeRect(740, 1120, 20, 20)
-    ctx.strokeRect(870, 1120, 20, 20)
-    ctx.strokeRect(980, 1120, 20, 20)
-    ctx.strokeRect(1070, 1120, 20, 20)
-    ctx.strokeRect(1175, 1120, 20, 20)
-    ctx.strokeRect(1335, 1120, 20, 20)
-    ctx.strokeRect(1425, 1120, 20, 20)
-    ctx.strokeRect(1515, 1120, 20, 20)
-
-
-    ctx.strokeRect(270, 1165, 20, 20)
-    ctx.strokeRect(450, 1165, 20, 20)
-    ctx.strokeRect(630, 1165, 20, 20)
-    ctx.strokeRect(880, 1165, 20, 20)
-    ctx.strokeRect(1050, 1165, 20, 20)
-    ctx.strokeRect(1250, 1165, 20, 20)
-    ctx.strokeRect(1400, 1165, 20, 20)
-    ctx.strokeRect(1510, 1165, 20, 20)
+    
 
     // 委托要求------>检测方法
-    ctx.strokeRect(270, 1452, 20, 20)
-    ctx.strokeRect(506, 1452, 20, 20)
+    if(data.testMode == '服务方决定'){
+      ctx.fillRect(506, 1452, 20, 20)
+      ctx.fill()
+    }else{
+      ctx.strokeRect(506, 1452, 20, 20)
+      
 
-    ctx.strokeRect(270, 1486, 20, 20)
-    ctx.strokeRect(530, 1486, 20, 20)
-    ctx.strokeRect(766, 1486, 20, 20)
-    ctx.strokeRect(966, 1486, 20, 20)
-    ctx.strokeRect(1166, 1486, 20, 20)
+    }
+    
+    if (data.testMode != '服务方决定' ){
+      if (data.testMode == '中国GB/FZ等'){
+        ctx.fillRect(270, 1452, 20, 20)
+        ctx.fillRect(270, 1486, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 1452, 20, 20)
+        ctx.strokeRect(270, 1486, 20, 20)
+      }
 
-    ctx.strokeRect(270, 1540, 20, 20)
+      if(data.testMode == '国际标准ISO'){
+        ctx.fillRect(270, 1452, 20, 20)
+        ctx.fillRect(530, 1486, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(530, 1486, 20, 20)
+      }
+
+      if (data.testMode == '欧盟EN') {
+        ctx.fillRect(270, 1452, 20, 20)
+        ctx.fillRect(766, 1486, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(766, 1486, 20, 20)
+      }
+
+      if (data.testMode == '德国DIN') {
+        ctx.fillRect(270, 1452, 20, 20)
+        ctx.fillRect(966, 1486, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(966, 1486, 20, 20)
+      }
+
+      if (data.testMode == '美国AATCC/ASTM') {
+        ctx.fillRect(270, 1452, 20, 20)
+        ctx.fillRect(1166, 1486, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(1166, 1486, 20, 20)
+      }
+      if (data.testMode != '中国GB/FZ等' && data.testMode != '国际标准ISO' && data.testMode != '欧盟EN' && data.testMode != '德国DIN' && data.testMode != '美国AATCC/ASTM' ){
+        ctx.fillRect(270, 1540, 20, 20)
+        ctx.fill()
+      }else{
+        ctx.strokeRect(270, 1540, 20, 20)
+      }
+    }else{
+      ctx.strokeRect(270, 1452, 20, 20)
+      ctx.strokeRect(270, 1486, 20, 20)
+      ctx.strokeRect(530, 1486, 20, 20)
+      ctx.strokeRect(766, 1486, 20, 20)
+      ctx.strokeRect(966, 1486, 20, 20)
+      ctx.strokeRect(1166, 1486, 20, 20)
+      ctx.strokeRect(270, 1540, 20, 20)
+    }
+
+
 
     // 委托要求--------->判断标准
-    ctx.strokeRect(270, 1590, 20, 20)
-    ctx.strokeRect(410, 1590, 20, 20)
-    ctx.strokeRect(520, 1590, 20, 20)
-    ctx.strokeRect(690, 1590, 20, 20)
+    if(data.determineMethod == '不判定'){
+      ctx.fillRect(270, 1590, 20, 20)
+      ctx.fill()
+    }else{
+      ctx.strokeRect(270, 1590, 20, 20)
+    }
+    if(data.determineMethod == '服务方指定' && data.determineMethod !='' ){
+      ctx.fillRect(410, 1590, 20, 20)
+      ctx.fillRect(690, 1590, 20, 20)
+      ctx.fill()
+    }else{
+      ctx.strokeRect(410, 1590, 20, 20)
+      ctx.strokeRect(690, 1590, 20, 20)
+    }
+    if(data.determineMethod != '委托方指定' && data.determineMethod != '服务方指定'){
+      ctx.fillRect(410, 1590, 20, 20)
+      ctx.fillRect(520, 1590, 20, 20)
+      if(data.determineMethod == '18401A'){
+        ctx.fillRect(270, 1632, 20, 20)
+        ctx.fillRect(440, 1632, 20, 20)
+      } else if (data.determineMethod == '18401B'){
+        ctx.fillRect(270, 1632, 20, 20)
+        ctx.strokeRect(500, 1632, 20, 20)
+      } else if (data.determineMethod == '18401C') {
+        ctx.fillRect(270, 1632, 20, 20)
+        ctx.strokeRect(560, 1632, 20, 20)
+      } else if (data.determineMethod == '31701A') {
+        ctx.fillRect(696, 1632, 20, 20)
+        ctx.strokeRect(872, 1632, 20, 20)
+      } else if (data.determineMethod == '31701B') {
+        ctx.fillRect(696, 1632, 20, 20)
+        ctx.strokeRect(932, 1632, 20, 20)
+      } else if (data.determineMethod == '31701C') {
+        ctx.fillRect(696, 1632, 20, 20)
+        ctx.strokeRect(996, 1632, 20, 20)
+      }
+      ctx.fill()
+    }else{
+
+    }
 
     ctx.strokeRect(270, 1632, 20, 20)
     ctx.strokeRect(440, 1632, 20, 20)
     ctx.strokeRect(500, 1632, 20, 20)
     ctx.strokeRect(560, 1632, 20, 20)
+
     ctx.strokeRect(696, 1632, 20, 20)
+
     ctx.strokeRect(872, 1632, 20, 20)
+
     ctx.strokeRect(932, 1632, 20, 20)
     ctx.strokeRect(996, 1632, 20, 20)
     ctx.strokeRect(1180, 1632, 20, 20)
@@ -2345,7 +2561,11 @@ Page({
 
     ctx.fillText('其他：', 300, 1558)
     // 其他的值
-    ctx.fillText('我是其他的值......', 380, 1558)
+    if(data.testMode != '服务方决定'){
+      if (data.testMode != '中国GB/FZ等' && data.testMode != '国际标准ISO' && data.testMode != '欧盟EN' && data.testMode != '德国DIN' && data.testMode != '美国AATCC/ASTM'){
+        ctx.fillText('我是其他的值......', 380, 1558)
+      }
+    }
 
 
     // 判断标准
@@ -2364,7 +2584,7 @@ Page({
     ctx.fillText('C )', 1026, 1650)
     ctx.fillText('牛仔服装（', 1210, 1650)
     ctx.fillText('原色产品', 1396, 1650)
-    ctx.fillText('水洗产品', 1552, 1650)
+    ctx.fillText('水洗产品 ）', 1552, 1650)
 
     ctx.fillText('产品标准：', 300, 1686)
     // 产品标准的值
