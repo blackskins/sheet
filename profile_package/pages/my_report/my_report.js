@@ -81,7 +81,7 @@ Page({
     let list = this.data.reportList
     let len = this.data.reportList.length
     for(let i = 0;i<len;i++){
-      list[i].boxHeight = list[i].orderList.length * 180 + (list[i].orderList.length - 1) * 2
+      list[i].boxHeight = list[i].myReport.length * 180 + (list[i].myReport.length - 1) * 2
       list[i].foldStatus = false
     }
     this.setData({
@@ -99,7 +99,7 @@ Page({
     if(list[currentId].foldStatus){
       this.setData({
         [str]:false,
-        [str1]: list[currentId].reportList.length * 180 + (list[currentId].reportList.length - 1) * 2
+        [str1]: list[currentId].myReport.length * 180 + (list[currentId].myReport.length - 1) * 2
       })
     }else{
       this.setData({
