@@ -5,3 +5,9 @@
   </view>
   <view class='txt'>扫一扫上面的二维码图案，加我好友</view>
 </view>
+<view class='save' bindtap='saveImg'>一键生成图片海报</view>
+
+<!-- 生成二维码的海报 -->
+<view class='code'>
+  <canvas canvas-id='canvas_1' style='width:660px;height:700px'></canvas>
+</view>
