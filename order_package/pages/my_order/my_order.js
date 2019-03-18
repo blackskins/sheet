@@ -43,6 +43,10 @@ Page({
         status: 30,
       },
       {
+        title: '申诉中',
+        status: 40,
+      },
+      {
         title: '已完成',
         status: 32,
       },

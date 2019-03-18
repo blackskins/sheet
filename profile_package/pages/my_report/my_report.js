@@ -121,7 +121,26 @@ Page({
       })
     })
   },
-  preReport(){
+  // 预览报告
+  preReport(e){
     console.log('dddddd')
+    let fatherIndex = e.currentTarget.dataset.father_index
+    console.log(fatherIndex)
+    let index = e.currentTarget.dataset.index
+    console.log(index)
+    let status = e.currentTarget.dataset.status
+    let urls = new Array()
+    if(status == 0){
+      urls.push(this.data.reportList[fatherIndex].myReport[index].report.oldReportUrl.imgUrl)
+      console.log(urls)
+      
+    }else{
+      urls.push(this.data.reportList[fatherIndex].myReport[index].report.oldReportUrl.imgUrl)
+      urls.push(this.data.reportList[fatherIndex].myReport[index].report.newReportUrl.imgUrl)
+      console.log(urls)
+    }
+    wx.previewImage({
+      urls: urls // 需要预览的图片http链接列表
+    })
   }
 })

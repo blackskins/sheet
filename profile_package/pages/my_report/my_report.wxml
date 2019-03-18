@@ -12,7 +12,7 @@
     </view>
   </view>
   <view class='content-box' style='height:{{ item.boxHeight }}rpx'>
-    <view class='list-item' wx:for='{{ item.myReport }}' wx:for-item='items' wx:key=''>
+    <view class='list-item' wx:for='{{ item.myReport }}' wx:for-item='items' wx:for-index='childIndex' wx:key=''>
       <view class='bottom-left'>
         <view class='icon-box center'>
           <image src='../../images/img.png'></image>
@@ -23,7 +23,7 @@
           <view class='order-date'>时间：{{ items.createTime }}</view>
         </view>
       </view>
-      <view class='bottom-right center' bindtap='preReport' >
+      <view class='bottom-right center' bindtap='preReport' data-father_index='{{ index }}' data-index='{{ childIndex }}' data-status='{{ items.report.status }}' >
         <image src='../../images/look.png'></image>
       </view>
     </view>
