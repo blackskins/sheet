@@ -21,6 +21,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+
+    // console.log('11111111')
+    // console.log(options.scene)
+    // console.log('11111111')
+    // console.log(query)
+    // console.log('222222222')
+
     this._getIndexSliderImg()//获取轮播图
     this._getVideoInfo()//获取视频简介
     this._getLatestInfo()//获取最新的三条咨询

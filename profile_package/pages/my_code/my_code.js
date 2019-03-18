@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    codeUrl:''
+    codeUrl:[]
   },
 
   /**
@@ -25,5 +25,9 @@ Page({
         codeUrl:res.data.url
       })
     })
+  },
+  // 预览二维码
+  preView(){
+    $.previewImage(this.data.codeUrl)
   }
 })

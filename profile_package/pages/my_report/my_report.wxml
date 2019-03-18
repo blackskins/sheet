@@ -29,7 +29,13 @@
     </view>
   </view>
 </view>
-
+<!-- 没有数据的状态 -->
+<view class='none-box' wx:if='{{reportList.length==0}}'>
+  <view class='none-img'>
+    <image src='/images/nothing.png'></image>
+  </view>
+  <view class='none-txt'>空空如也，暂无报告信息哦～</view>
+</view>
 
 <!-- 下载报告时的提示弹窗 -->
 <!-- <view class='mask'>
@@ -41,3 +47,4 @@
     </view>
   </view>
 </view> -->
+

@@ -148,7 +148,7 @@ Page({
     submit_data.getServiceContent(status, (res) => {
       console.log(res)
       this.setData({
-        sheetData: res.data
+        sheetData: res.data[0]
       })
     })
   },

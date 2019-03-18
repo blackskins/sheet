@@ -76,7 +76,7 @@ Page({
     })
   },
   // 触底加载
-  onReachBottom:() => {
+  onReachBottom() {
     this._getCouponList()
   },
   // 领取优惠券
