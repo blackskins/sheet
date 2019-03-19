@@ -95,8 +95,8 @@ Page({
     ctx.drawImage(url,75,20,510,510)
     ctx.setFontSize(30)
     ctx.setFillStyle('#333')
-    ctx.fillText('扫一扫上面的二维码图案，加我好友', 92, 650)
-    ctx.fillText('扫一扫上面的二维码图案，加我好友',93,651)
+    ctx.fillText('扫一扫上面的二维码图案，检测优惠', 92, 650)
+    ctx.fillText('扫一扫上面的二维码图案，检测优惠',93,651)
 
     ctx.draw()
   }

@@ -19,11 +19,11 @@ App({
     var codeId = ''//获取邀请码Id
     if (options.scene == 1047) {
       var sceneId = decodeURIComponent(options.query.scene)
-      console.log('1111111')
-      console.log(sceneId)
-      console.log('222222')
+      // console.log('1111111')
+      // console.log(sceneId)
+      // console.log('222222')
       common.getCodeValue(sceneId,(res)=>{
-        console.log(res,"asdasd")
+        // console.log(res,"asdasd")
         codeId = res.data.invitationCode
         let invitationCode = codeId
         var wxAppId = this.globalData.wxAppId
@@ -40,7 +40,7 @@ App({
         })
       })
     }else{
-      console.log("执行111")
+      // console.log("执行111")
       let invitationCode = codeId
       var wxAppId = this.globalData.wxAppId
       console.log(wxAppId)

@@ -9,7 +9,7 @@ Page({
    */
   data: {
     opacity: 0,//背景蒙层的透明度
-    animate: 'none',//删除图片 动画弹窗
+    animate: '',//删除图片 动画弹窗
     showCoupon:false,
     showTxt:true,
     hotList:[],

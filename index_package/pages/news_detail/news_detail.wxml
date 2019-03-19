@@ -3,6 +3,6 @@
   <view class='title'>{{ richPage.title }}</view>
   <view class='create-time'>{{ richPage.createTime }}</view>
   <view class='rich-text'>
-    <rich-text nodes='{{ richPage.content }}' space='nbsp'></rich-text>
+    <rich-text nodes='{{ richPage.content }}' space='nbsp' bindtap='preView'></rich-text>
   </view>
 </view>
