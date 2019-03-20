@@ -10,7 +10,7 @@
   <view class='service-item fang' bindtap='toTextile'>
     <view class='icon center'><image src='/images/s-icon2.png'></image></view>
     <view class='service-title'>
-      <text class='cn'>化妆品委托</text>
+      <text class='cn'>纺织品委托</text>
       <text class='en'>Cosmetic Commission</text>
     </view>
   </view>

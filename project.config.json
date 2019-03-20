@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 23,
+			"current": 24,
 			"list": [
 				{
 					"id": -1,
@@ -206,6 +206,12 @@
 					"pathName": "mainPackage/index/index",
 					"query": "scene=126b7ed241fa4873a8dfb776a0189f18",
 					"scene": 1047
+				},
+				{
+					"id": -1,
+					"name": "修改委托单的样品信息",
+					"pathName": "order_package/pages/modify_form/modify_form",
+					"scene": null
 				}
 			]
 		}

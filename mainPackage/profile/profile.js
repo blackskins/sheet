@@ -73,6 +73,11 @@ Page({
         title: '申请成为业务员',
         id: '5'
       },
+      {
+        img: '/images/order5.png',
+        title: '申请成为业务员',
+        id: '5'
+      }
     ],
     userData:''
   },

@@ -38,3 +38,9 @@
   <text class='menu-title'>{{ item.title }}</text>
 </view>
 </block>
+
+<!-- 客服悬浮按钮 -->
+<view class='chat'>
+  <image src='../../images/chat.png'></image>
+  <button class='chat-btn' open-type="contact"></button>
+</view>
