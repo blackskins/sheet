@@ -146,6 +146,12 @@ Page({
   stopMove(){
     return false
   },
+  // 收起视频简介
+  foldUp(){
+    this.setData({
+      showTxt:true
+    })
+  },
   /**
    * 用户点击右上角分享
    */

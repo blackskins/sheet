@@ -112,7 +112,7 @@ Page({
           prePage.setData({
             canvasImg:res.tempFilePath
           },()=>{
-            $.prompt('签名成功获取,返回订单页进行签名',2500)
+            $.prompt('签名成功获取,返回点击提交签名',2500)
             setTimeout(()=>{
               wx.navigateBack({
                 delta:1

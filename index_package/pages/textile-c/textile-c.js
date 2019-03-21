@@ -158,7 +158,7 @@ Page({
     submit_data.getServiceContent(status,(res)=>{
       console.log(res)
       this.setData({
-        sheetData:res.data
+        sheetData:res.data[0]
       })
     })
   },
@@ -416,12 +416,12 @@ Page({
       if (res.code != 0) {
         $.prompt(res.msg)
       }
-      $.prompt('提交成功')
+      $.prompt('委托单已经成功提交，请留意受理信息',2500)
       setTimeout(() => {
         wx.switchTab({
           url: '../../../mainPackage/index/index',
         })
-      }, 1500)
+      }, 2500)
     })
   },
   // 不同意服务协议

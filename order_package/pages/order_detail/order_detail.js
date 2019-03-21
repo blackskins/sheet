@@ -2682,7 +2682,7 @@ Page({
   },
   // 保存画布
   saveImg1(canvasId) {
-    $.openLoad('报告生成中...')
+    $.openLoad('正在获取表单信息...')
     console.log(canvasId)
     wx.canvasToTempFilePath({
       canvasId: canvasId,

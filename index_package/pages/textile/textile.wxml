@@ -28,7 +28,7 @@
       <view>电话/手机
         <text class='import'>*</text>
       </view>
-      <input hidden='{{ !hide }}' type='text' name='phone' placeholder-class='holder' placeholder='请填写联系人电话'></input>
+      <input hidden='{{ !hide }}' type='number' name='phone' placeholder-class='holder' placeholder='请填写联系人电话'></input>
     </view>
     <view class='info-item'>
       <view>E-mail/QQ</view>
@@ -61,7 +61,7 @@
       </view>
     </picker>
     <view class='head-txt'>
-      <textarea name='reportSendingAddress' placeholder-class='holder' placeholder='请填写详细地址'></textarea>
+      <textarea name='reportSendingAddress' placeholder-class='holder' placeholder='请填写详细地址' cursor-spacing='90rpx'></textarea>
     </view>
   </view>
 

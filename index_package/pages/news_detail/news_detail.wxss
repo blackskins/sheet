@@ -22,4 +22,5 @@
 }
 .content-img{
   width: 690rpx;
+  margin-top: 14rpx;
 }

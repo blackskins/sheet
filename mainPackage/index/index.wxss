@@ -101,6 +101,15 @@ page {
   padding: 20rpx;
 }
 
+.fold-up{
+  position: absolute;
+  right: -28rpx;
+  bottom: -48rpx;
+  font-size: 26rpx;
+  color: #2179fc;
+  padding: 20rpx;
+  /* background-color: cadetblue; */
+}
 /* 最新资讯 */
 
 .hot-list {

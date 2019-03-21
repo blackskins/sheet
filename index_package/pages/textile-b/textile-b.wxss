@@ -139,7 +139,16 @@ page{
   padding-left: 18rpx; 
 }
 
-
+/* 判断标准 */
+.standard-a{
+  margin-left: 27rpx;
+}
+.standard-b{
+  margin-left: 27rpx;
+}
+.standard-c{
+  margin-left: 10rpx;
+}
 /* 下一步 */
 .sub-box{
   width: 92%;

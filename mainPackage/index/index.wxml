@@ -35,6 +35,7 @@
   </view>
   <view class='video-txt {{ showTxt ? "hd-text" : "" }}'>{{ videoInfo.content }}
     <image bindtap='showTxt' src='/images/dao.png' wx:if='{{ showTxt }}'></image>
+    <view wx:if='{{ !showTxt }}' class='fold-up' bindtap='foldUp'>收起</view>
   </view>
 </view>
 
@@ -62,7 +63,7 @@
 
 
 <!-- 领取优惠券弹窗 -->
-<cover-view class='window' style='opacity:{{ opacity }}' catchtouchmove='stopMove' bindtap='closeShadow' wx:if='{{ showCoupon }}'>
+<cover-view class='window' style='opacity:{{ opacity }}' catchtouchmove='stopMove' catchtap='cancel' wx:if='{{ showCoupon }}'>
   <!-- <view class='coupon' style='animation:{{ animate }}'>
     <view class='coupon-txt center'>您有优惠券未领取</view>
     <view class='use-btn'>
@@ -70,7 +71,8 @@
       <view class='center' bindtap='getCoupon'>去领取</view>
     </view>
   </view> -->
-  <cover-view class='popup' style='animation:{{ animate }}'>
+  <!-- 动画样式 style='animation:{{ animate }}' -->
+  <cover-view class='popup' >
     <cover-image class='pop-img' src='/images/coupon.png'></cover-image>
     <cover-view class='pop-cancel' bindtap='cancel'>
       <cover-image src='/images/del_coupon.png'></cover-image>

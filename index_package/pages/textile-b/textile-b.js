@@ -277,6 +277,7 @@ Page({
     determineMethod: '',//判断的标准
     determineMethod0: '',//委托方指定的判断方法
     determineMethod1: '',//
+    determineMethod1a: '',//
     determineMethod2: '',//
     determineMethod3: '',//
     determineMethod4: '',//
@@ -342,7 +343,13 @@ Page({
       comprehensive1: e.detail.value
     })
   },
-
+  // 产品标准
+  radioChange9(e){
+    console.log(e.detail.value)
+    this.setData({
+      determineMethod0: e.detail.value
+    })
+  },
   // 纤维成分
   radioChange2(e) {
     console.log(e.detail.value)
@@ -396,6 +403,7 @@ Page({
       colorFastness2: e.detail.value
     })
   },
+  
 
   // 化学成分
   radioChange4(e) {
@@ -466,10 +474,17 @@ Page({
       determineMethod: e.detail.value
     })
   },
-  radioChange77(e) {
+  // radioChange77(e) {
+  //   console.log(e.detail.value)
+  //   this.setData({
+  //     determineMethod0: e.detail.value
+  //   })
+  // },
+  // 产品标准
+  radioChange9(e) {
     console.log(e.detail.value)
     this.setData({
-      determineMethod0: e.detail.value
+      determineMethod1a: e.detail.value
     })
   },
   radioChange7a(e) {
@@ -602,18 +617,32 @@ Page({
 
     /*------- 色牢度B---------*/
     let colorFastness = this.data.colorFastness
+    let colorFastness1 = this.data.colorFastness1
+    if(colorFastness1.length != 0){
+      colorFastness1 = colorFastness1.toString()
+      console.log('jjjjjjj')
+      console.log(colorFastness1)
+      console.log('dddddddd')
+      colorFastness1 = colorFastness1.replace(',','/')
+      console.log('1111111')
+      console.log(colorFastness1)
+      console.log('1111111')
+
+    }
     let len1 = colorFastness.length;
     // console.log(colorFastness)
     // 耐摩擦
     for (let i = 0; i < len1; i++) {
-      if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 != '' || this.data.colorFastness1 == '干' || this.data.colorFastness1 == '湿') {
-        colorFastness.splice(i, 1, this.data.colorFastness1)
+      if (colorFastness[i] == '耐摩擦' && colorFastness1.length != 0 ) {
+        colorFastness.splice(i, 1, colorFastness1)
         break
-      } else if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 == '') {
+      } else if (colorFastness[i] == '耐摩擦' && colorFastness1.lenght == 0) {
         $.prompt('请选择色牢度中耐摩擦的类型')
         return
       }
     }
+    return
+
     // console.log(colorFastness, "阿萨家")
     // 耐汗渍 
     colorFastness.forEach((item, index) => {
@@ -779,28 +808,7 @@ Page({
                 } else {
                   determineMethod = this.data.determineMethod4
                 }
-              } else if (this.data.determineMethod0 == '产品标准') {
-                if (e.detail.value.standard == '') {
-                  $.prompt('请填写判断标准的产品标准');
-                  return
-                } else {
-                  if(this.data.determineMethod5 == ''){
-                    $.prompt('请选择产品标准的级别')
-                    return
-                  }else{
-                    if(this.data.determineMethod5 == '其他'){
-                      if (e.detail.value.elseLevel == ''){
-                        $.prompt('请填写产品标准中其他的级别')
-                        return
-                      }else{
-                        this.determineMethod == `${e.detail.value.standard}/${e.detail.value.elseLevel}`
-                      }
-                    }else{
-                      this.data.determineMethod = `${e.detail.value.standard}/${this.data.determineMethod5}`
-                    }
-                  }
-                }
-              }
+              } 
             }
           }
         }
