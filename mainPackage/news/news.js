@@ -119,7 +119,6 @@ Page({
     if (page == 1) {
       $.openLoad();
     }
-    $.openLoad()
     news_model.getNewsList(page,pageSize,title,(res) => {
       console.log(res)
       if (res.code != 0) {

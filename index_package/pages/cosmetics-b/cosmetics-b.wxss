@@ -45,6 +45,10 @@ page {
 .label-flex{
   display: flex;
 }
+.test{
+  margin-left: 36rpx;
+  width: 620rpx !important;
+}
 .ddd{
   width: 200rpx !important;
   margin-right: 10rpx;

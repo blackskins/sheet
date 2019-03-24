@@ -1,13 +1,83 @@
 <!--order_package/pages/modify_form/modify_form.wxml-->
-<view class='list-num'>
-  <view class='title-name'>样品序号</view>
-  <view class='title-value'>样品一</view>
-</view>
+<form bindsubmit='formSubmit'>
+  <scroll-view scroll-y style='height:{{ scrollHeight }}px'>
+    <view class='list-num'>
+      <view class='title-name'>样品序号</view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class='title-value'>{{array[index]}}</view>
+      </picker>
+      <!-- 蒙层 -->
+      <view class='choose-mask' wx:if='{{ false }}'></view>
+    </view>
 
-<view class='res-front'>
-  <view class='title-name'>样品名称</view>
-  <view class='name-balue'>海蓝湾之谜护肤品</view>
-</view>
-<view class='res'>
-  <view class=''>修改为</view>
-</view>
+    <!-- 样品名称 -->
+    <view class='item-box'>
+      <view class='res-front'>
+        <view class='title-name'>样品名称</view>
+        <view class='name-value'>海蓝湾之谜护肤品</view>
+      </view>
+      <view class='res-after'>
+        <view class='title-name'>修改为</view>
+        <view class='res-txt'>
+          <input type='text' name='sample-name' bindblur='update1' placeholder-class='holder' placeholder='请输入修改内容'></input>
+        </view>
+      </view>
+    </view>
+
+    <!-- 样品批号 -->
+    <view class='item-box'>
+      <view class='res-front'>
+        <view class='title-name' wx:if='{{ true }}'>样品批号</view>
+        <view class='title-name' wx:if='{{ false }}'>货号/款号</view>
+        <view class='name-value'>0000000126462</view>
+      </view>
+      <view class='res-after'>
+        <view class='title-name'>修改为</view>
+        <view class='res-txt'>
+          <input type='text' bindblur='update2' name='sample-num' placeholder-class='holder' placeholder='请输入修改内容'></input>
+        </view>
+      </view>
+    </view>
+
+    <!-- 样品个数 -->
+    <view class='item-box'>
+      <view class='res-front'>
+        <view class='title-name' wx:if='{{ true }}'>样品个数</view>
+        <view class='title-name' wx:if='{{ false }}'>颜色</view>
+        <view class='name-value'>2</view>
+      </view>
+      <view class='res-after'>
+        <view class='title-name'>修改为</view>
+        <view class='res-txt'>
+          <input type='{{ true ? "number" : "text" }}' bindblur='update3' name='sample-count' placeholder-class='holder' placeholder='请输入修改内容'></input>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 样品量 -->
+    <view class='item-box'>
+      <view class='res-front'>
+        <view class='title-name' wx:if='{{ true }}'>样品量</view>
+        <view class='title-name' wx:if='{{ false }}'>样品数量</view>
+        <view class='name-value'>450ml</view>
+      </view>
+      <view class='res-after'>
+        <view class='title-name'>修改为</view>
+        <view class='res-txt'>
+          <input type='{{ true ? "text" : "number"}}text' bindblur='update4' name='sample-weight' placeholder-class='holder' placeholder='请输入修改内容'></input>
+        </view>
+      </view>
+    </view>
+    <!-- 其他不可更改的样品项 -->
+    <view class='else-box'>
+      <view class='sample-item' wx:for='{{ sampleElse }}' wx:key=''>{{ item }}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 修改按钮 -->
+  <view class='midify-box'>
+    <view class='modify-btn'>修改委托单</view>
+    <button form-type='submit' class='sub-btn'></button>
+  </view>
+</form>

@@ -111,8 +111,8 @@ Page({
     detailTime: '', //加急-->具体时间
     reportFormMode: '',
     copyCount: '', //副本
-    copyNum:0,
-    photoNum:0,
+    copyNum: 0,
+    photoNum: 0,
     photoCount: '', //附照片
     reportType: '',
     checkbox5a: '',
@@ -128,7 +128,7 @@ Page({
   onLoad: function(options) {
     this._getServiceContent()
   },
-  onShow(){
+  onShow() {
     //获取页面栈
     var pages = getCurrentPages();
     var Page = pages[pages.length - 1]; //当前页
@@ -290,6 +290,12 @@ Page({
   },
   // 提交
   formSubmit(e) {
+    // 测试方法
+    if (this.data.testMethod == '委托方指定' && e.detail.value.judge != "") {
+      this.setData({
+        testMethod: e.detail.value.judge
+      })
+    }
     // 是否判定
     if (this.data.judgementStandard != '不判定' && e.detail.value.judge != "") {
       this.setData({
@@ -421,9 +427,11 @@ Page({
     }
     let data5a = extend(this.data.data3, data4)
     let data5b = {
-      entrust:{cmtEntrust:data5a}
+      entrust: {
+        cmtEntrust: data5a
+      }
     }
-    let data5 = extend(data5b,{
+    let data5 = extend(data5b, {
       orderType: '10', //提交表单的类型(10=>化妆品检测，20=>纺织品检测)
     })
     console.log(data5)
@@ -457,15 +465,15 @@ Page({
     var data = this.data.data5
     submit_data.submitCosmetics(data, (res) => {
       console.log(res)
-      if(res.code != 0){
+      if (res.code != 0) {
         $.prompt(res.msg)
       }
       $.prompt('委托单已经成功提交，请留意受理信息', 2500)
-      setTimeout(()=>{
+      setTimeout(() => {
         wx.switchTab({
           url: '../../../mainPackage/index/index',
         })
-      },2500)
+      }, 2500)
     })
   },
   // 不同意服务协议

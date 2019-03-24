@@ -16,6 +16,7 @@
           <radio class="radio" color='#2090FE' wx:for="{{serviceFn}}" wx:key="" value="{{item.name}}" checked="{{item.checked}}">
             <text>{{item.value}}</text>
           </radio>
+          <input type='text' class='test' wx:if='{{ testMethod == "委托方指定" }}' name='test' placeholder-class='holder'  placeholder='请填写测试方法'></input>
         </radio-group>
       </view>
     </view>
