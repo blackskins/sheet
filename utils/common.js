@@ -135,6 +135,18 @@ function temporaryFileUpload(file_url, upload_url, fn){
   })
 }
 
+// 格式化时间戳
+function formatDate(now) {
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var date = now.getDate();
+  var hour = now.getHours();
+  var minute = now.getMinutes();
+  var second = now.getSeconds();
+  return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+} 
+
+
 function faceReg(str){
   let faceReg = /([^\u0020-\u007E\u00A0-\u00BE\u2E80-\uA4CF\uF900-\uFAFF\uFE30-\uFE4F\uFF00-\uFFEF\u0080-\u009F\u2000-\u201f\u2026\u2022\u20ac\r\n])|(\s)/g
   return faceReg.test(str)
