@@ -11,91 +11,91 @@ Page({
    */
   data: {
     serviceFn: [{
-        name: '服务方决定',
-        value: '服务方决定'
-      },
-      {
-        name: '委托方指定',
-        value: '委托方指定(请在委托方要求栏详细列出)'
-      },
+      name: '服务方决定',
+      value: '服务方决定'
+    },
+    {
+      name: '委托方指定',
+      value: '委托方指定(请在委托方要求栏详细列出)'
+    },
     ],
     judge: [{
-        name: '不判定',
-        value: '不判定'
-      },
-      {
-        name: '判定',
-        value: '判定(委托方决定)'
-      },
+      name: '不判定',
+      value: '不判定'
+    },
+    {
+      name: '判定',
+      value: '判定(委托方决定)'
+    },
     ],
     serviceTime: [{
-        name: '5个工作日',
-        value: '标准时间(5个工作日)'
-      },
-      {
-        name: '加急',
-        value: '加急'
-      },
+      name: '5个工作日',
+      value: '标准时间(5个工作日)'
+    },
+    {
+      name: '加急',
+      value: '加急'
+    },
     ],
     hurryTime: [{
-        name: '3个工作日',
-        value: '3个工作日(加收50%)'
-      },
-      {
-        name: '2个工作日',
-        value: '2个工作日(加收80%)'
-      },
-      {
-        name: '1个工作日',
-        value: '1个工作日(加收100%)'
-      },
+      name: '3个工作日',
+      value: '3个工作日(加收50%)'
+    },
+    {
+      name: '2个工作日',
+      value: '2个工作日(加收80%)'
+    },
+    {
+      name: '1个工作日',
+      value: '1个工作日(加收100%)'
+    },
     ],
     report: [{
-        name: 'chinese',
-        value: '中文'
-      },
-      {
-        name: 'english',
-        value: '英文(加收50元)'
-      },
-      {
-        name: 'ce',
-        value: '中英文对照(加收50元)'
-      },
+      name: 'chinese',
+      value: '中文'
+    },
+    {
+      name: 'english',
+      value: '英文(加收50元)'
+    },
+    {
+      name: 'ce',
+      value: '中英文对照(加收50元)'
+    },
     ],
     reportSend: [{
-        name: 'self',
-        value: '委托方自取'
-      },
-      {
-        name: 'getPay',
-        value: '快递到付'
-      },
-      {
-        name: 'payed',
-        value: '快递已付(收费25元)'
-      },
-      {
-        name: 'email',
-        value: 'E-mail'
-      },
-      {
-        name: 'fax',
-        value: '传真'
-      },
-      {
-        name: 'else',
-        value: '其他'
-      },
+      name: 'self',
+      value: '委托方自取'
+    },
+    {
+      name: 'getPay',
+      value: '快递到付'
+    },
+    {
+      name: 'payed',
+      value: '快递已付(收费25元)'
+    },
+    {
+      name: 'email',
+      value: 'E-mail'
+    },
+    {
+      name: 'fax',
+      value: '传真'
+    },
+    {
+      name: 'else',
+      value: '其他'
+    },
     ],
     ticketType: [{
-        name: '与委托方相同',
-        value: '与委托方相同'
-      },
-      {
-        name: '其他',
-        value: '其他(必须与付款方一致)'
-      },
+      name: '与委托方相同',
+      value: '与委托方相同'
+    },
+    {
+      name: '其他',
+      value: '其他(必须与付款方一致)'
+    },
     ],
 
     agreement: false,
@@ -125,7 +125,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this._getServiceContent()
   },
   onShow() {

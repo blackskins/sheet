@@ -281,6 +281,16 @@ Page({
       }
     })
   },
+  // 修改委托单
+  modifyOrder(e){
+    let {
+      _id,
+      order_type,
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `../modify_form/modify_form?_id=${_id}&order_type=${order_type}`,
+    })
+  },
   // 保存画布
   saveImg1() {
     wx.canvasToTempFilePath({

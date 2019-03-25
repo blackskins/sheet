@@ -71,7 +71,7 @@ page{
 }
 .name-value{
   font-size: 26rpx;
-  color: #949494;
+  color: #555;
   height: 88rpx;
   line-height: 88rpx;
 }
@@ -111,7 +111,6 @@ page{
 }
 .else-box{
   padding-bottom: 80rpx;
-
 }
 /* 修改按钮 */
 .midify-box{
