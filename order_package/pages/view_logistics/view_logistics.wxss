@@ -44,6 +44,7 @@ page{
   margin-top: 16rpx;
   background-color: #fff;
   padding: 20rpx 30rpx 0rpx 30rpx;
+  overflow: hidden;
 }
 .logistics-detail{
   position: relative;

@@ -26,6 +26,7 @@
         </view>
         <view class='order-num1 hd-text'>订单编号：{{ orderData.orderId }}</view>
       </view>
+      <view class='order-status' wx:if='{{ orderData.status == 10 }}'>待定价</view>
       <view class='order-status' wx:if='{{ orderData.status == 12 }}'>待签名</view>
       <view class='order-status' wx:if='{{ orderData.status == 14 }}'>待揽收</view>
       <view class='order-status' wx:if='{{ orderData.status == 20 }}'>待受理</view>
@@ -139,12 +140,12 @@
   </view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 30 }}'>
-  <view class='cancel'>下载报告</view>
+  <view class='cancel' bindtap='download'>下载报告</view>
   <view class='input-name' bindtap='toModifyReport'>报告修改</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 32 }}'>
   <!-- <view class='cancel'>取消受理</view> -->
-  <view class='input-name'>签名</view>
+  <view class='input-name {{ orderData.status == 32 ? "done" :"" }}' bindtap='download'>下载报告</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 34 }}'>
   <view class='cancel'>查看新报告</view>
@@ -167,6 +168,13 @@
 </view>
 
 
+<!-- 下载报告提示弹窗 -->
+<view class='download' style='bottom:{{ fly }}'>
+  <view class='reason'>由于微信小程序不支持直接保存文件到手机本地，所以，请您点击下方的复制按钮，复制文件链接地址用浏览器打开或下载</view>
+  <view class='down-url'>{{ url }}</view>
+  <view class='copy-btn' bindtap='copyUrl'>一键复制</view>
+  <image class='close-img' src='../../images/del1.png' bindtap='close'></image>
+</view>
 <!-- 画布1 -->
 <view class='canvas' wx:if='{{ true }}'>
   <canvas class='' canvas-id='canvas-1' style='width:1500px;height:2115px'></canvas>
@@ -185,3 +193,5 @@
     </view>
   </view>
 </view>
+
+

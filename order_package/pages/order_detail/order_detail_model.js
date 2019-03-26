@@ -137,6 +137,19 @@ class Order_detail_model extends Base{
     }
     this.request(params)
   }
+  //下载报告
+  downloadReport(_id, callback) {
+    let params = {
+      url: '/order/queryReport',
+      data: {
+        _id: _id,
+      },
+      sCallback: (res) => {
+        callback && callback(res)
+      }
+    }
+    this.request(params)
+  } 
 }
 export{
   Order_detail_model

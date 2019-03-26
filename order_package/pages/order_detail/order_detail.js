@@ -23,7 +23,9 @@ Page({
     animate: '', //删除图片 动画弹窗
     showMask: false,
     canvasForm:'',//委托单的临时路径
-    showCanvas:false
+    showCanvas:false,
+    fly:'-60%',
+    url:'',//下载报告的地址
   },
 
   /**
@@ -276,6 +278,49 @@ Page({
         })
       }, 500)
     })
+  },
+  // 下载报告
+  download(){
+    if(this.data.url != ''){
+      if (this.data.fly == '-60%') {
+        this.setData({
+          fly: '12%'
+        })
+      } else if (this.data.fly == '12%') {
+        this.setData({
+          fly: '-60%'
+        })
+      }
+      return
+    }
+    let _id = this.data.orderData.orderId
+    order_detail_model.downloadReport(_id,(res)=>{
+      console.log(res)
+      this.setData({
+        url:res.data
+      },()=>{
+        this.setData({
+          fly:'12%'
+        })
+      })
+    })
+    
+    
+  },
+  // 关闭下载窗口
+  close(){
+    this.setData({
+      fly:'-60%'
+    })
+  },
+  // 复制链接地址
+  copyUrl(){
+    wx.setClipboardData({
+      data: this.data.url,
+      success:(res)=> {
+        $.prompt('复制成功',2000,'success')
+      }
+    });
   },
   // 订单未支付，页面卸载或者进入后台时，取消使用优惠券
   cancelCoupon(){

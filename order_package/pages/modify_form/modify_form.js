@@ -23,9 +23,10 @@ Page({
     let height = sysInfo.windowHeight - (120 * (sysInfo.windowWidth/750))
     this.setData({
       scrollHeight:height,
+      _id:options._id,
       orderType:options.order_type
     })
-    console.log(options,'ddsddkldkfdlskfdslkf')
+    // console.log(options,'ddsddkldkfdlskfdslkf')
     this._getOrderInfo(options._id,options.order_type);
   },
   // 选择样品
@@ -72,6 +73,8 @@ Page({
             samplenumber: '',
             color: '',
             sampleNumber: '',
+            brand:sampleList[i].brand,
+            component:sampleList[i].component
           })
         }
         let smapleArr = this.data.smapleArr
@@ -183,5 +186,58 @@ Page({
   // 禁止修改其他选项
   stopModify(){
     $.prompt('不能修改此选项哦~',2500)
+  },
+  // 提交修改委托单
+  formSubmit(e){
+    let orderType = this.data.orderType
+    let arr0 = this.data.arr0
+    if(orderType == 10){
+      let sampleList = this.data.sampleInfo
+      let len = sampleList.length
+      for (let i = 0; i < len; i++) {
+        for (let k in arr0[i]) {
+          arr0[i][k] = arr0[i][k] != '' ? arr0[i][k] : sampleList[i][k]
+        }
+        // if (arr0[i].sampleName == '') {
+        //   arr0[i].sampleName = sampleList[i].sampleName
+        // }
+        // if (arr0[i].sampleBatch == '') {
+        //   arr0[i].sampleBatch = sampleList[i].sampleBatch
+        // }
+        // if (arr0[i].sampleNumber == '') {
+        //   arr0[i].sampleNumber = sampleList[i].sampleNumber
+        // }
+        // if (arr0[i].sampleSize == '') {
+        //   arr0[i].sampleSize = sampleList[i].sampleSize
+        // }
+
+      }
+    }else if(orderType == 20){
+      let sampleList = this.data.sampleInfo1
+      let len = sampleList.length
+      for (let i = 0; i < len; i++) {
+        for(let k in arr0[i]){
+          arr0[i][k] = arr0[i][k] != '' ? arr0[i][k] : sampleList[i][k]
+        }
+        console.log(arr0)
+        console.log('ddddddd')
+        // return
+      }
+    }
+    let spinInfo = arr0
+    let _id = this.data._id
+    console.log(e)
+    wx.showModal({
+      title: '修改委托单',
+      content: '确定要修改委托单的内容吗',
+      success:(res)=>{
+        if(res.confirm){
+          modify_form_model.modifyOrderInfo(_id,spinInfo,orderType,(res)=>{
+            console.log(res)
+            $.prompt('修改成功', 2000,'success')
+          })
+        }
+      }
+    })
   }
 })
