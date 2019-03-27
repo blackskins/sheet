@@ -358,31 +358,37 @@ Page({
     this.setData({
       colorFastness: list3
     })
-    for (let i = 0; i < list3.length; i++) {
-      if (list3[i] == '耐摩擦') {
-        console.log('进来了')
-        this.setData({
-          show3a: true
-        })
-        break;
-      } else {
-        this.setData({
-          show3a: false
-        })
-      }
-    }
-    for (let j = 0; j < list3.length; j++) {
-      if (list3[j] == '耐汗渍') {
-        this.setData({
-          show3b: true
-        })
-        break;
-      } else {
-        this.setData({
-          show3b: false
-        })
-      }
-    }
+    // if(list3.length == 0 ){
+    //   this.setData({
+    //     show3a: false,
+    //     show3b:false,
+    //   })
+    // }
+    // for (let i = 0; i < list3.length; i++) {
+    //   if (list3[i] == '耐摩擦') {
+    //     console.log('进来了')
+    //     this.setData({
+    //       show3a: true
+    //     })
+    //     break;
+    //   } else {
+    //     this.setData({
+    //       show3a: false
+    //     })
+    //   }
+    // }
+    // for (let j = 0; j < list3.length; j++) {
+    //   if (list3[j] == '耐汗渍') {
+    //     this.setData({
+    //       show3b: true
+    //     })
+    //     break;
+    //   } else {
+    //     this.setData({
+    //       show3b: false
+    //     })
+    //   }
+    // }
   },
   radioChange3a(e) {
     console.log(e.detail.value)
@@ -602,34 +608,48 @@ Page({
 
     /*------- 色牢度B---------*/
     let colorFastness = this.data.colorFastness
-    let len1 = colorFastness.length;
-    // console.log(colorFastness)
-    // 耐摩擦
-    for (let i = 0; i < len1; i++) {
-      if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 != '' || this.data.colorFastness1 == '干' || this.data.colorFastness1 == '湿') {
-        colorFastness.splice(i, 1, this.data.colorFastness1)
-        break
-      } else if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 == '') {
-        $.prompt('请选择色牢度中耐摩擦的类型')
-        return
-      }
-    }
-    // console.log(colorFastness, "阿萨家")
-    // 耐汗渍 
-    colorFastness.forEach((item, index) => {
-      if (item == '耐汗渍') {
-        if (!this.data.colorFastness2) {
-          $.prompt('请选择色牢度中耐汗渍的类型')
-          return
-        } else {
-          colorFastness[index] = this.data.colorFastness2
-        }
-      }
-    })
-    // console.log("执行")
+    let colorFastness1 = this.data.colorFastness1
+    let colorFastness2 = this.data.colorFastness2
 
-    colorFastness = colorFastness.toString() //数组转换成字符串
+    if(colorFastness1.length != 0 && colorFastness1.length == 2){
+      colorFastness = colorFastness.concat(this.data.colorFastness1)
+    } else if (colorFastness1.length != 0 && colorFastness1.length == 1){
+      colorFastness = colorFastness.push(colorFastness1[0])
+    }
+    if (this.data.colorFastness2.length != 0) {
+      colorFastness = colorFastness.concat(this.data.colorFastness2)
+    }
+    colorFastness = colorFastness.toString()
     console.log(colorFastness)
+    return
+     //数组转换成字符串
+    // let len1 = colorFastness.length;
+    // // console.log(colorFastness)
+    // // 耐摩擦
+    // for (let i = 0; i < len1; i++) {
+    //   if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 != '' || this.data.colorFastness1 == '干' || this.data.colorFastness1 == '湿') {
+    //     colorFastness.splice(i, 1, this.data.colorFastness1)
+    //     break
+    //   } else if (colorFastness[i] == '耐摩擦' && this.data.colorFastness1 == '') {
+    //     $.prompt('请选择色牢度中耐摩擦的类型')
+    //     return
+    //   }
+    // }
+    // // console.log(colorFastness, "阿萨家")
+    // // 耐汗渍 
+    // colorFastness.forEach((item, index) => {
+    //   if (item == '耐汗渍') {
+    //     if (!this.data.colorFastness2) {
+    //       $.prompt('请选择色牢度中耐汗渍的类型')
+    //       return
+    //     } else {
+    //       colorFastness[index] = this.data.colorFastness2
+    //     }
+    //   }
+    // })
+    // // console.log("执行")
+
+    // console.log(colorFastness)
     /*------- 色牢度E---------*/
 
     /*----------- 化学成分B --------------*/
