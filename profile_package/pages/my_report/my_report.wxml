@@ -1,35 +1,41 @@
 <!--profile_package/pages/my_report/my_report.wxml-->
-<view class='date-box' wx:for='{{ dataList }}' wx:key=''>
+<view class='date-box' wx:for='{{ reportList }}' wx:key=''>
   <view class='top' bindtap='fold' data-id='{{ index }}'>
     <view class='left center'>
       <view class='date-img center'>
         <image src='../../images/date.png'></image>
       </view>
-      <view class='date-time'>{{ item.date }}</view>
+      <view class='date-time'>{{ item.time }}</view>
     </view>
     <view class='right center'>
       <image src='/images/arrow.png' style='transform:{{ item.foldStatus?"rotate(0deg)":"rotate(180deg)"}}'></image>
     </view>
   </view>
   <view class='content-box' style='height:{{ item.boxHeight }}rpx'>
-    <view class='list-item' wx:for='{{ item.orderList }}' wx:for-item='items' wx:key=''>
+    <view class='list-item' wx:for='{{ item.myReport }}' wx:for-item='items' wx:for-index='childIndex' wx:key=''>
       <view class='bottom-left'>
         <view class='icon-box center'>
           <image src='../../images/img.png'></image>
         </view>
         <view class='main'>
-          <view class='title'>{{ items.title }}</view>
-          <view class='order-num'>受审编号：{{ items.orderNumber }}</view>
-          <view class='order-date'>时间：{{ items.orderDate }}</view>
+          <view class='title'>{{ items.orderType == 10 ? "化妆品报告":"纺织品报告" }}</view>
+          <view class='order-num'>受审编号：{{ items.acceptanceId }}</view>
+          <view class='order-date'>时间：{{ items.createTime }}</view>
         </view>
       </view>
-      <view class='bottom-right center' bindtap='saveReport'>
-        <image src='../../images/save.png'></image>
+      <view class='bottom-right center' bindtap='preReport' data-father_index='{{ index }}' data-index='{{ childIndex }}' data-status='{{ items.report.status }}' >
+        <image src='../../images/look.png'></image>
       </view>
     </view>
   </view>
 </view>
-
+<!-- 没有数据的状态 -->
+<view class='none-box' wx:if='{{reportList.length==0}}'>
+  <view class='none-img'>
+    <image src='/images/nothing.png'></image>
+  </view>
+  <view class='none-txt'>空空如也，暂无报告信息哦～</view>
+</view>
 
 <!-- 下载报告时的提示弹窗 -->
 <!-- <view class='mask'>
@@ -41,3 +47,4 @@
     </view>
   </view>
 </view> -->
+

@@ -324,7 +324,23 @@ Page({
       }
     })
   },
-
+  // 删除样品信息
+  delItem(e) {
+    let list = this.data.sampleInfo
+    let index = e.currentTarget.dataset.index
+    wx.showModal({
+      title: '删除样品信息',
+      content: `确定删除第${index + 1}个样品信息吗`,
+      success: (res) => {
+        if (res.confirm) {
+          list.splice(index, 1)
+          this.setData({
+            sampleInfo: list
+          })
+        }
+      }
+    })
+  },
   // 样品类别
   radioChange1(e) {
     console.log(e.detail.value)

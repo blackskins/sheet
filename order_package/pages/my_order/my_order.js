@@ -1,5 +1,7 @@
 // order_package/pages/my_order/my_order.js
-import { My_order_model } from './my_order_model.js'
+import {
+  My_order_model
+} from './my_order_model.js'
 var my_order_model = new My_order_model()
 var $ = require('../../../utils/common.js')
 Page({
@@ -8,13 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isFirst:true,
-    canvasImg:'',//签名的临时路径
+    signIn: 0,//判断是否第一次进入页面
+    postType:'click',//通过怎样的方式来获取订单数据,防止重复请求接口
+    canvasImg: '', //签名的临时路径
     currentIndex: 0, //当前状态下标索引
-    itemStatus: [
-      {
-        title:'全部',
-        status:0,
+    itemStatus: [{
+        title: '全部',
+        status: 0,
       },
       {
         title: '待签名',
@@ -39,6 +41,10 @@ Page({
       {
         title: '发报告',
         status: 30,
+      },
+      {
+        title: '申诉中',
+        status: 40,
       },
       {
         title: '已完成',
@@ -74,43 +80,42 @@ Page({
     })
     console.log(options.id)
     // return
-    if(options.id == 0){
+    this.setData({
+      isFirst: false,
+      signIn: 1
+    })
+    if (options.id == 0) {
       let page = this.data.page
       this._getAllOrderList(page)
-    }else{
+    } else {
       let list = this.data.itemStatus
       let status = list[options.id].status
       let page = this.data.page
-      this._getOrderStatusList(status,page)
+      this._getOrderStatusList(status, page)
     }
     // 生成画布
     // this.drawSth()
     // this.canvas2()
     // this.canvas3()
-    this.canvas4()
+    // this.canvas4()
   },
-  onShow(options){
-    let isFirst = this.data.isFirst
-    if(isFirst){
-      this.setData({
-        isFirst:false
-      })
-      if (options.id == 0) {
-        let page = this.data.page
+  onShow() {
+    console.log('9999999999')
+    let signIn = this.data.signIn
+    if (signIn > 1) {
+      if (this.data.currentIndex == 0) {
+        let page = 1
         this._getAllOrderList(page)
       } else {
         let list = this.data.itemStatus
-        let status = list[options.id].status
-        let page = this.data.page
+        let status = list[this.data.currentIndex].status
+        let page = 1
         this._getOrderStatusList(status, page)
       }
-    }else{
-      console.log('6666')
     }
-    
   },
   // 获取全部订单数据
-  _getAllOrderList(page){
+  _getAllOrderList(page) {
     var page = page
     var pageSize = this.data.pageSize
     var list = this.data.allOrderList
@@ -121,10 +126,10 @@ Page({
     if (page == 1) {
       $.openLoad();
     }
-    my_order_model.getAllOrderList(page,pageSize,(res)=>{
+    my_order_model.getAllOrderList(page, pageSize, (res) => {
       console.log(res)
-      if(res.code != 0){
-        $.prompt(res.msg,2500)
+      if (res.code != 0) {
+        $.prompt(res.msg, 2500)
         return
       }
       let allOrderList = res.data
@@ -141,25 +146,25 @@ Page({
         time = 500
       }
       setTimeout(() => {
-        this.setData({
-          allOrderList: list,
-          page: parseInt(page) + 1,
-          isMore: isMore,
-          loading: loading,
-          loading_state: false,
-          nodata: nodata
-        }, () => {
-          if (page == 1) {
-            $.closeLoad()
-          }
-        })
-      },
+          this.setData({
+            allOrderList: list,
+            page: parseInt(page) + 1,
+            isMore: isMore,
+            loading: loading,
+            loading_state: false,
+            nodata: nodata
+          }, () => {
+            if (page == 1) {
+              $.closeLoad()
+            }
+          })
+        },
         time
       )
     })
   },
   // 获取不同订单状态的数据
-  _getOrderStatusList(status,page) {
+  _getOrderStatusList(status, page) {
     var page = page
     var pageSize = this.data.pageSize
     var list = this.data.orderList
@@ -170,7 +175,7 @@ Page({
     if (page == 1) {
       $.openLoad();
     }
-    my_order_model.getOrderStatusList(page, pageSize, status,(res) => {
+    my_order_model.getOrderStatusList(page, pageSize, status, (res) => {
       console.log(res)
       if (res.code != 0) {
         $.prompt(res.msg, 2500)
@@ -190,45 +195,53 @@ Page({
         time = 500
       }
       setTimeout(() => {
-        this.setData({
-          orderList: list,
-          page: parseInt(page) + 1,
-          isMore: isMore,
-          loading: loading,
-          loading_state: false,
-          nodata: nodata
-        }, () => {
-          if (page == 1) {
-            $.closeLoad()
-          }
-        })
-      },
+          this.setData({
+            orderList: list,
+            page: parseInt(page) + 1,
+            isMore: isMore,
+            loading: loading,
+            loading_state: false,
+            nodata: nodata
+          }, () => {
+            if (page == 1) {
+              $.closeLoad()
+            }
+          })
+        },
         time
       )
     })
   },
   // 选择当前状态的订单列表
   chooseItem(e) {
+    // if(this.data.postType != 'click'){
+    //   return
+    // }
     var currentIndex = e.currentTarget.dataset.index
     this.setData({
-      currentIndex: currentIndex
+      currentIndex: currentIndex,
+      postType:'click'
     })
-    if(currentIndex == 0){
+    if (currentIndex == 0) {
       let page = 1
       this._getAllOrderList(page)
-    }else{
+    } else {
       let page = 1
       let list = this.data.itemStatus
       let status = list[currentIndex].status
-      this._getOrderStatusList(status,page)
+      this._getOrderStatusList(status, page)
     }
   },
   // 切换订单状态列表
   changeItem(e) {
+    // if(this.data.postType != 'swiper'){
+    //   return
+    // }
     // console.log(e)
     let currentIndex = e.detail.current
     this.setData({
-      currentIndex: currentIndex
+      currentIndex: currentIndex,
+      postType:'swiper'
     })
     if (currentIndex == 0) {
       let page = 1
@@ -241,8 +254,8 @@ Page({
     }
   },
   // 订单触底加载更多
-  reachBottom(){
-    console.log('进来了.......')
+  reachBottom() {
+    // console.log('进来了.......')
     let currentIndex = this.data.currentIndex
     if (currentIndex == 0) {
       let page = this.data.page
@@ -255,12 +268,27 @@ Page({
     }
   },
   // 跳转到订单详情页
-  orderDetail(e){
+  orderDetail(e) {
     let orderId = e.currentTarget.dataset.id
     let status = this.data.itemStatus[this.data.currentIndex].status
     wx.navigateTo({
       // url: '../order_detail/order_detail?orderId=' + orderId + '&status=' + status,
       url: `../order_detail/order_detail?orderId=${orderId}&status=${status}`,
+      success: (res) => {
+        this.setData({
+          signIn: this.data.signIn + 1
+        })
+      }
+    })
+  },
+  // 修改委托单
+  modifyOrder(e){
+    let {
+      _id,
+      order_type,
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `../modify_form/modify_form?_id=${_id}&order_type=${order_type}`,
     })
   },
   // 保存画布
@@ -276,7 +304,7 @@ Page({
           success: function(res) {
             $.prompt('成功保存到手机本地相册', 2500)
           },
-          fail:(res)=> {
+          fail: (res) => {
             console.log('授权失败')
             console.log(res)
             if (res.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
@@ -299,7 +327,7 @@ Page({
     wx.showLoading({
       title: '正在保存...',
     })
-    
+
     wx.canvasToTempFilePath({
       canvasId: 'canvas-3',
       quality: 1,
@@ -308,15 +336,15 @@ Page({
         var canvasImg = res.tempFilePath
         wx.saveImageToPhotosAlbum({
           filePath: canvasImg,
-          success:(res)=> {
+          success: (res) => {
             wx.hideLoading()
             // $.prompt('成功保存到手机本地相册', 2500)
             wx.showToast({
               title: '成功保存到手机本地相册',
-              duration:2500
+              duration: 2500
             })
           },
-          fail:(res)=> {
+          fail: (res) => {
             console.log('授权失败')
             console.log(res)
             if (res.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
@@ -329,7 +357,7 @@ Page({
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res)
       }
     })
@@ -348,7 +376,7 @@ Page({
         var canvasImg = res.tempFilePath
         wx.saveImageToPhotosAlbum({
           filePath: canvasImg,
-          success: function (res) {
+          success: function(res) {
             wx.hideLoading()
             // $.prompt('成功保存到手机本地相册', 2500)
             wx.showToast({
@@ -356,7 +384,7 @@ Page({
               duration: 2500
             })
           },
-          fail:(res)=> {
+          fail: (res) => {
             console.log('授权失败')
             console.log(res)
             if (res.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
@@ -369,12 +397,12 @@ Page({
           }
         })
       },
-      fail: function (res) {
+      fail: function(res) {
         console.log(res)
       }
     })
   },
-  // 画布----绘制委托单表格
+  // 画布----绘制化妆品委托单表格
   drawSth() {
     console.log('2222222')
     const ctx = wx.createCanvasContext('canvas-1');
@@ -474,7 +502,7 @@ Page({
     // 委托方信息字段填充
     ctx.setFontSize(24)
     ctx.setFillStyle('#333')
-    ctx.fillText('委',60,380)
+    ctx.fillText('委', 60, 380)
     ctx.fillText('托', 60, 410)
     ctx.fillText('方', 60, 440)
     ctx.fillText('信', 60, 470)
@@ -482,7 +510,7 @@ Page({
 
     ctx.fillText('委托方', 180, 320)
     // 委托方的值
-    ctx.fillText("北京市盈客通科技",340,320)
+    ctx.fillText("北京市盈客通科技", 340, 320)
 
     ctx.fillText('*报告抬头', 160, 380)
     // 抬头的值
@@ -507,15 +535,15 @@ Page({
 
     ctx.fillText('联系电话', 170, 440)
     // 联系电话的值
-    ctx.fillText('15813369563',340,440)
+    ctx.fillText('15813369563', 340, 440)
 
     ctx.fillText('联系地址', 170, 500)
     // 联系地址的值
     ctx.setFontSize(20)
-    ctx.fillText('是的反垄断死灵法师的发顺丰是否是....',310,500)
+    ctx.fillText('是的反垄断死灵法师的发顺丰是否是....', 310, 500)
 
     ctx.setFontSize(24)
-    ctx.fillText('快递地址',170,560)
+    ctx.fillText('快递地址', 170, 560)
     // 快递地址的值
     ctx.beginPath()
     ctx.setLineWidth(2)
@@ -527,28 +555,28 @@ Page({
     ctx.fillText('与联系地址相同', 384, 560)
     ctx.fillText('其他 :', 690, 560)
     // 其他快递地址的值
-    ctx.fillText('其他快递地址的值',760,560)
-    
+    ctx.fillText('其他快递地址的值', 760, 560)
+
     ctx.fillText('E-mail', 875, 440)
     // e-mail的值
     ctx.setFontSize(22)
-    ctx.fillText('2225696633@qq.com',970,440)
+    ctx.fillText('2225696633@qq.com', 970, 440)
 
     ctx.fillText('传  真', 875, 500)
     // 传真的值
-    ctx.fillText('传真的值...',970,500)
+    ctx.fillText('传真的值...', 970, 500)
 
     ctx.fillText('联系人', 1240, 440)
     // 联系人的值
-    ctx.fillText('今晚打老虎',1340,440)
+    ctx.fillText('今晚打老虎', 1340, 440)
 
     ctx.setFontSize(18)
-    ctx.fillText('邮政编码',1240,500)
+    ctx.fillText('邮政编码', 1240, 500)
     // 邮政编码的值
     ctx.setFontSize(24)
-    ctx.fillText('525300',1340,500)
+    ctx.fillText('525300', 1340, 500)
 
-        
+
 
 
 
@@ -607,8 +635,8 @@ Page({
     // 样品信息内字段及值
 
     //样品信息字段分割线
-    ctx.moveTo(500,580);
-    ctx.lineTo(500,660);
+    ctx.moveTo(500, 580);
+    ctx.lineTo(500, 660);
 
     ctx.moveTo(640, 580);
     ctx.lineTo(640, 660);
@@ -643,17 +671,17 @@ Page({
     ctx.setLineWidth(4)
     ctx.stroke()
 
-    ctx.fillText('样品批号',520,630)
+    ctx.fillText('样品批号', 520, 630)
     // 样品批号的值
-    ctx.fillText('NDA24521541',660,630)
+    ctx.fillText('NDA24521541', 660, 630)
 
     ctx.fillText('样品个数', 870, 630)
     // 样品数值
-    ctx.fillText('888个',1000,630)
+    ctx.fillText('888个', 1000, 630)
 
     ctx.fillText('样品量', 1120, 630)
     // 样品量的值
-    ctx.fillText('量足大幅度值',1240,630)
+    ctx.fillText('量足大幅度值', 1240, 630)
 
     //样品个数的值 
 
@@ -662,12 +690,12 @@ Page({
     ctx.fillText('息（多', 30, 740)
     ctx.fillText('样品时', 30, 770)
     ctx.fillText('请填写', 30, 800)
-    ctx.fillText('附表）',30,830)
+    ctx.fillText('附表）', 30, 830)
 
     // 样品名称
     ctx.fillText('*样品名称', 160, 630)
     // 名称值
-    ctx.fillText('国色天香',320,630)
+    ctx.fillText('国色天香', 320, 630)
 
     ctx.fillText('样品类别', 165, 710)
     ctx.fillText('样品性状', 165, 790)
@@ -711,12 +739,12 @@ Page({
     // 样品保存
     ctx.strokeRect(320, 842, 20, 20)
     ctx.strokeRect(460, 842, 20, 20)
-    ctx.strokeRect(600,842,20,20)
+    ctx.strokeRect(600, 842, 20, 20)
 
     // 余样处理
     ctx.strokeRect(990, 842, 20, 20)
     ctx.strokeRect(1190, 842, 20, 20)
-    ctx.strokeRect(1300,842,20,20)
+    ctx.strokeRect(1300, 842, 20, 20)
 
     // 危险性
     ctx.strokeRect(320, 897, 20, 20)
@@ -754,7 +782,7 @@ Page({
     ctx.fillText('金属材料', 725, 727)
     ctx.fillText('其他：', 870, 727)
     // 其他的值
-    ctx.fillText('其他的值滴滴滴...',940,727)
+    ctx.fillText('其他的值滴滴滴...', 940, 727)
 
     // 样品性状的选项文字
     ctx.fillText('颗粒', 350, 770)
@@ -769,24 +797,24 @@ Page({
     ctx.fillText('裹体', 450, 805)
     ctx.fillText('其他：', 550, 805)
     // 其他的值
-    ctx.fillText('其他的值的...',630,805)
+    ctx.fillText('其他的值的...', 630, 805)
 
 
     // 样品来源选项
-    ctx.fillText('样品来源',1220,790)
+    ctx.fillText('样品来源', 1220, 790)
     ctx.fillText('送检', 1380, 770)
-    ctx.fillText('委托采样',1380,805)
+    ctx.fillText('委托采样', 1380, 805)
 
     // 样品保存
     ctx.fillText('常规', 350, 860)
     ctx.fillText('避光', 490, 860)
-    ctx.fillText('低温(未知 ℃)',630,860)
+    ctx.fillText('低温(未知 ℃)', 630, 860)
 
     // 余样处理
     ctx.fillText('余样处理', 865, 860)
     ctx.fillText('由委托方取回（', 1020, 860)
     ctx.fillText('寄回）', 1220, 860)
-    ctx.fillText('由服务方处理',1330,860)
+    ctx.fillText('由服务方处理', 1330, 860)
 
     // 危险性
     ctx.fillText('无', 350, 915)
@@ -804,28 +832,28 @@ Page({
     ctx.fillText('其他：', 580, 950)
     // 其他的值
     ctx.fillText('我是其他我是其他....', 660, 950)
-    
+
 
     //委托要求的区域
-    ctx.moveTo(12,1300)
-    ctx.lineTo(1488,1300)
+    ctx.moveTo(12, 1300)
+    ctx.lineTo(1488, 1300)
 
     ctx.setStrokeStyle('#333')
     ctx.setLineWidth(3.5)
     ctx.stroke()
 
-    ctx.fillText('委托',46,1120)
-    ctx.fillText('要求',46,1150)
+    ctx.fillText('委托', 46, 1120)
+    ctx.fillText('要求', 46, 1150)
 
     // 委托要求具体细项
-    ctx.fillText('的方式来发动机的开发的理发店里看风景的看见的看甲方鲁大师咖啡店开多开多开上岛咖啡代理商看的咖啡店',150,1000)
-    
+    ctx.fillText('的方式来发动机的开发的理发店里看风景的看见的看甲方鲁大师咖啡店开多开多开上岛咖啡代理商看的咖啡店', 150, 1000)
+
     // ctx.fillText('颗粒', 350, 770)
     // ctx.fillText('颗粒',350,770)
 
     // 服务要求横线
-    ctx.moveTo(130,1340)
-    ctx.lineTo(1488,1340)
+    ctx.moveTo(130, 1340)
+    ctx.lineTo(1488, 1340)
     ctx.setStrokeStyle('#333')
     ctx.stroke()
 
@@ -858,8 +886,8 @@ Page({
     ctx.lineTo(1488, 1660)
     ctx.setStrokeStyle('#333')
     ctx.stroke()
-    
-    ctx.moveTo(12,1710)
+
+    ctx.moveTo(12, 1710)
     ctx.lineTo(1488, 1710)
     ctx.setStrokeStyle('#333')
     ctx.stroke()
@@ -881,8 +909,8 @@ Page({
 
 
     // 服务要求信息字段
-    ctx.fillText('服务',46,1470)
-    ctx.fillText('要求',46,1500)
+    ctx.fillText('服务', 46, 1470)
+    ctx.fillText('要求', 46, 1500)
 
     // 服务下的字段
     ctx.fillText('测试方法', 170, 1328)
@@ -893,24 +921,24 @@ Page({
     ctx.fillText('报告发送', 170, 1568)
     ctx.fillText('其他', 190, 1628)
     // 其他的值
-    ctx.fillText('其他其他其他......',320,1608)
+    ctx.fillText('其他其他其他......', 320, 1608)
 
 
     ctx.fillText('服务费用', 100, 1694)
     // 服务费用的值
-    ctx.fillText('测试费用：',320,1694)
+    ctx.fillText('测试费用：', 320, 1694)
     ctx.fillText('元', 600, 1694)
     ctx.fillText('其他费用：', 750, 1694)
-    ctx.fillText('元',1000,1694)
+    ctx.fillText('元', 1000, 1694)
 
     ctx.fillText('付费方式', 100, 1775)
     ctx.fillText('*发票抬头', 100, 1852)
     ctx.fillText('*发票类别', 100, 1902)
     ctx.fillText('备注', 130, 1992)
-    ctx.fillText('备注',131,1993)
+    ctx.fillText('备注', 131, 1993)
     // 备注的内容
     ctx.fillText('1.委托方提供的样品及信息的准确性、真实性和完整性由委托方确认，中广测不承担证实的责任；', 320, 1970)
-    ctx.fillText('2.非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。',320,2010)
+    ctx.fillText('2.非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。', 320, 2010)
     ctx.fillText('1.委托方提供的样品及信息的准确性、真实性和完整性由委托方确认，中广测不承担证实的责任；', 320.5, 1970.5)
     ctx.fillText('2.非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。', 320.5, 2010.5)
 
@@ -922,7 +950,7 @@ Page({
     // 服务---->测试方法
     ctx.strokeRect(320, 1310, 20, 20)
     ctx.strokeRect(550, 1310, 20, 20)
-    
+
     // 服务------>判定标准
     ctx.strokeRect(320, 1352, 20, 20)
     ctx.strokeRect(500, 1352, 20, 20)
@@ -939,21 +967,21 @@ Page({
     ctx.strokeRect(420, 1470, 20, 20)
     ctx.strokeRect(660, 1470, 20, 20)
     ctx.strokeRect(860, 1470, 20, 20)
-    ctx.strokeRect(1150,1470,20,20)
+    ctx.strokeRect(1150, 1470, 20, 20)
 
     //服务------>报告类别
     ctx.strokeRect(320, 1510, 20, 20)
     ctx.strokeRect(528, 1510, 20, 20)
     ctx.strokeRect(682, 1510, 20, 20)
     ctx.strokeRect(858, 1510, 20, 20)
-    ctx.strokeRect(1060,1510,20,20)
+    ctx.strokeRect(1060, 1510, 20, 20)
 
     //服务-------->报告发送
     ctx.strokeRect(320, 1550, 20, 20)
     ctx.strokeRect(490, 1550, 20, 20)
     ctx.strokeRect(674, 1550, 20, 20)
     ctx.strokeRect(906, 1550, 20, 20)
-    ctx.strokeRect(1028,1550,20,20)
+    ctx.strokeRect(1028, 1550, 20, 20)
 
     //服务-------->付费方式
     ctx.strokeRect(320, 1730, 20, 20)
@@ -963,11 +991,11 @@ Page({
     ctx.strokeRect(830, 1730, 20, 20)
     ctx.strokeRect(980, 1730, 20, 20)
     ctx.strokeRect(1140, 1730, 20, 20)
-    ctx.strokeRect(320,1780,20,20)
+    ctx.strokeRect(320, 1780, 20, 20)
 
     //服务------->发票抬头
     ctx.strokeRect(320, 1834, 20, 20)
-    ctx.strokeRect(570,1834,20,20)
+    ctx.strokeRect(570, 1834, 20, 20)
 
     //服务------->发票类别
     ctx.strokeRect(320, 1884, 20, 20)
@@ -975,7 +1003,7 @@ Page({
 
     // 字段名
     ctx.fillText('服务方决定', 350, 1328)
-    ctx.fillText('委托方指定（请在委托要求栏详细列出）',580,1328)
+    ctx.fillText('委托方指定（请在委托要求栏详细列出）', 580, 1328)
 
     ctx.fillText('不判定', 350, 1370)
     ctx.fillText('判定（请在委托要求栏详细列出）', 530, 1370)
@@ -990,19 +1018,19 @@ Page({
     ctx.fillText('英文（加收50元）', 450, 1488)
     ctx.fillText('中英文对照', 690, 1488)
     ctx.fillText('附照片（加收50/张）', 890, 1488)
-    ctx.fillText('副本（20/份）',1180,1488)
+    ctx.fillText('副本（20/份）', 1180, 1488)
 
     ctx.fillText('非认证认可报告', 350, 1528)
     ctx.fillText('认证报告（', 558, 1528)
     ctx.fillText('非认证项目）', 712, 1528)
     ctx.fillText('认证认可报告（', 888, 1528)
-    ctx.fillText('含非认证认可项目）',1096,1528)
+    ctx.fillText('含非认证认可项目）', 1096, 1528)
 
     ctx.fillText('委托方自取', 350, 1568)
     ctx.fillText('快递（到付）', 520, 1568)
-    ctx.fillText('快递已付（25元）',704, 1568)
+    ctx.fillText('快递已付（25元）', 704, 1568)
     ctx.fillText('E-mail', 936, 1568)
-    ctx.fillText('传真',1058,1568)
+    ctx.fillText('传真', 1058, 1568)
 
 
     ctx.fillText('现场付费(', 350, 1748)
@@ -1013,23 +1041,23 @@ Page({
     ctx.fillText('定期结算', 1010, 1748)
     ctx.fillText('从预付款中抵扣', 1170, 1748)
     ctx.fillText('预交费：', 350, 1798)
-    ctx.fillText('元',580,1798)
+    ctx.fillText('元', 580, 1798)
 
 
     ctx.fillText('与委托方相同', 350, 1852)
-    ctx.fillText('其他（必须与付款方一致）：',600,1852)
+    ctx.fillText('其他（必须与付款方一致）：', 600, 1852)
     // 其他的值
-    ctx.fillText('与委托方一样',920,1852)
+    ctx.fillText('与委托方一样', 920, 1852)
 
-    ctx.fillText('普票（税号：',350,1902)
+    ctx.fillText('普票（税号：', 350, 1902)
     ctx.fillText('）', 900, 1902)
-    ctx.fillText('专票（需提供开票资料）',990,1902)
+    ctx.fillText('专票（需提供开票资料）', 990, 1902)
     ctx.draw();
   },
 
 
   //纺织品表单 ---------------------------------------------------------------纺织品表单
-  canvas2(){
+  canvas2() {
     const ctx = wx.createCanvasContext('canvas-2');
     ctx.setFillStyle('#fff')
     ctx.fillRect(0, 0, 1700, 2517)
@@ -1084,7 +1112,7 @@ Page({
 
     // 画竖线
     ctx.moveTo(60, 280);
-    ctx.lineTo(60,2120);
+    ctx.lineTo(60, 2120);
     ctx.setLineWidth(3.5);
     ctx.setStrokeStyle('#333')
     ctx.stroke()
@@ -1099,7 +1127,7 @@ Page({
     //画表格的横线
     // 横线--------->委托单信息
     ctx.moveTo(60, 340)
-    ctx.lineTo(1688,340)
+    ctx.lineTo(1688, 340)
     ctx.setLineWidth(3.5)
     ctx.stroke()
 
@@ -1122,7 +1150,7 @@ Page({
     ctx.lineTo(1688, 580)
     ctx.setLineWidth(3.5)
     ctx.stroke()
-    
+
     // 横线------------------------------>样品信息
     ctx.moveTo(60, 640)
     ctx.lineTo(1688, 640)
@@ -1251,7 +1279,7 @@ Page({
     ctx.fillText('托', 25, 410);
     ctx.fillText('方', 25, 440);
     ctx.fillText('信', 25, 470);
-    ctx.fillText('息',25,500);
+    ctx.fillText('息', 25, 500);
 
     //样品标题
     ctx.fillText('样', 25, 655);
@@ -1275,7 +1303,7 @@ Page({
     ctx.fillText('服', 25, 1855)
     ctx.fillText('务', 25, 1885)
     ctx.fillText('要', 25, 1915)
-    ctx.fillText('求',25,1945)
+    ctx.fillText('求', 25, 1945)
 
 
     //委托方信息----->对应字段
@@ -1283,7 +1311,7 @@ Page({
     ctx.fillText('*委托方地址', 90, 380);
     ctx.fillText('生产单位', 110, 440);
     ctx.fillText('电话/手机', 100, 500);
-    ctx.fillText('报告寄送地址',85,560);
+    ctx.fillText('报告寄送地址', 85, 560);
 
     //样品信息----->对应字段
     ctx.fillText('*样品名称', 100, 620);
@@ -1300,15 +1328,15 @@ Page({
     ctx.fillText('其他项目', 105, 1330);
     ctx.fillText('检测方法', 105, 1520);
     ctx.fillText('判断标准', 105, 1650);
-    
+
 
     //服务要求-------------->对应字段
-    ctx.fillText('是否退余样',95,1738);
-    ctx.fillText('报告类别',110,1798);
-    ctx.fillText('报告格式',110,1858);
-    ctx.fillText('报告发送',110,1918);
-    ctx.fillText('分包要求',110,2008);
-    ctx.fillText('报告类别',110,2098);
+    ctx.fillText('是否退余样', 95, 1738);
+    ctx.fillText('报告类别', 110, 1798);
+    ctx.fillText('报告格式', 110, 1858);
+    ctx.fillText('报告发送', 110, 1918);
+    ctx.fillText('分包要求', 110, 2008);
+    ctx.fillText('报告类别', 110, 2098);
 
 
     //其他------->对应字段
@@ -1316,7 +1344,7 @@ Page({
     ctx.fillText('付费方式', 80, 2248)
     ctx.fillText('发票抬头', 80, 2338)
     ctx.fillText('备注', 105, 2428)
-    ctx.fillText('备注',106,2429)
+    ctx.fillText('备注', 106, 2429)
 
 
     // 画小矩形框框(270)
@@ -1326,7 +1354,7 @@ Page({
 
     // 委托方-->生产单位s
     ctx.strokeRect(270, 420, 20, 20)
-    ctx.strokeRect(570,420,20,20)
+    ctx.strokeRect(570, 420, 20, 20)
 
     //委托方---->报告寄送地址
     ctx.strokeRect(270, 540, 20, 20)
@@ -1487,7 +1515,7 @@ Page({
 
     // 其他--------------->发票抬头
     ctx.strokeRect(270, 2320, 20, 20)
-    ctx.strokeRect(540,2320,20,20)
+    ctx.strokeRect(540, 2320, 20, 20)
 
 
     // ctx.strokeRect(270, 1540, 20, 20)
@@ -1497,27 +1525,27 @@ Page({
     // 委托方信息------>
     ctx.fillText('北京盈客通天下科技有限公司广州分公司', 270, 320)
 
-    ctx.fillText('北京盈客通天下科技有限公司广州分公司',270,380)
+    ctx.fillText('北京盈客通天下科技有限公司广州分公司', 270, 380)
 
     ctx.fillText('与委托方相同', 300, 438)
     ctx.fillText('其他：', 600, 438)
     // 其他的值
-    ctx.fillText('与委托方相同',675,438)
+    ctx.fillText('与委托方相同', 675, 438)
 
-    ctx.fillText('1586666666', 270,498)
+    ctx.fillText('1586666666', 270, 498)
 
-    ctx.fillText('与委托方地址相同',300,558)
+    ctx.fillText('与委托方地址相同', 300, 558)
 
-    ctx.fillText('其他：',660,558)
+    ctx.fillText('其他：', 660, 558)
     // 其他的值
-    ctx.fillText('广州手机号地方近点领导说卡士大夫卡士大夫了',740,558)
+    ctx.fillText('广州手机号地方近点领导说卡士大夫卡士大夫了', 740, 558)
 
 
     // 样品信息
-    ctx.fillText('样品名称11112',270,618);
+    ctx.fillText('样品名称11112', 270, 618);
     ctx.fillText('颜色及描述。。。。。', 270, 678)
     ctx.fillText('货款货号货款货号货款货号', 270, 738)
-    ctx.fillText('其他信息其他信息',270,798)
+    ctx.fillText('其他信息其他信息', 270, 798)
 
 
     // 委托要求
@@ -1525,15 +1553,15 @@ Page({
     // 综合项
     ctx.fillText('常规套餐(GB 18401+纤维含量+标识）', 300, 858)
     ctx.fillText('GB 18401全项', 780, 858)
-    ctx.fillText('产品标识',1000, 858)
+    ctx.fillText('产品标识', 1000, 858)
     ctx.fillText('GB 31701（', 1190, 858)
-    ctx.fillText('全项',1360,858)
-    ctx.fillText('物理性能 )',1480,858)
+    ctx.fillText('全项', 1360, 858)
+    ctx.fillText('物理性能 )', 1480, 858)
 
     // 纤维成分
     ctx.fillText('纤维含量', 300, 918)
     ctx.fillText('棉麻纤维含量', 480, 918)
-    ctx.fillText('特种毛含量',730,918)
+    ctx.fillText('特种毛含量', 730, 918)
 
     // 色牢度
     ctx.fillText('耐摩擦（', 300, 978)
@@ -1546,7 +1574,7 @@ Page({
     ctx.fillText('耐皂洗', 1050, 978)
     ctx.fillText('耐唾液', 1190, 978)
     ctx.fillText('耐光', 1330, 978)
-    ctx.fillText('耐光汗',1450,978)
+    ctx.fillText('耐光汗', 1450, 978)
 
     // 化学
     ctx.fillText('甲醛', 300, 1038);
@@ -1555,7 +1583,7 @@ Page({
     ctx.fillText('可分解芳香胺(偶氮)', 690, 1038);
     ctx.fillText('邻苯二甲酸酯', 1010, 1038);
     ctx.fillText('可萃取重金属', 1190, 1038);
-    ctx.fillText('重金属（总铅、总鎘）',1390,1038);
+    ctx.fillText('重金属（总铅、总鎘）', 1390, 1038);
 
     // 物理性能
     ctx.fillText('撕破力强（', 300, 1093)
@@ -1566,7 +1594,7 @@ Page({
     ctx.fillText('抓样法）', 1010, 1093)
     ctx.fillText('炽烈程度', 1150, 1093)
     ctx.fillText('后档接缝强力', 1300, 1093)
-    ctx.fillText('顶破强力',1490,1093)
+    ctx.fillText('顶破强力', 1490, 1093)
 
 
     ctx.fillText('起毛起球（标注正反面）（', 300, 1138)
@@ -1602,7 +1630,7 @@ Page({
 
     ctx.fillText('其他：', 300, 1558)
     // 其他的值
-    ctx.fillText('我是其他的值......',380,1558)
+    ctx.fillText('我是其他的值......', 380, 1558)
 
 
     // 判断标准
@@ -1694,18 +1722,18 @@ Page({
     // 服务费用
     ctx.fillText('测试费：', 270, 2160)
     ctx.fillText('元，其他费用：', 500, 2160)
-    ctx.fillText('元',800,2160)
+    ctx.fillText('元', 800, 2160)
 
     // 付费方式
     ctx.fillText('现场付费（现金、支票、刷卡）', 300, 2224)
-    ctx.fillText('银行汇款（根据汇款名开票）',800,2224)
+    ctx.fillText('银行汇款（根据汇款名开票）', 800, 2224)
 
     ctx.fillText('定期结算', 300, 2272)
     ctx.fillText('其他：', 570, 2272)
 
     // 发票抬头
     ctx.fillText('与委托方相同', 300, 2338)
-    ctx.fillText('其他（必须与付款方一致）：',570,2338)
+    ctx.fillText('其他（必须与付款方一致）：', 570, 2338)
     // 其他的值
     ctx.fillText('其他的自治组织还在.....', 890, 2338)
 
@@ -1715,25 +1743,11 @@ Page({
     ctx.fillText('2、非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。', 270, 2458)
     ctx.fillText('2、非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。', 271, 2459)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ctx.draw()
   },
 
   // 样品信息附表
-  canvas3(){
+  canvas3() {
     const ctx = wx.createCanvasContext('canvas-3');
     ctx.setFillStyle('#fff')
     ctx.fillRect(0, 0, 1500, 2115)
@@ -1759,34 +1773,34 @@ Page({
     // 画线框
     ctx.setStrokeStyle('#333')
     ctx.setLineWidth(3.5)
-    ctx.moveTo(12,170);
-    ctx.lineTo(1488,170);
-    ctx.lineTo(1488,2080);
-    ctx.lineTo(12,2080);
+    ctx.moveTo(12, 170);
+    ctx.lineTo(1488, 170);
+    ctx.lineTo(1488, 2080);
+    ctx.lineTo(12, 2080);
     ctx.closePath()
     ctx.stroke()
 
 
     // 画内部线条
     ctx.moveTo(12, 270)
-    ctx.lineTo(1488,270)
+    ctx.lineTo(1488, 270)
 
     // 画横线
     const deltaY = 258
-    for(let i = 0;i<7;i++){
+    for (let i = 0; i < 7; i++) {
       ctx.moveTo(12, 270 + deltaY * i)
-      ctx.lineTo(1488, 270 + deltaY*i)
+      ctx.lineTo(1488, 270 + deltaY * i)
 
       // 序号
-      ctx.fillText(i + 1, 72,  270 + deltaY / 2 + deltaY * i )
+      ctx.fillText(i + 1, 72, 270 + deltaY / 2 + deltaY * i)
 
     }
-    
+
     // 画竖线
-    const deltaX = (1488-142)/4
-    for(let i = 0;i<4;i++){
-      ctx.moveTo(deltaX * i + 142,170)
-      ctx.lineTo(deltaX*i+142,2080)
+    const deltaX = (1488 - 142) / 4
+    for (let i = 0; i < 4; i++) {
+      ctx.moveTo(deltaX * i + 142, 170)
+      ctx.lineTo(deltaX * i + 142, 2080)
     }
     ctx.stroke()
 
@@ -1796,14 +1810,14 @@ Page({
     ctx.fillText('序号', 74, 232)
     ctx.fillText('测试名称', 310, 232)
     ctx.fillText('货号/款号', 310 + deltaX, 232)
-    ctx.fillText('颜色及描述', 310 + deltaX*2, 232)
-    ctx.fillText('测试项目', 310 + deltaX*3,232)
+    ctx.fillText('颜色及描述', 310 + deltaX * 2, 232)
+    ctx.fillText('测试项目', 310 + deltaX * 3, 232)
 
     ctx.draw()
   },
 
   // 样品信息附表
-  canvas4(){
+  canvas4() {
     const ctx = wx.createCanvasContext('canvas-4');
     ctx.setFillStyle('#fff')
     ctx.fillRect(0, 0, 1500, 2115)
@@ -1871,4 +1885,4 @@ Page({
 
     ctx.draw()
   }
-})           
+})

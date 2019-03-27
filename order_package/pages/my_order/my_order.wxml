@@ -18,12 +18,14 @@
                 </view>
                 <view class='order-num1'>订单编号：{{ item.orderId }}</view>
               </view>
+              <view class='order-status' wx:if='{{ item.status == 10 }}'>待定价</view>
               <view class='order-status' wx:if='{{ item.status == 12 }}'>待签名</view>
               <view class='order-status' wx:if='{{ item.status == 14 }}'>待揽收</view>
               <view class='order-status' wx:if='{{ item.status == 20 }}'>待受理</view>
               <view class='order-status' wx:if='{{ item.status == 22 }}'>待付款</view>
               <view class='order-status' wx:if='{{ item.status == 24 }}'>待报告</view>
               <view class='order-status else-status' wx:if='{{ item.status == 30 }}'>发报告</view>
+              <view class='order-status else-status' wx:if='{{ item.status == 40 }}'>申诉中</view>
               <view class='order-status else-status' wx:if='{{ item.status == 32 }}'>已完成</view>
               <view class='order-status' wx:if='{{ item.status == 34 }}'>修改中</view>
             </view>
@@ -34,7 +36,7 @@
                 <view class='change-status' wx:if='{{ item.status == 30 }}'>{{ item.updateStatus == 10 ? "申请修改中" : "" || item.updateStatus == 20 ? "申请修改通过" : "" || item.updateStatus == 30 ? "驳回修改": "" }}</view>
               </view>
               <view class='bottom-box'>
-                <view class='update-info'>修改委托单</view>
+                <view class='update-info' wx:if='{{ item.status != 40 && item.status != 30 }}' bindtap='modifyOrder' data-_id='{{ item.orderId }}' data-order_type='{{ item.orderType }}'>修改委托单</view>
                 <view class='link'>联系客服
                   <button open-type='contact'></button>
                 </view>

@@ -35,7 +35,6 @@ Page({
     if (page == 1) {
       $.openLoad();
     }
-    $.openLoad()
     my_coupon_model.getMyCoupon(page, pageSize, (res) => {
       console.log(res)
       if (res.code != 0) {
@@ -72,7 +71,7 @@ Page({
     })
   },
   // 触底加载
-  onReachBottom:()=>{
+  onReachBottom(){
     this._getMyCoupon()
   }
 })

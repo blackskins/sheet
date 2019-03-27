@@ -36,22 +36,23 @@ Page({
     if (page == 1) {
       $.openLoad();
     }
-    $.openLoad()
     my_customer_model.getMyCustomer(page, pageSize, (res) => {
       console.log(res)
+      let list0 = res.data
+      
       if (res.code != 0) {
         $.prompt(res.msg, 2500)
         return false
       }
-      if (res.data.length < 10) {
+      if (list0.length < 10) {
         isMore = false
         nodata = true
         loading = false
       }
       if (page == 1) {
-        list = res.data
+        list = list0
       } else {
-        list = res.data ? list.concat(res.data) : list
+        list = list0 ? list.concat(list0) : list
         time = 500
       }
       setTimeout(() => {
@@ -72,7 +73,7 @@ Page({
       )
     })
   },
-  onReachBottom:()=>{
+  onReachBottom(){
     this._getMyCustomer()
   }
 })

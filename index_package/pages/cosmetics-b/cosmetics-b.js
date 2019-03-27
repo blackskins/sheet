@@ -11,91 +11,91 @@ Page({
    */
   data: {
     serviceFn: [{
-        name: '服务方决定',
-        value: '服务方决定'
-      },
-      {
-        name: '委托方指定',
-        value: '委托方指定(请在委托方要求栏详细列出)'
-      },
+      name: '服务方决定',
+      value: '服务方决定'
+    },
+    {
+      name: '委托方指定',
+      value: '委托方指定(请在委托方要求栏详细列出)'
+    },
     ],
     judge: [{
-        name: '不判定',
-        value: '不判定'
-      },
-      {
-        name: '判定',
-        value: '判定(委托方决定)'
-      },
+      name: '不判定',
+      value: '不判定'
+    },
+    {
+      name: '判定',
+      value: '判定(委托方决定)'
+    },
     ],
     serviceTime: [{
-        name: '5个工作日',
-        value: '标准时间(5个工作日)'
-      },
-      {
-        name: '加急',
-        value: '加急'
-      },
+      name: '5个工作日',
+      value: '标准时间(5个工作日)'
+    },
+    {
+      name: '加急',
+      value: '加急'
+    },
     ],
     hurryTime: [{
-        name: '3个工作日',
-        value: '3个工作日(加收50%)'
-      },
-      {
-        name: '2个工作日',
-        value: '2个工作日(加收80%)'
-      },
-      {
-        name: '1个工作日',
-        value: '1个工作日(加收100%)'
-      },
+      name: '3个工作日',
+      value: '3个工作日(加收50%)'
+    },
+    {
+      name: '2个工作日',
+      value: '2个工作日(加收80%)'
+    },
+    {
+      name: '1个工作日',
+      value: '1个工作日(加收100%)'
+    },
     ],
     report: [{
-        name: 'chinese',
-        value: '中文'
-      },
-      {
-        name: 'english',
-        value: '英文(加收50元)'
-      },
-      {
-        name: 'ce',
-        value: '中英文对照(加收50元)'
-      },
+      name: 'chinese',
+      value: '中文'
+    },
+    {
+      name: 'english',
+      value: '英文(加收50元)'
+    },
+    {
+      name: 'ce',
+      value: '中英文对照(加收50元)'
+    },
     ],
     reportSend: [{
-        name: 'self',
-        value: '委托方自取'
-      },
-      {
-        name: 'getPay',
-        value: '快递到付'
-      },
-      {
-        name: 'payed',
-        value: '快递已付(收费25元)'
-      },
-      {
-        name: 'email',
-        value: 'E-mail'
-      },
-      {
-        name: 'fax',
-        value: '传真'
-      },
-      {
-        name: 'else',
-        value: '其他'
-      },
+      name: 'self',
+      value: '委托方自取'
+    },
+    {
+      name: 'getPay',
+      value: '快递到付'
+    },
+    {
+      name: 'payed',
+      value: '快递已付(收费25元)'
+    },
+    {
+      name: 'email',
+      value: 'E-mail'
+    },
+    {
+      name: 'fax',
+      value: '传真'
+    },
+    {
+      name: 'else',
+      value: '其他'
+    },
     ],
     ticketType: [{
-        name: '与委托方相同',
-        value: '与委托方相同'
-      },
-      {
-        name: '其他',
-        value: '其他(必须与付款方一致)'
-      },
+      name: '与委托方相同',
+      value: '与委托方相同'
+    },
+    {
+      name: '其他',
+      value: '其他(必须与付款方一致)'
+    },
     ],
 
     agreement: false,
@@ -111,8 +111,8 @@ Page({
     detailTime: '', //加急-->具体时间
     reportFormMode: '',
     copyCount: '', //副本
-    copyNum:0,
-    photoNum:0,
+    copyNum: 0,
+    photoNum: 0,
     photoCount: '', //附照片
     reportType: '',
     checkbox5a: '',
@@ -125,10 +125,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this._getServiceContent()
   },
-  onShow(){
+  onShow() {
     //获取页面栈
     var pages = getCurrentPages();
     var Page = pages[pages.length - 1]; //当前页
@@ -148,7 +148,7 @@ Page({
     submit_data.getServiceContent(status, (res) => {
       console.log(res)
       this.setData({
-        sheetData: res.data
+        sheetData: res.data[0]
       })
     })
   },
@@ -290,6 +290,12 @@ Page({
   },
   // 提交
   formSubmit(e) {
+    // 测试方法
+    if (this.data.testMethod == '委托方指定' && e.detail.value.judge != "") {
+      this.setData({
+        testMethod: e.detail.value.judge
+      })
+    }
     // 是否判定
     if (this.data.judgementStandard != '不判定' && e.detail.value.judge != "") {
       this.setData({
@@ -421,9 +427,11 @@ Page({
     }
     let data5a = extend(this.data.data3, data4)
     let data5b = {
-      entrust:{cmtEntrust:data5a}
+      entrust: {
+        cmtEntrust: data5a
+      }
     }
-    let data5 = extend(data5b,{
+    let data5 = extend(data5b, {
       orderType: '10', //提交表单的类型(10=>化妆品检测，20=>纺织品检测)
     })
     console.log(data5)
@@ -457,15 +465,15 @@ Page({
     var data = this.data.data5
     submit_data.submitCosmetics(data, (res) => {
       console.log(res)
-      if(res.code != 0){
+      if (res.code != 0) {
         $.prompt(res.msg)
       }
-      $.prompt('提交成功')
-      setTimeout(()=>{
+      $.prompt('委托单已经成功提交，请留意受理信息', 2500)
+      setTimeout(() => {
         wx.switchTab({
           url: '../../../mainPackage/index/index',
         })
-      },1500)
+      }, 2500)
     })
   },
   // 不同意服务协议

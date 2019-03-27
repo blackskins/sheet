@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -152,10 +152,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 16,
 					"name": "订单详情",
 					"pathName": "order_package/pages/order_detail/order_detail",
-					"query": "",
+					"query": "_id: \"LIABE4191213033243601130\"",
 					"scene": null
 				},
 				{
@@ -198,6 +198,27 @@
 					"name": "优惠劵",
 					"pathName": "profile_package/pages/my_coupon/my_coupon",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "首页",
+					"pathName": "mainPackage/index/index",
+					"query": "scene=126b7ed241fa4873a8dfb776a0189f18",
+					"scene": 1047
+				},
+				{
+					"id": -1,
+					"name": "修改委托单的样品信息",
+					"pathName": "order_package/pages/modify_form/modify_form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "ss",
+					"pathName": "order_package/pages/modify_form/modify_form",
+					"query": "_id=LIABE41132304313542243601130&order_type=20",
 					"scene": null
 				}
 			]

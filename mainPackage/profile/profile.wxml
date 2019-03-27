@@ -5,7 +5,7 @@
     <image src='{{ userData.headImg }}'></image>
   </view>
   <view class='nick-name'>昵称：{{ userData.nick }}</view>
-  <view class='my-code' bindtap='toMyCode'>
+  <view class='my-code' bindtap='toMyCode' wx:if='{{ userData.userType == 20 }}'>
     <view class='code'>
       <image src='/images/code.png'></image>
     </view>
@@ -30,9 +30,18 @@
 </view>
 
 <!-- 功能列表项 -->
-<view class='menu-list' wx:for='{{ listItem }}' wx:key='' bindtap='toListPage' data-id='{{ item.id }}'>
+<block wx:for='{{ listItem }}' wx:key=''>
+<view class='menu-list' bindtap='toListPage' data-id='{{ item.id }}' wx:if='{{ item.title == "我的报告" || item.title == "优惠券" || item.title == "我的客户" || item.title == "客服/售后" || userData.userType == 10 && item.title == "申请成为业务员" }}'>
   <view class='icon center'>
     <image src='{{ item.img }}'></image>
   </view>
   <text class='menu-title'>{{ item.title }}</text>
+  <button wx:if='{{ item.title == "客服/售后" }}' class='service-btn'open-type='contact'></button>
 </view>
+</block>
+
+<!-- 客服悬浮按钮 -->
+<!-- <view class='chat'>
+  <image src='../../images/chat.png'></image>
+  <button class='chat-btn' open-type="contact"></button>
+</view> -->

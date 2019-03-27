@@ -66,6 +66,7 @@ Page({
 
     // var reg = /^1(3|4|5|7|8)\d{9}$/; //简略的正则匹配手机号
     var reg = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;//详细的手机号匹配
+    var mb = /^(0[0-9]{2,3})([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$/;//匹配固话
     let reg1 = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/; //验证邮箱
 
     // 表单验证
@@ -79,8 +80,8 @@ Page({
         $.prompt('请填写其他报告抬头')
       }
       return 
-    } else if (!reg.test(data1.phone)) {
-      $.prompt('请填写正确的手机号')
+    } else if (!reg.test(data1.phone) && !mb.test(data1.phone)) {
+      $.prompt('请填写正确的联系电话')
       return 
     } else if (data1.email != '') {
       if (!reg1.test(data1.email)) {

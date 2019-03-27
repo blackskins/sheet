@@ -3,7 +3,7 @@ class My_coupon_model extends Base{
   // 我的优惠券
   getMyCoupon(page,pageSize,callback){
     let params = {
-      url:'/user/AllCoupon',
+      url:'/user/queryAllCoupon',
       data:{
         page:page,
         pageSize:pageSize

@@ -1,146 +1,157 @@
 <!--order_package/pages/order_detail/order_detail.wxml-->
 <!-- 收货地址信息 -->
 <scroll-view scroll-y style='height:{{ scrollHeight }}px' class='scroll-fn'>
-<view class='address'>
-  <view class='address-icon center'>
-    <image src='../../images/address.png'></image>
-  </view>
-  <view class='address-info'>
-    <view class='user-info'>
-      <text class='user-name hd-text'>{{ orderStatus == 22 ? orderData.userName : orderData.user}}</text>
-      <text class='phone'>{{ orderData.phone }}</text>
+  <view class='address'>
+    <view class='address-icon center'>
+      <image src='../../images/address.png'></image>
     </view>
-    <view class='detail-address'>
-      {{ orderData.location.province+' '+orderData.location.city+' '+orderData.location.district+' '+orderData.contactAddress }}
-    </view>
-  </view>
-</view>
-
-<!-- 订单详情信息 -->
-<view class='order-detail'>
-
-  <view class='num-box'>
-    <view class='order-num'>
-      <view class='order-icon center'>
-        <image src='../../images/order_icon.png'></image>
+    <view class='address-info'>
+      <view class='user-info'>
+        <text class='user-name hd-text'>{{ orderStatus == 22 ? orderData.userName : orderData.user}}</text>
+        <text class='phone'>{{ orderData.phone }}</text>
       </view>
-      <view class='order-num1 hd-text'>订单编号：{{ orderData.orderId }}</view>
+      <view class='detail-address'>
+        {{ orderData.location.province+' '+orderData.location.city+' '+orderData.location.district+' '+orderData.contactAddress }}
+      </view>
     </view>
-    <view class='order-status' wx:if='{{ orderData.status == 12 }}'>待签名</view>
-    <view class='order-status' wx:if='{{ orderData.status == 14 }}'>待揽收</view>
-    <view class='order-status' wx:if='{{ orderData.status == 20 }}'>待受理</view>
-    <view class='order-status' wx:if='{{ orderData.status == 22 }}'>待付款</view>
-    <view class='order-status' wx:if='{{ orderData.status == 24 }}'>待报告</view>
-    <view class='order-status else-status' wx:if='{{ orderData.status == 30 }}'>发报告</view>
-    <view class='order-status else-status' wx:if='{{ orderData.status == 32 }}'>已完成</view>
-    <view class='order-status' wx:if='{{ orderData.status == 34 }}'>修改中</view>
   </view>
 
-  <view class='program'>委托项目：{{ orderData.orderType == '10' ? '化妆品委托' : '纺织品委托' }}</view>
-  <view class='base-info'>
-    <view class='count'>样品数量：{{ orderStatus == 22 ? orderData.samNumber : orderData.sampleNumber }}</view>
-    <view class='check-form' bindtap='checkForm' data-id='{{ orderData.orderId }}'>查看表单</view>
-  </view>
-</view>
+  <!-- 订单详情信息 -->
+  <view class='order-detail'>
 
-<!-- 使用优惠券 -->
-<view class='coupon' wx:if='{{ orderData.status == 22 }}'>
-  <view class='coupon-left'>
-    <view class='icon-title'>
-      <view class='icon center'>
-        <image src='../../images/coupon.png'></image>
+    <view class='num-box'>
+      <view class='order-num'>
+        <view class='order-icon center'>
+          <image src='../../images/order_icon.png'></image>
+        </view>
+        <view class='order-num1 hd-text'>订单编号：{{ orderData.orderId }}</view>
       </view>
-      <view class='coupon-title'>使用优惠券</view>
+      <view class='order-status' wx:if='{{ orderData.status == 10 }}'>待定价</view>
+      <view class='order-status' wx:if='{{ orderData.status == 12 }}'>待签名</view>
+      <view class='order-status' wx:if='{{ orderData.status == 14 }}'>待揽收</view>
+      <view class='order-status' wx:if='{{ orderData.status == 20 }}'>待受理</view>
+      <view class='order-status' wx:if='{{ orderData.status == 22 }}'>待付款</view>
+      <view class='order-status' wx:if='{{ orderData.status == 24 }}'>待报告</view>
+      <view class='order-status else-status' wx:if='{{ orderData.status == 30 }}'>发报告</view>
+      <view class='order-status else-status' wx:if='{{ orderData.status == 32 }}'>已完成</view>
+      <view class='order-status' wx:if='{{ orderData.status == 34 }}'>修改中</view>
     </view>
-    <view class='coupon-money'>折扣：
-      <text wx:if='{{ isCoupon }}'>￥ {{ couponPrice }}</text>
-      <text wx:if='{{ !isCoupon }}'>无</text>
+
+    <view class='program'>委托项目：{{ orderData.orderType == '10' ? '化妆品委托' : '纺织品委托' }}</view>
+    <view class='base-info'>
+      <view class='count'>样品数量：{{ orderStatus == 22 ? orderData.samNumber : orderData.sampleNumber }}</view>
+      <view class='check-form' bindtap='viewForm' data-id='{{ orderData.orderId }}'>查看表单</view>
     </view>
   </view>
-  <view class='coupon-right' wx:if='{{ isCoupon }}' bindtap='useCoupon'>
-    <image src='../../images/pay.png'></image>
-  </view>
-  <view wx:else class='coupon-right1' bindtap='useCoupon'></view>
-</view>
-<!-- 付款方式 -->
-<!-- 微信支付 -->
-<view class='wx-pay' wx:if='{{ orderData.status == 22 }}'>
-  <view class='pay-type'>付款方式</view>
-  <view class='pay-title' wx:if='{{ payType != "iOS" }}'>
-    <view class='icon-title'>
-      <view class='icon center'>
-        <image src='../../images/wxPay.png'></image>
+
+  <!-- 使用优惠券 -->
+  <view class='coupon' wx:if='{{ orderData.status == 22 }}'>
+    <view class='coupon-left'>
+      <view class='icon-title'>
+        <view class='icon center'>
+          <image src='../../images/coupon.png'></image>
+        </view>
+        <view class='coupon-title'>使用优惠券</view>
       </view>
-      <view class='coupon-title'>微信支付</view>
+      <view class='coupon-money'>折扣：
+        <text wx:if='{{ isCoupon }}'>￥ {{ couponPrice }}</text>
+        <text wx:if='{{ !isCoupon }}'>无</text>
+      </view>
     </view>
-    <view class='coupon-right'>
+    <view class='coupon-right' wx:if='{{ isCoupon }}' bindtap='useCoupon'>
       <image src='../../images/pay.png'></image>
     </view>
+    <view wx:else class='coupon-right1' bindtap='useCoupon'></view>
   </view>
-  <view class='pay-title money-count'>
-    <view class='icon-title'>
-      <view class='icon center'>
-        <image src='../../images/pay_count.png'></image>
+  <!-- 付款方式 -->
+  <!-- 微信支付 -->
+  <view class='wx-pay' wx:if='{{ orderData.status == 22 }}'>
+    <view class='pay-type'>付款方式</view>
+    <view class='pay-title' wx:if='{{ payType != "iOS" }}'>
+      <view class='icon-title'>
+        <view class='icon center'>
+          <image src='../../images/wxPay.png'></image>
+        </view>
+        <view class='coupon-title'>微信支付</view>
       </view>
-      <view class='coupon-title'>订单金额</view>
+      <view class='coupon-right'>
+        <image src='../../images/pay.png'></image>
+      </view>
     </view>
-    <view class='money'>￥{{ orderStatus == 22 ? orderData.price : orderData.realPrice }}</view>
+    <view class='pay-title money-count'>
+      <view class='icon-title'>
+        <view class='icon center'>
+          <image src='../../images/pay_count.png'></image>
+        </view>
+        <view class='coupon-title'>订单金额</view>
+      </view>
+      <view class='money'>￥{{ orderStatus == 22 ? orderData.price : orderData.realPrice }}</view>
+    </view>
+    <view class='pay-count'>总计：
+      <text>￥{{ ( orderStatus == 22 ? orderData.price : orderData.realPrice ) - couponPrice }}</text>
+    </view>
   </view>
-  <view class='pay-count'>总计：
-    <text>￥{{ ( orderStatus == 22 ? orderData.price : orderData.realPrice ) - couponPrice }}</text>
-  </view>
-</view>
 
-<!-- 线下支付 -->
-<view class='outline-pay' wx:if='{{ orderData.status == 22 && payType == "iOS"}}'>
-  <view class='line-left'>
-    <view class='line-title'>线下支付(银行转账、现金)</view>
-    <view class='card-num'>公司：汕头市中广测分析中心有限公司</view>
-    <view class='card-num'>银行：中国工商银行</view>
-    <view class='card-num'>卡号： 2003022109200270573</view>
-  </view>
-  <view wx:if='{{ proofImg.length == 0 }}' bindtap='upLoadProof' class='up-btn'>上传凭证</view>
-  <view wx:else class='proof'>
-    <image class='proof-img' src='{{ proofImg[0] }}' bindtap='preImg' mode='aspectFit'></image>
-    <view class='del-proof center' bindtap='delImg'>
-      <image src='../../images/del2.png'></image>
+  <!-- 线下支付 -->
+  <view class='outline-pay' wx:if='{{ orderData.status == 22 && payType == "iOS"}}'>
+    <view class='line-left'>
+      <view class='line-title'>线下支付(银行转账、现金)</view>
+      <view class='card-num'>公司：汕头市中广测分析中心有限公司</view>
+      <view class='card-num'>银行：中国工商银行</view>
+      <view class='card-num'>卡号： 2003022109200270573</view>
+    </view>
+    <view wx:if='{{ proofImg.length == 0 }}' bindtap='upLoadProof' class='up-btn'>上传凭证</view>
+    <view wx:else class='proof'>
+      <image class='proof-img' src='{{ proofImg[0] }}' bindtap='preImg' mode='aspectFit'></image>
+      <view class='del-proof center' bindtap='delImg'>
+        <image src='../../images/del2.png'></image>
+      </view>
     </view>
   </view>
-</view>
 </scroll-view>
 <!-- 底部按钮 -->
 
 <view class='btn-box' wx:if='{{ orderData.status == 12 }}'>
   <view class='cancel'>取消受理</view>
-  <view class='input-name' bindtap='signName' data-id='{{ orderData.orderId }}'>签名</view>
+  <view class='input-name' bindtap='signName' data-id='{{ orderData.orderId }}'>{{ canvasImg != "" ? "提交签名" : "签名"}}</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 14 }}'>
-  <view class='cancel'>取消</view>
-  <view class='input-name'>联系客服<button open-type='contact' class='contact'></button></view>
+  <view class='cancel' bindtap='back'>返回</view>
+  <view class='input-name'>联系客服
+    <button open-type='contact' class='contact'></button>
+  </view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 20 }}'>
-  <view class='cancel'>查看快递</view>
-  <view class='input-name'>联系客服<button open-type='contact' class='contact'></button></view>
+  <view class='cancel' bindtap='viewLogistics'>查看物流</view>
+  <view class='input-name'>联系客服
+    <button open-type='contact' class='contact'></button>
+  </view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 22 }}'>
-  <view class='cancel'>联系客服<button open-type='contact' class='contact'></button></view>
+  <view class='cancel'>联系客服
+    <button open-type='contact' class='contact'></button>
+  </view>
   <view class='input-name' bindtap='pay'>立即付款</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 24 }}'>
   <view class='cancel' bindtap='viewLogistics'>查看物流</view>
-  <view class='input-name'>联系客服<button open-type='contact' class='contact'></button></view>
+  <view class='input-name'>联系客服
+    <button open-type='contact' class='contact'></button>
+  </view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 30 }}'>
-  <view class='cancel'>下载报告</view>
+  <view class='cancel' bindtap='download'>下载报告</view>
   <view class='input-name' bindtap='toModifyReport'>报告修改</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 32 }}'>
   <!-- <view class='cancel'>取消受理</view> -->
-  <view class='input-name'>签名</view>
+  <view class='input-name {{ orderData.status == 32 ? "done" :"" }}' bindtap='download'>下载报告</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 34 }}'>
   <view class='cancel'>查看新报告</view>
-  <view class='input-name'>联系客服<button open-type='contact' class='contact'></button></view>
+  <view class='input-name'>联系客服
+    <button open-type='contact' class='contact'></button>
+  </view>
 </view>
 
 
@@ -155,3 +166,32 @@
     </view>
   </view>
 </view>
+
+
+<!-- 下载报告提示弹窗 -->
+<view class='download' style='bottom:{{ fly }}'>
+  <view class='reason'>由于微信小程序不支持直接保存文件到手机本地，所以，请您点击下方的复制按钮，复制文件链接地址用浏览器打开或下载</view>
+  <view class='down-url'>{{ url }}</view>
+  <view class='copy-btn' bindtap='copyUrl'>一键复制</view>
+  <image class='close-img' src='../../images/del1.png' bindtap='close'></image>
+</view>
+<!-- 画布1 -->
+<view class='canvas' wx:if='{{ true }}'>
+  <canvas class='' canvas-id='canvas-1' style='width:1500px;height:2115px'></canvas>
+  <!-- <cover-view class='save' bindtap='saveImg'>保存</cover-view> -->
+</view>
+<!-- 画布2 -->
+<view class='canvas' wx:if='{{ true }}'>
+  <canvas class='' canvas-id='canvas-2' style='width:1700px;height:2517px'></canvas>
+</view>
+<!-- 展示表单 -->
+<view class='window' wx:if='{{ showCanvas }}'>
+  <view class='canvas-box'>
+    <image bindtap='preView' src='{{ canvasForm }}'></image>
+    <view class='form-img center' bindtap='closeForm'>
+      <image src='../../images/del3.png'></image>
+    </view>
+  </view>
+</view>
+
+

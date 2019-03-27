@@ -56,23 +56,28 @@ Page({
       {
         img:'/images/order2.png',
         title:'我的报告',
-        id:'2'
+        id:2
       },
       {
         img: '/images/order3.png',
         title: '优惠券',
-        id: '3'
+        id:3
       },
       {
         img: '/images/order4.png',
         title: '我的客户',
-        id: '4'
+        id:4
       },
       {
         img: '/images/order5.png',
         title: '申请成为业务员',
-        id: '5'
+        id:5
       },
+      {
+        img: '/images/order6.png',
+        title: '客服/售后',
+        id:6
+      }
     ],
     userData:''
   },

@@ -143,3 +143,32 @@ page{
   top: 0;
   /* background-color: cyan; */
 }
+
+/* 删除样品信息项 */
+.base-info{
+  position: relative;
+}
+ .del-item{
+   position: absolute;
+   right: 0rpx;
+   top: 0rpx;
+   width: 60rpx;
+   height: 60rpx;
+   /* background-color: rgba(0, 0, 0, .5); */
+ }
+ .del-item::after,.del-item::before{
+  content: '';
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   background-color: #ccc;
+   transform: translate(-50%,-50%) rotate(45deg);
+ }
+ .del-item::before{
+   width: 2rpx;
+   height: 40rpx;
+ }
+ .del-item::after{
+   width: 40rpx;
+   height: 2rpx;
+ }

@@ -145,7 +145,7 @@
     <view class='sample-box'>
       <radio-group class="radio-group" bindchange="radioChange7">
         <radio class="radio" color='#2090FE' value='增值税专用发票'>
-          <text>增值税专用发票（只能线下支付）</text>
+          <text>增值税专用发票</text>
         </radio>
         <!-- <input type='text' class='ticket' name='report' placeholder-class='holder' maxlength='12' placeholder='请填写'></input> -->
         <radio class="radio" color='#2090FE' value='增值税普通发票'>

@@ -9,35 +9,10 @@ Page({
    */
   data: {
     opacity: 0,//背景蒙层的透明度
-    animate: 'none',//删除图片 动画弹窗
+    animate: '',//删除图片 动画弹窗
     showCoupon:false,
     showTxt:true,
-    hotList:[
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content:'北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime:'2019-02-11 14:20',
-        img:'/images/icon1.png'
-      },
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content: '北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime: '2019-02-11 14:20',
-        img:'/images/icon2.png'
-      },
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content: '北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime: '2019-02-11 14:20',
-        img:'/images/icon3.png'
-      },
-      {
-        title: '北京盈客通天下科技有限公司广州分公司',
-        content: '北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司北京盈客通天下科技有限公司广州分公司',
-        createTime: '2019-02-11 14:20',
-        img:'/images/icon4.png'
-      }
-    ],
+    hotList:[],
     sliderImg:'',
     videoInfo:''
   },
@@ -46,6 +21,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+
+    // console.log('11111111')
+    // console.log(options.scene)
+    // console.log('11111111')
+    // console.log(query)
+    // console.log('222222222')
+
     this._getIndexSliderImg()//获取轮播图
     this._getVideoInfo()//获取视频简介
     this._getLatestInfo()//获取最新的三条咨询
@@ -162,6 +145,12 @@ Page({
   // 禁止蒙层可滑动
   stopMove(){
     return false
+  },
+  // 收起视频简介
+  foldUp(){
+    this.setData({
+      showTxt:true
+    })
   },
   /**
    * 用户点击右上角分享

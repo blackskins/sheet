@@ -12,10 +12,49 @@ App({
     hostUrl: 'https://fenxi.weishangshouji.cn',
     wxAppId: 'wxe8e8fbd81548c7da',
     userInfo: null,
-    vipPower: '',
+    vipPower: ''
   },
   onLaunch: function(options) {
     console.log(options)
+    var codeId = ''//获取邀请码Id
+    if (options.scene == 1047) {
+      var sceneId = decodeURIComponent(options.query.scene)
+      // console.log('1111111')
+      // console.log(sceneId)
+      // console.log('222222')
+      common.getCodeValue(sceneId,(res)=>{
+        // console.log(res,"asdasd")
+        codeId = res.data.invitationCode
+        let invitationCode = codeId
+        var wxAppId = this.globalData.wxAppId
+        console.log(wxAppId)
+        // 获取token
+        token.getTokenFromService(wxAppId, invitationCode, (res) => {
+          console.log(res)
+          wx.setStorageSync('token', res.data.token)
+          if (!res.data.isAuth) {
+            wx.navigateTo({
+              url: '/mainPackage/login/login',
+            })
+          }
+        })
+      })
+    }else{
+      // console.log("执行111")
+      let invitationCode = codeId
+      var wxAppId = this.globalData.wxAppId
+      console.log(wxAppId)
+      // 获取token
+      token.getTokenFromService(wxAppId, invitationCode, (res) => {
+        console.log(res)
+        wx.setStorageSync('token', res.data.token)
+        if (!res.data.isAuth) {
+          wx.navigateTo({
+            url: '/mainPackage/login/login',
+          })
+        }
+      })
+    }
     
     // 清除token缓存
     wx.clearStorageSync()
@@ -23,22 +62,7 @@ App({
     // 更新小程序
     this.updateMP()
 
-    let invitationCode = ''
-    if (options.scene == '1011') {
-      invitationCode = options.query.invitationCode
-    }
-    var wxAppId = this.globalData.wxAppId
-    console.log(wxAppId)
-    // 获取token
-    token.getTokenFromService(wxAppId, invitationCode, (res) => {
-      console.log(res)
-      wx.setStorageSync('token', res.data.token)
-      if (!res.data.isAuth) {
-        wx.navigateTo({
-          url: '/mainPackage/login/login',
-        })
-      }
-    })
+    
   },
   // 小程序更新
   updateMP: function() {

@@ -12,6 +12,19 @@ class Common extends Base {
     }
     this.request(params)
   }
+  // 获取二维码参数
+  getCodeValue(sceneId,callback){
+    let params ={
+      url:'/user/wx/scene',
+      data:{
+        sceneId:sceneId
+      },
+      sCallback:(res)=>{
+        callback && callback(res)
+      }
+    }
+    this.request(params)
+  }
 }
 
 export { Common }

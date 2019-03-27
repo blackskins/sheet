@@ -9,40 +9,7 @@ Page({
    */
   data: {
     // 物流信息
-    logistics:[
-      {
-        title:'快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime:'2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      },
-      {
-        title: '快件已由西溪水岸快递服务站49幢2单XXX菜鸟驿站代收，请 及时取件，如有疑问请联系181671XXXXX',
-        createTime: '2019-02-22 18:32:21'
-      }
-    ],
+    logistics:[],
     orderInfo:'',//订单信息
   },
 
@@ -54,11 +21,14 @@ Page({
   },
   // 查看物流信息
   _viewLogistics(_id){
+    $.openLoad()
     view_logistics_model.viewLogistics(_id,(res)=>{
       console.log(res)
       this.setData({
         logistics:res.data[0],
-        orderInfo:res.data[1]
+        orderInfo:res.data[1][0]
+      },()=>{
+        $.closeLoad()
       })
     })
   }

@@ -9,7 +9,7 @@ page{
   flex-direction: column;
   position: fixed;
   left: 50%;
-  top: 40%;
+  top: 38%;
   transform: translate(-50%,-50%);
 }
 .code-img,.code-img image{
@@ -22,3 +22,38 @@ page{
   font-size: 26rpx;
   color: #333;
 }
+.save{
+  width: 660rpx;
+  height: 100rpx;
+  background-color: #2090FE;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  position: fixed;
+  left: 50%;
+  top: 76%;
+  transform: translate(-50%,-50%);
+  letter-spacing: 6rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+/* 画布海报 */
+.code{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-10000%);
+  opacity: 0;
+}
+.code canvas{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  /* background-color: red; */
+}
+
+

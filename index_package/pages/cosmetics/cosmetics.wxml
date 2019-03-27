@@ -63,7 +63,7 @@
   </view>
 
   <view class='basic-box'>
-    <view class='head'>快递地址
+    <view class='head'>寄件地址
       <text class='import'>*</text>
     </view>
     <picker mode='region' bindchange='bindRegionChange' value='{{ region }}'>
@@ -73,7 +73,7 @@
       </view>
     </picker>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='expressAddress' placeholder='请填写详细的快递地址'></textarea>
+      <textarea placeholder-class='holder' name='expressAddress' placeholder='请填写详细的寄件地址'></textarea>
     </view>
   </view>
 

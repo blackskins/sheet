@@ -48,6 +48,13 @@ page{
   border-bottom:2rpx solid #e9e9e9; 
   background-color: #fff;
 }
+.service-btn{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
 .menu-list::after{
   content: '';
   position: absolute;
@@ -76,6 +83,7 @@ page{
   color: #333;
   background-color: #fff;
   margin-bottom: 20rpx;
+
 }
 .item-status{
   width: 25%;
@@ -89,3 +97,25 @@ page{
 .order-title{
   margin-top: 10rpx;
 }
+
+/* 客服悬浮按钮 */
+/* .chat{
+  position: fixed;
+  right: 30rpx;
+  bottom: 80rpx;
+  z-index: 50;
+  width: 88rpx;
+  height: 88rpx;
+}
+.chat image{
+  width: 88rpx;
+  height: 88rpx;
+}
+.chat button{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+} */

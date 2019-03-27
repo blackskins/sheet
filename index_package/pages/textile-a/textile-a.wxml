@@ -7,6 +7,9 @@
       <image src='../../images/tips.png'></image>
     </view>
     <view class='sample-box' wx:for='{{ spinInfo }}' wx:key=''>
+    <!-- 删除信息项 -->
+      <view wx:if='{{ index != 0 }}' data-index='{{ index }}' bindtap='delItem' class='del-item'></view>
+
       <view class='info-item'>
         <view>样品名称{{ spinInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>
@@ -35,7 +38,6 @@
       </view>
       <view class='info-item last-item'>
         <view>货号/款号{{ spinInfo.length >1 ? index + 1 :"" }}
-          <text class='import'>*</text>
         </view>
         <input type='text' name='itemNumber{{ index + 1 }}' value='{{item.itemNumber}}' bindblur='blurNum' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写货号/款号'></input>
       </view>
@@ -65,7 +67,7 @@
   <view class='sample-info'>
     <view class='sample-title'>其他信息</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='otherInfo' placeholder='填写其他信息'></textarea>
+      <textarea placeholder-class='holder' name='otherInfo' placeholder='填写其他信息' cursor-spacing='160rpx'></textarea>
     </view>
   </view>
 

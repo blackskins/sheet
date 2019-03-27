@@ -7,6 +7,9 @@
       <image src='../../images/tips.png'></image>
     </view>
     <view class='base-info' wx:for='{{ sampleInfo }}' wx:key=''>
+      <!-- 删除信息项 -->
+      <view wx:if='{{ index != 0 }}' data-index='{{ index }}' bindtap='delItem' class='del-item'></view>
+      
       <view class='info-item'>
         <view>样品名称{{ sampleInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>

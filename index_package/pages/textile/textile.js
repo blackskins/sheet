@@ -82,7 +82,7 @@ Page({
       reportSendingAddress: e.detail.value.reportSendingAddress
     }
     var reg = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;//详细的手机号匹配
-    var mb = /^(0[0-9]{2,3}\-)([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$/;//匹配固话
+    var mb = /^(0[0-9]{2,3})([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$/;//匹配固话
     if(data.entrustName == ''){
       $.prompt('请填写委托方')
       return
