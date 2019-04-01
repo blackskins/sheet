@@ -268,6 +268,8 @@ Page({
     show3b: false,
     chem: [], //化学
     physicsPerformance: [], //物理性能
+    physicsPerformance1: '',
+    physicsPerformance2: '',
     physicsPerformance3: '',
     physicsPerformance4:'',
     physicsPerformance5: '',
@@ -344,12 +346,12 @@ Page({
     })
   },
   // 产品标准
-  radioChange9(e){
-    console.log(e.detail.value)
-    this.setData({
-      determineMethod0: e.detail.value
-    })
-  },
+  // radioChange9(e){
+  //   console.log(e.detail.value)
+  //   this.setData({
+  //     determineMethod1: e.detail.value
+  //   })
+  // },
   // 纤维成分
   radioChange2(e) {
     console.log(e.detail.value)
@@ -480,14 +482,14 @@ Page({
       determineMethod: e.detail.value
     })
   },
-  // radioChange77(e) {
-  //   console.log(e.detail.value)
-  //   this.setData({
-  //     determineMethod0: e.detail.value
-  //   })
-  // },
+  radioChange77(e) {
+    console.log(e.detail.value)
+    this.setData({
+      determineMethod0: e.detail.value
+    })
+  },
   // 产品标准
-  radioChange9(e) {
+  radioChange777(e) {
     console.log(e.detail.value)
     this.setData({
       determineMethod1a: e.detail.value
@@ -624,60 +626,37 @@ Page({
     /*------- 色牢度B---------*/
     let colorFastness = this.data.colorFastness
     let colorFastness1 = this.data.colorFastness1
-<<<<<<< HEAD
     let colorFastness2 = this.data.colorFastness2
-=======
-    if(colorFastness1.length != 0){
-      colorFastness1 = colorFastness1.toString()
-      console.log('jjjjjjj')
-      console.log(colorFastness1)
-      console.log('dddddddd')
-      colorFastness1 = colorFastness1.replace(',','/')
-      console.log('1111111')
-      console.log(colorFastness1)
-      console.log('1111111')
 
-    }
-    let len1 = colorFastness.length;
-    // console.log(colorFastness)
     // 耐摩擦
-    for (let i = 0; i < len1; i++) {
-      if (colorFastness[i] == '耐摩擦' && colorFastness1.length != 0 ) {
-        colorFastness.splice(i, 1, colorFastness1)
-        break
-      } else if (colorFastness[i] == '耐摩擦' && colorFastness1.lenght == 0) {
-        $.prompt('请选择色牢度中耐摩擦的类型')
-        return
-      }
-    }
-    return
-
-    // console.log(colorFastness, "阿萨家")
-    // 耐汗渍 
-    colorFastness.forEach((item, index) => {
-      if (item == '耐汗渍') {
-        if (!this.data.colorFastness2) {
-          $.prompt('请选择色牢度中耐汗渍的类型')
-          return
-        } else {
-          colorFastness[index] = this.data.colorFastness2
-        }
-      }
-    })
-    // console.log("执行")
->>>>>>> c836e5dca9616aaffc387797710f71c6c4719a6c
-
     if(colorFastness1.length != 0 && colorFastness1.length == 2){
-      colorFastness = colorFastness.concat(this.data.colorFastness1)
+      let strColor = colorFastness1.toString();
+      strColor = strColor.replace(',', '/');
+      console.log(strColor)
+      let arrColor = [];
+      arrColor.push(strColor)
+      console.log(arrColor)
+
+      colorFastness = colorFastness.concat(arrColor)
     } else if (colorFastness1.length != 0 && colorFastness1.length == 1){
-      colorFastness = colorFastness.push(colorFastness1[0])
+      colorFastness.push(colorFastness1[0])
     }
-    if (this.data.colorFastness2.length != 0) {
-      colorFastness = colorFastness.concat(this.data.colorFastness2)
+
+    //耐汗渍
+    if (colorFastness2.length != 0 && colorFastness2.length == 2) {
+      let strColor1 = colorFastness2.toString();
+      strColor1 = strColor1.replace(',', '/');
+      console.log(strColor1)
+      let arrColor1 = [];
+      arrColor1.push(strColor1)
+      console.log(arrColor1)
+
+      colorFastness = colorFastness.concat(arrColor1)
+    } else if (colorFastness2.length != 0 && colorFastness2.length == 1) {
+      colorFastness.push(colorFastness2[0])
     }
     colorFastness = colorFastness.toString()
     console.log(colorFastness)
-    return
      //数组转换成字符串
     // let len1 = colorFastness.length;
     // // console.log(colorFastness)
@@ -716,76 +695,163 @@ Page({
     /*----------- 化学成分E---------*/
 
     /*----------- 物理性能B---------*/
+   
     let physicsPerformance = this.data.physicsPerformance
-    let len2 = physicsPerformance.length
+    let physicsPerformance1 = this.data.physicsPerformance1
+    let physicsPerformance2 = this.data.physicsPerformance2
+    let physicsPerformance3 = this.data.physicsPerformance3
+    let physicsPerformance4 = this.data.physicsPerformance4
+    let physicsPerformance5 = this.data.physicsPerformance5
+    let physicsPerformance6 = this.data.physicsPerformance6
+    // let len2 = physicsPerformance.length
     // console.log(physicsPerformance)
 
-    
-    for (let i = 0; i < len2; i++) {//撕破强力
-      if (physicsPerformance[i] == '撕破强力') {
-        if (this.data.physicsPerformance1) {
-          physicsPerformance[i] = this.data.physicsPerformance1
-        } else {
-          $.prompt('请选择物理性能中撕破强力的方法')
-          return
-        }
-      }
+    // 撕破强力--->摆锤、单舌法
+    if (physicsPerformance1.length != 0){
+      let phy1 = physicsPerformance1.toString();
+      phy1 = phy1.replace(',', '/');
+      console.log(phy1)
+      let arrPhy1 = [];
+      arrPhy1.push(phy1)
+      console.log(arrPhy1)
+
+      physicsPerformance = physicsPerformance.concat(arrPhy1)
+      console.log(physicsPerformance);
     }
-    for (let i = 0; i < len2; i++) {//断裂强力
-      if (physicsPerformance[i] == '断裂强力') {
-        if (this.data.physicsPerformance2) {
-          physicsPerformance[i] = this.data.physicsPerformance2
-        } else {
-          $.prompt('请选择物理性能中断裂强力的方法')
-          return
-        }
-      }
+
+    // 断裂强力-->条样、单舌法
+    if (physicsPerformance2.length != 0) {
+      let phy2 = physicsPerformance2.toString();
+      phy2 = phy2.replace(',', '/');
+      console.log(phy2)
+      let arrPhy2 = [];
+      arrPhy2.push(phy2)
+      console.log(arrPhy2)
+
+      physicsPerformance = physicsPerformance.concat(arrPhy2)
+      console.log(physicsPerformance);
     }
 
     
-    for (let i = 0; i < len2; i++) {//起毛起球
-      if (physicsPerformance[i] == '起毛起球') {
-        if (this.data.physicsPerformance3 != '' ) {
-          if(this.data.physicsPerformance3 != '箱式'){
-            physicsPerformance[i] = this.data.physicsPerformance3
-          }else{
-            if(this.data.physicsPerformance4 == ''){
-              $.prompt('请选择起毛起球中箱式的风格')
-              return
-            }else{
-              physicsPerformance[i] = this.data.physicsPerformance4
-            }
-          }
-        } else {
-          $.prompt('请选择物理性能中起毛起球的形式')
-          return
-        }
-      }
+    // 起毛起球->马丁代尔、圆轨迹、箱式
+    if (physicsPerformance3.length != 0) {
+      let phy3 = physicsPerformance3.toString();
+      phy3 = phy3.replace(/,/g, '/');
+      console.log(phy3)
+      let arrPhy3 = [];
+      arrPhy3.push(phy3)
+      console.log(arrPhy3)
+
+      physicsPerformance = physicsPerformance.concat(arrPhy3)
+      console.log(physicsPerformance);
     }
 
-    for (let i = 0; i < len2; i++) {//耐磨性能
-      if (physicsPerformance[i] == '耐磨性能') {
-        if (this.data.physicsPerformance5 != '') {
-          physicsPerformance[i] = this.data.physicsPerformance5
-        } else {
-          $.prompt('请选择物理性能中耐磨性能的程度')
-          return
-        }
-      }
+    // 起毛起球-->箱式----->精梳。粗梳
+    if (physicsPerformance4.length != 0) {
+      let phy4 = physicsPerformance4.toString();
+      phy4 = phy4.replace(/,/g, '/');
+      console.log(phy4)
+      let arrPhy4 = [];
+      arrPhy4.push(phy4)
+      console.log(arrPhy4)
+
+      physicsPerformance = physicsPerformance.concat(arrPhy4)
+      console.log(physicsPerformance);
     }
 
-    for (let i = 0; i < len2; i++) {//外观质量
-      if (physicsPerformance[i] == '外观质量') {
-        if (this.data.physicsPerformance6 != '') {
-          physicsPerformance[i] = this.data.physicsPerformance6
-        } else {
-          $.prompt('请选择物理性能中外观质量的条件')
-          return
-        }
-      }
+    // 耐磨性能->破损、质损、外观
+    if (physicsPerformance5.length != 0) {
+      let phy5 = physicsPerformance5.toString();
+      phy5 = phy5.replace(/,/g, '/');
+      console.log(phy5)
+      let arrPhy5 = [];
+      arrPhy5.push(phy5)
+      console.log(arrPhy5)
+
+      physicsPerformance = physicsPerformance.concat(arrPhy5)
+      console.log(physicsPerformance);
     }
 
+    // 外观质量->含规格、不含规格
+    if (physicsPerformance6.length != 0) {
+      let phy6 = physicsPerformance6.toString();
+      phy6 = phy6.replace(/,/g, '/');
+      console.log(phy6)
+      let arrPhy6 = [];
+      arrPhy6.push(phy6)
+      console.log(arrPhy6)
+
+      physicsPerformance = physicsPerformance.concat(arrPhy6)
+      console.log(physicsPerformance);
+    }
     physicsPerformance = physicsPerformance.toString()
+    console.log(physicsPerformance);
+
+    
+    // for (let i = 0; i < len2; i++) {//撕破强力
+    //   if (physicsPerformance[i] == '撕破强力') {
+    //     if (this.data.physicsPerformance1) {
+    //       physicsPerformance[i] = this.data.physicsPerformance1
+    //     } else {
+    //       $.prompt('请选择物理性能中撕破强力的方法')
+    //       return
+    //     }
+    //   }
+    // }
+    // for (let i = 0; i < len2; i++) {//断裂强力
+    //   if (physicsPerformance[i] == '断裂强力') {
+    //     if (this.data.physicsPerformance2) {
+    //       physicsPerformance[i] = this.data.physicsPerformance2
+    //     } else {
+    //       $.prompt('请选择物理性能中断裂强力的方法')
+    //       return
+    //     }
+    //   }
+    // }
+
+    
+    // for (let i = 0; i < len2; i++) {//起毛起球
+    //   if (physicsPerformance[i] == '起毛起球') {
+    //     if (this.data.physicsPerformance3 != '' ) {
+    //       if(this.data.physicsPerformance3 != '箱式'){
+    //         physicsPerformance[i] = this.data.physicsPerformance3
+    //       }else{
+    //         if(this.data.physicsPerformance4 == ''){
+    //           $.prompt('请选择起毛起球中箱式的风格')
+    //           return
+    //         }else{
+    //           physicsPerformance[i] = this.data.physicsPerformance4
+    //         }
+    //       }
+    //     } else {
+    //       $.prompt('请选择物理性能中起毛起球的形式')
+    //       return
+    //     }
+    //   }
+    // }
+
+    // for (let i = 0; i < len2; i++) {//耐磨性能
+    //   if (physicsPerformance[i] == '耐磨性能') {
+    //     if (this.data.physicsPerformance5 != '') {
+    //       physicsPerformance[i] = this.data.physicsPerformance5
+    //     } else {
+    //       $.prompt('请选择物理性能中耐磨性能的程度')
+    //       return
+    //     }
+    //   }
+    // }
+
+    // for (let i = 0; i < len2; i++) {//外观质量
+    //   if (physicsPerformance[i] == '外观质量') {
+    //     if (this.data.physicsPerformance6 != '') {
+    //       physicsPerformance[i] = this.data.physicsPerformance6
+    //     } else {
+    //       $.prompt('请选择物理性能中外观质量的条件')
+    //       return
+    //     }
+    //   }
+    // }
+
     // console.log(physicsPerformance)
     /*----------- 物理性能E---------*/
 
@@ -860,9 +926,32 @@ Page({
           }
         }
         // determineMethod = this.data.determineMethod1
+      }else{//不判定
+        determineMethod = this.data.determineMethod
       }
     }
-    // console.log(determineMethod)
+    if(this.data.determineMethod1a == '产品标准'){
+      if (e.detail.value.standard == ''){
+        $.prompt('请填写判断标准中的产品标准')
+        return
+      }
+      if (this.data.determineMethod5 == ''){
+        $.prompt('请选择产品标准的级别')
+        return
+      }else if(this.data.determineMethod5 == '其他'){
+        if (e.detail.value.elseLevel == ''){
+          $.prompt('请填写其他产品标准的值')
+          return
+        }else{
+          console.log('其他')
+          determineMethod = `${determineMethod},${e.detail.value.standard}/${e.detail.value.elseLevel}`
+        }
+      }else{
+        determineMethod = `${determineMethod},${e.detail.value.standard}/${this.data.determineMethod5}`
+      }
+    }
+   
+    console.log(determineMethod)
 
     /*------------判断标准E-----------------*/
 
@@ -881,8 +970,8 @@ Page({
       chem: chem,
       physicsPerformance: physicsPerformance,
       testMode: testMode,
-      determineMethod,
-      otherproject:e.detail.value.otherproject
+      determineMethod: determineMethod,
+      otherproject:e.detail.value.otherproject,
     }
     console.log(data)
     console.log('111111111')

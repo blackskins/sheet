@@ -307,6 +307,74 @@ Page({
     
     
   },
+  // 查看新报告
+  lookNewReport(){
+    if (this.data.url != '') {
+      let src = this.data.url
+      if (src.substring(src.length - 3) == 'pdf') {
+        console.log('打开PDF文件')
+        wx.downloadFile({
+          url: src,
+          // url: 'http://zhonguangce.oss-cn-shenzhen.aliyuncs.com/a955085f341843d7a3331aec6b3c70b9.jpg',
+          success: function (res) {
+            console.log(res)
+            var Path = res.tempFilePath              //返回的文件临时地址，用于后面打开本地预览所用
+            wx.openDocument({
+              filePath: Path,
+              success: function (res) {
+                // console.log('打开文档成功')
+              }
+            })
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
+      }else{
+        let urls = [];
+        urls.push(src)
+        wx.previewImage({
+          urls: urls // 需要预览的图片http链接列表
+        })
+      }
+      return
+    }
+    let _id = this.data.orderData.orderId
+    order_detail_model.downloadReport(_id, (res) => {
+      console.log(res)
+      this.setData({
+        url: res.data
+      }, () => {
+        let src = res.data
+        if (src.substring(src.length - 3) == 'pdf') {
+          console.log('打开PDF文件')
+          wx.downloadFile({
+            url: src,
+            // url: 'http://zhonguangce.oss-cn-shenzhen.aliyuncs.com/a955085f341843d7a3331aec6b3c70b9.jpg',
+            success: function (res) {
+              console.log(res)
+              var Path = res.tempFilePath              //返回的文件临时地址，用于后面打开本地预览所用
+              wx.openDocument({
+                filePath: Path,
+                success: function (res) {
+                  // console.log('打开文档成功')
+                }
+              })
+            },
+            fail: function (res) {
+              console.log(res)
+            }
+          })
+        } else {
+          let urls = [];
+          urls.push(src)
+          wx.previewImage({
+            urls: urls // 需要预览的图片http链接列表
+          })
+        }
+      })
+    })
+  },
   // 关闭下载窗口
   close(){
     this.setData({

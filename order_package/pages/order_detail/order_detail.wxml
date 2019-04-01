@@ -148,7 +148,7 @@
   <view class='input-name {{ orderData.status == 32 ? "done" :"" }}' bindtap='download'>下载报告</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 34 }}'>
-  <view class='cancel'>查看新报告</view>
+  <view class='cancel' bindtap='lookNewReport'>查看新报告</view>
   <view class='input-name'>联系客服
     <button open-type='contact' class='contact'></button>
   </view>

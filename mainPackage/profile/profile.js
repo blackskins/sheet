@@ -18,7 +18,7 @@ Page({
       },
       {
         img: '/images/status2.png',
-        title: '待签收',
+        title: '待揽收',
         id: '2'
       },
       {
@@ -43,7 +43,7 @@ Page({
       },
       {
         img: '/images/status7.png',
-        title: '已成功',
+        title: '已完成',
         id: '7'
       },
       {

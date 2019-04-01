@@ -43,17 +43,17 @@ Page({
         status: 30,
       },
       {
-        title: '申诉中',
-        status: 40,
-      },
-      {
         title: '已完成',
         status: 32,
       },
       {
         title: '修改中',
         status: 34,
-      }
+      },
+      {
+        title: '申诉中',
+        status: 40,
+      },
     ],
     scrollHeight: '', //实时获取设备scroll-view的高度
     currentOrderStatus: 0,
