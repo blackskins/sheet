@@ -36,7 +36,7 @@
                 <view class='change-status' wx:if='{{ item.status == 30 }}'>{{ item.updateStatus == 10 ? "申请修改中" : "" || item.updateStatus == 20 ? "申请修改通过" : "" || item.updateStatus == 30 ? "驳回修改": "" }}</view>
               </view>
               <view class='bottom-box'>
-                <view class='update-info' wx:if='{{ item.status != 40 && item.status != 30 }}' bindtap='modifyOrder' data-_id='{{ item.orderId }}' data-order_type='{{ item.orderType }}'>修改委托单</view>
+                <view class='update-info' wx:if='{{ item.status != 40 && item.status != 30 && item.status != 32 && item.status != 24 }}' bindtap='modifyOrder' data-_id='{{ item.orderId }}' data-order_type='{{ item.orderType }}'>修改委托单</view>
                 <view class='link'>联系客服
                   <button open-type='contact'></button>
                 </view>

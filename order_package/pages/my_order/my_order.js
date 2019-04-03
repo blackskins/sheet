@@ -1151,6 +1151,28 @@ Page({
     ctx.setLineWidth(3.5)
     ctx.stroke()
 
+    // 竖线--------->委托单信息
+    ctx.moveTo(1000,460)
+    ctx.lineTo(1000, 520)
+    ctx.setLineWidth(3.5)
+    ctx.stroke()
+
+    ctx.moveTo(1100, 460)
+    ctx.lineTo(1100, 520)
+    ctx.setLineWidth(3.5)
+    ctx.stroke()
+
+    ctx.moveTo(1400, 460)
+    ctx.lineTo(1400, 520)
+    ctx.setLineWidth(3.5)
+    ctx.stroke()
+
+
+    ctx.moveTo(1550, 460)
+    ctx.lineTo(1550, 520)
+    ctx.setLineWidth(3.5)
+    ctx.stroke()
+
     // 横线------------------------------>样品信息
     ctx.moveTo(60, 640)
     ctx.lineTo(1688, 640)

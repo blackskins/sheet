@@ -67,7 +67,7 @@
   <view class='sample-info'>
     <view class='sample-title'>其他信息</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='otherInfo' placeholder='填写其他信息' cursor-spacing='160rpx'></textarea>
+      <textarea placeholder-class='holder' name='otherInfo' placeholder='' cursor-spacing='160rpx'></textarea>
     </view>
   </view>
 

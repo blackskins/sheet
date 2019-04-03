@@ -287,7 +287,7 @@
   <view class='sample-info'>
     <view class='sample-title'>其他项目</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='otherproject' placeholder='填写其他项目信息' cursor-spacing='140rpx'></textarea>
+      <textarea placeholder-class='holder' name='otherproject' placeholder='' cursor-spacing='140rpx'></textarea>
     </view>
   </view>
 
@@ -376,14 +376,14 @@
             <text>产品标准</text>
           </view>
         </checkbox>
-        <input wx:if='{{ determineMethod1a == "产品标准" }}' type='text' class='standard-c' name='standard' cursor-spacing='40rpx' placeholder-class='holder' placeholder='请填写'></input>
+        <input wx:if='{{ determineMethod1a == "产品标准" }}' type='text' class='standard-c' name='standard' cursor-spacing='40rpx' placeholder-class='holder' placeholder=''></input>
       </checkbox-group>
       <radio-group wx:if='{{ determineMethod1a == "产品标准" }}' class="radio-group child" bindchange="radioChange7e">
         (
         <radio class="radio" color='#2090FE' wx:for="{{judge5}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
-        <input wx:if='{{ determineMethod5 == "其他" }}' type='text' name='elseLevel' placeholder-class='holder' placeholder='请填写'></input>
+        <input wx:if='{{ determineMethod5 == "其他" }}' type='text' name='elseLevel' placeholder-class='holder' placeholder=''></input>
         )
       </radio-group>
     </view>
