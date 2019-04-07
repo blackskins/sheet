@@ -155,7 +155,7 @@
 					"id": 16,
 					"name": "订单详情",
 					"pathName": "order_package/pages/order_detail/order_detail",
-					"query": "_id: \"LIABE4191213033243601130\"",
+					"query": "",
 					"scene": null
 				},
 				{
