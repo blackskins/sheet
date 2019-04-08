@@ -2823,6 +2823,8 @@ Page({
     // 其他--------------->发票抬头
     if (data.invoiceRise == '与委托方相同'){
       ctx.fillRect(270, 2320, 20, 20)
+    } else if (data.invoiceRise != '与委托方相同'){
+      ctx.fillRect(540, 2320, 20, 20)
     }
     ctx.strokeRect(270, 2320, 20, 20)
     ctx.strokeRect(540, 2320, 20, 20)
