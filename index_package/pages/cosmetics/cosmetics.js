@@ -1,11 +1,20 @@
 // index_package/pages/cosmetics/cosmetics.js
-var $ = require('../../../utils/common.js')
+const $ = require('../../../utils/common.js')
+import { Common } from '../../../utils/common_model.js'
+const common = new Common()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    agreement: false,
+    opacity: 0,
+    scale: 'translate(-50%,-50%) scale(0.3)',
+    agreement1: false,
+    opacity1: 0,
+    scale1: 'translate(-50%,-50%) scale(0.3)',
+
     region: [], //省市区
     rhStatus: '', //报告抬头 0：与委托方相同   1:其他抬头
     reportHeader: '',//报告抬头的值
@@ -18,7 +27,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this._getExample()
+  },
+  // 获取委托方信息
+  _getExample() {
+    let status = 10
+    common.getExample(status, (res) => {
+      console.log(res)
+      this.setData({
+        sheetData: res.data[0]
+      })
+    })
+  },
+  // 查看委托单信息
+  show() {
+    this.setData({
+      agreement: true,
+      hide: false
+    }, () => {
+      this.setData({
+        opacity: 1,
+        scale: 'translate(-50%,-50%) scale(1)'
+      })
+    })
+  },
+  // 关闭协议弹窗
+  closeWindow() {
+    this.setData({
+      opacity: 0,
+      scale: 'translate(-50%,-50%) scale(0.3)'
+    }, () => {
+      setTimeout(() => {
+        this.setData({
+          agreement: false
+        })
+      }, 300)
+    })
+  },
+  // 确定说明
+  agree() {
+    this.closeWindow()
+  },
+  // 取消
+  cancel() {
+    this.closeWindow()
   },
   // 选择省市区
   bindRegionChange(e) {
