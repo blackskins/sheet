@@ -3,13 +3,14 @@
   <view class='second-part'>
     <view class='detail-info'>
       <text>服务要求</text>
-      <image src='../../images/tips.png'></image>
+      <!-- <image src='../../images/tips.png'></image> -->
     </view>
 
     <!-- 是否退余样 -->
     <view class='sample-info'>
       <view class='sample-title'>是否退余样
         <text class='import'>*</text>
+        <image bindtap='show' data-id='{{ 7 }}' src='../../images/tips.png'></image>
       </view>
       <view class='sample-box'>
         <radio-group class="radio-group" bindchange="radioChange">
@@ -114,7 +115,8 @@
           <text>认证认可报告</text>
         </radio>
         <checkbox-group wx:if='{{ formatType == "认证认可报告" }}' class="radio-group" bindchange='checkboxChange5b'>
-          （<checkbox class="checkbox" color='#2090FE' value='含非认证认可项目'>
+          （
+          <checkbox class="checkbox" color='#2090FE' value='含非认证认可项目'>
             <text>含非认证认可项目</text>
           </checkbox>）
         </checkbox-group>
@@ -175,6 +177,20 @@
     <view class='isAgree'>
       <view class='cancel-btn' catchtap='cancel'>取消</view>
       <view class='agree-btn' catchtap='agree'>同意</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 说明 -->
+
+<view class='mask' catchtouchmove='stopMove' wx:if='{{ agreement1 }}' style='opacity:{{ opacity1 }}'>
+  <view class='agreement' style='transform:{{ scale1 }}'>
+    <view class='agreement-title center'>说明</view>
+    <scroll-view scroll-y class='agreement-txt'>{{ sheetData1.content }}</scroll-view>
+    <view class='isAgree'>
+      <view class='cancel-btn' catchtap='cancelA'>返回</view>
+      <view class='agree-btn' catchtap='agreeA'>确定</view>
     </view>
   </view>
 </view>

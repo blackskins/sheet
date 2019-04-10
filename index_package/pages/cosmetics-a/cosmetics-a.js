@@ -1,11 +1,17 @@
 // index_package/pages/cosmetics-a/cosmetics-a.js
-var $ = require('../../../utils/common.js')
+import { Common } from '../../../utils/common_model.js'
+const common = new Common()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    agreement: false,
+    opacity: 0,
+    scale: 'translate(-50%,-50%) scale(0.3)',
+    hide: true,
     // 头部的基本信息列表组
     count: 1,
     // 样品信息列表
@@ -256,6 +262,61 @@ Page({
       })
     }
   },
+  // 获取委托方信息说明
+  _getExample(status) {
+    // let status = 1
+    common.getExample(status, (res) => {
+      console.log(res)
+      this.setData({
+        sheetData: res.data[0]
+      })
+    })
+  },
+  // 查看委托单信息
+  lookExplain() {
+    this.setData({
+      opacity: 1,
+      scale: 'translate(-50%,-50%) scale(1)'
+    })
+  },
+  show(e) {
+    let status = e.currentTarget.dataset.id
+    console.log(status)
+    this._getExample(status)
+    this.setData({
+      agreement: true,
+      hide: false
+    }, () => {
+      this.setData({
+        opacity: 1,
+        scale: 'translate(-50%,-50%) scale(1)'
+      })
+    })
+  },
+
+  // 关闭协议弹窗
+  closeWindow() {
+    this.setData({
+      opacity: 0,
+      scale: 'translate(-50%,-50%) scale(0.3)'
+    }, () => {
+      setTimeout(() => {
+        this.setData({
+          agreement: false,
+          hide: true
+        })
+      }, 300)
+    })
+  },
+  // 确定说明
+  agree() {
+    this.closeWindow()
+  },
+  // 取消
+  cancel() {
+    this.closeWindow()
+  },
+
   // 上一步
   backPage() {
     wx.navigateBack({

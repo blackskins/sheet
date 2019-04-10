@@ -4,42 +4,50 @@
   <view class='first-part'>
     <view class='detail-info'>
       <text>样品信息</text>
-      <image src='../../images/tips.png'></image>
+      <!-- <image src='../../images/tips.png'></image> -->
     </view>
     <view class='sample-box' wx:for='{{ spinInfo }}' wx:key=''>
-    <!-- 删除信息项 -->
+      <!-- 删除信息项 -->
       <view wx:if='{{ index != 0 }}' data-index='{{ index }}' bindtap='delItem' class='del-item'></view>
 
       <view class='info-item'>
         <view>样品名称{{ spinInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>
+          <image bindtap='show' data-id='{{ 2 }}' src='../../images/tips.png'></image>
         </view>
-        <input type='text' name='sampleName{{ index + 1 }}' value='{{item.sampleName}}' bindblur='blurName' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品名称'></input>
+        <input hidden='{{ !hide }}' type='text' name='sampleName{{ index + 1 }}' value='{{item.sampleName}}' bindblur='blurName' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品名称'></input>
       </view>
       <view class='info-item'>
-        <view>商标{{ spinInfo.length >1 ? index + 1 :"" }}</view>
-        <input type='text' name='brand{{ index + 1 }}' value='{{item.brand}}' bindblur='blurBrand' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写商标'></input>
+        <view>商标{{ spinInfo.length >1 ? index + 1 :"" }}
+          <image bindtap='show' data-id='{{ 2 }}' src='../../images/tips.png'></image>
+        </view>
+        <input hidden='{{ !hide }}' type='text' name='brand{{ index + 1 }}' value='{{item.brand}}' bindblur='blurBrand' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写商标'></input>
       </view>
       <view class='info-item'>
         <view>样品数量{{ spinInfo.length >1 ? index + 1 :"" }}
           <text class='import'>*</text>
+          <image bindtap='show' data-id='{{ 1 }}' src='../../images/tips.png'></image>
         </view>
-        <input type='number' name='samplenumber{{ index + 1 }}' value='{{item.samplenumber}}' bindblur='blurCount' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品数量'></input>
+        <input hidden='{{ !hide }}' type='number' name='samplenumber{{ index + 1 }}' value='{{item.samplenumber}}' bindblur='blurCount' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写样品数量'></input>
       </view>
       <view class='info-item'>
-        <view>颜色及描述{{ spinInfo.length >1 ? index + 1 :"" }}
-         <text class='import'>*</text>
+        <view>颜色描述{{ spinInfo.length >1 ? index + 1 :"" }}
+          <text class='import'>*</text>
+          <image bindtap='show' data-id='{{ 2 }}' src='../../images/tips.png'></image>
         </view>
-        <input type='text' name='color{{ index + 1 }}' value='{{item.color}}' bindblur='blurColor' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写颜色及描述'></input>
+        <input hidden='{{ !hide }}' type='text' name='color{{ index + 1 }}' value='{{item.color}}' bindblur='blurColor' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写颜色及描述'></input>
       </view>
       <view class='info-item'>
-        <view>原料成分{{ spinInfo.length >1 ? index + 1 :"" }}</view>
-        <input type='text' name='component{{ index + 1 }}' value='{{item.component}}' bindblur='blurComponent' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写原料成分'></input>
+        <view>原料成分{{ spinInfo.length >1 ? index + 1 :"" }}
+          <image bindtap='show' data-id='{{ 3 }}' src='../../images/tips.png'></image>
+        </view>
+        <input hidden='{{ !hide }}' type='text' name='component{{ index + 1 }}' value='{{item.component}}' bindblur='blurComponent' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写原料成分'></input>
       </view>
       <view class='info-item last-item'>
         <view>货号/款号{{ spinInfo.length >1 ? index + 1 :"" }}
+          <image bindtap='show' data-id='{{ 2 }}' src='../../images/tips.png'></image>
         </view>
-        <input type='text' name='itemNumber{{ index + 1 }}' value='{{item.itemNumber}}' bindblur='blurNum' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写货号/款号'></input>
+        <input hidden='{{ !hide }}' type='text' name='itemNumber{{ index + 1 }}' value='{{item.itemNumber}}' bindblur='blurNum' data-index='{{ index }}' placeholder-class='holder' placeholder='请填写货号/款号'></input>
       </view>
     </view>
     <!-- 添加其他样品信息 -->
@@ -79,3 +87,17 @@
     </view>
   </view>
 </form>
+
+
+<!-- 说明 -->
+
+<view class='mask' catchtouchmove='stopMove' wx:if='{{ agreement }}' style='opacity:{{ opacity }}'>
+  <view class='agreement' style='transform:{{ scale }}'>
+    <view class='agreement-title center'>说明</view>
+    <scroll-view scroll-y class='agreement-txt'>{{ sheetData.content }}</scroll-view>
+    <view class='isAgree'>
+      <view class='cancel-btn' catchtap='cancel'>返回</view>
+      <view class='agree-btn' catchtap='agree'>确定</view>
+    </view>
+  </view>
+</view>

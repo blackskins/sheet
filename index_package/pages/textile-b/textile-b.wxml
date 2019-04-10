@@ -4,7 +4,7 @@
   <view class='first-part'>
     <view class='detail-info'>
       <text>委托要求</text>
-      <image src='../../images/tips.png'></image>
+      <!-- <image src='../../images/tips.png'></image> -->
     </view>
     <view class='info-item' wx:for='{{ sampleList }}' wx:key=''>
       <view>{{ item.title }}
@@ -23,7 +23,10 @@
   <!-- 综合 -->
   <view class='sample-info'>
     <view class='detail-info1' bindtap='fold' data-id='1'>
-      <text>综合</text>
+      <view class='title-box'>
+        <text>综合</text>
+        <image catchtap='show' data-id='{{ 4 }}' class='t-img' src='../../images/tips.png'></image>
+      </view>
       <view class='fold-box'>
         <image style='transform:{{ rotate1 }}' src='../../images/arrow.png'></image>
       </view>
@@ -77,7 +80,10 @@
   <!-- 色牢度 -->
   <view class='sample-info'>
     <view class='detail-info1' bindtap='fold' data-id='3'>
-      <text>色牢度</text>
+      <view class='title-box'>
+        <text>色牢度</text>
+        <image catchtap='show' data-id='{{ 5 }}' class='t-img' src='../../images/tips.png'></image>
+      </view>
       <view class='fold-box'>
         <image style='transform:{{ rotate3 }}' src='../../images/arrow.png'></image>
       </view>
@@ -285,9 +291,13 @@
 
   <!-- 其他项目 -->
   <view class='sample-info'>
-    <view class='sample-title'>其他项目</view>
+    <!-- <view class='sample-title'>其他项目</view> -->
+    <view class='title-box'>
+      <text>其他项目</text>
+      <image catchtap='show' data-id='{{ 6 }}' class='t-img' src='../../images/tips.png'></image>
+    </view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='otherproject' placeholder='' cursor-spacing='140rpx'></textarea>
+      <textarea hidden='{{ !hide }}' placeholder-class='holder' name='otherproject' placeholder='' cursor-spacing='140rpx'></textarea>
     </view>
   </view>
 
@@ -397,3 +407,16 @@
     </view>
   </view>
 </form>
+
+<!-- 说明 -->
+
+<view class='mask' catchtouchmove='stopMove' wx:if='{{ agreement }}' style='opacity:{{ opacity }}'>
+  <view class='agreement' style='transform:{{ scale }}'>
+    <view class='agreement-title center'>说明</view>
+    <scroll-view scroll-y class='agreement-txt'>{{ sheetData.content }}</scroll-view>
+    <view class='isAgree'>
+      <view class='cancel-btn' catchtap='cancel'>返回</view>
+      <view class='agree-btn' catchtap='agree'>确定</view>
+    </view>
+  </view>
+</view>

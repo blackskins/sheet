@@ -8,9 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    agreement: false,
-    opacity: 0,
-    scale: 'translate(-50%,-50%) scale(0.3)',
     agreement1: false,
     opacity1: 0,
     scale1: 'translate(-50%,-50%) scale(0.3)',
@@ -57,6 +54,17 @@ Page({
       console.log(res)
       this.setData({
         sheetData: res.data[0]
+      })
+    })
+  },
+  show() {
+    this.setData({
+      agreement: true,
+      hide: false
+    }, () => {
+      this.setData({
+        opacity: 1,
+        scale: 'translate(-50%,-50%) scale(1)'
       })
     })
   },

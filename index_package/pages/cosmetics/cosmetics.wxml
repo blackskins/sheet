@@ -3,7 +3,7 @@
   <view class='first-party'>
     <view class='detail-info'>
       <text>委托方信息</text>
-      <image bindtap='show' src='../../images/tips.png'></image>
+      <!-- <image bindtap='show' src='../../images/tips.png'></image> -->
     </view>
     <view class='info-item'>
       <view>委托方

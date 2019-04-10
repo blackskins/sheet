@@ -4,7 +4,7 @@
   <view class='first-part'>
     <view class='detail-info'>
       <text>样品信息</text>
-      <image src='../../images/tips.png'></image>
+      <!-- <image src='../../images/tips.png'></image> -->
     </view>
     <view class='base-info' wx:for='{{ sampleInfo }}' wx:key=''>
       <!-- 删除信息项 -->
@@ -125,9 +125,13 @@
 
   <!-- 委托要求 -->
   <view class='sample-info'>
-    <view class='sample-title'>委托要求</view>
+    <view class='sample-title s-tips'>
+      <text>委托要求</text>
+      <image bindtap='show' data-id='{{ 8 }}' src='../../images/tips.png'></image>
+    </view>
+
     <view class='head-txt'>
-      <textarea placeholder-class='holder' cursor-spacing='16rpx' name='requirement' placeholder='其他快递地址请填写'></textarea>
+      <textarea hidden='{{ !hide }}' placeholder-class='holder' cursor-spacing='16rpx' name='requirement' placeholder=''></textarea>
     </view>
   </view>
 
@@ -139,3 +143,16 @@
     </view>
   </view>
 </form>
+
+<!-- 说明 -->
+
+<view class='mask' catchtouchmove='stopMove' wx:if='{{ agreement }}' style='opacity:{{ opacity }}'>
+  <view class='agreement' style='transform:{{ scale }}'>
+    <view class='agreement-title center'>说明</view>
+    <scroll-view scroll-y class='agreement-txt'>{{ sheetData.content }}</scroll-view>
+    <view class='isAgree'>
+      <view class='cancel-btn' catchtap='cancel'>返回</view>
+      <view class='agree-btn' catchtap='agree'>确定</view>
+    </view>
+  </view>
+</view>

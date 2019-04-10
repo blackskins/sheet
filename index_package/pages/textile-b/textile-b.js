@@ -1,11 +1,17 @@
 // index_package/pages/textile-b/textile-b.js
-var $ = require('../../../utils/common.js')
+import { Common } from '../../../utils/common_model.js'
+const common = new Common()
+const $ = require('../../../utils/common.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    agreement: false,
+    opacity: 0,
+    scale: 'translate(-50%,-50%) scale(0.3)',
+    hide:true,
     foldId1: '', //折叠项当前id
     foldId2: '',
     foldId3: '',
@@ -302,7 +308,9 @@ Page({
       rotate4: 'rotate(0deg)',
       rotate5: 'rotate(0deg)',
     })
-    
+
+    // this._getExample()
+
   },
   onShow(){
     //获取页面栈
@@ -317,6 +325,59 @@ Page({
         data2: prePage.data.data2
       })
     }
+  },
+  // 获取委托方信息说明
+  _getExample(status) {
+    // let status = 20
+    common.getExample(status, (res) => {
+      console.log(res)
+      this.setData({
+        sheetData: res.data[0]
+      })
+    })
+  },
+  // 查看委托单信息
+  // lookExplain() {
+  //   this.setData({
+  //     opacity: 1,
+  //     scale: 'translate(-50%,-50%) scale(1)'
+  //   })
+  // },
+  show(e) {
+    let status = e.currentTarget.dataset.id
+    console.log(status)
+    this._getExample(status)
+    this.setData({
+      agreement: true,
+      hide:false
+    }, () => {
+      this.setData({
+        opacity: 1,
+        scale: 'translate(-50%,-50%) scale(1)'
+      })
+    })
+  },
+  // 关闭协议弹窗
+  closeWindow() {
+    this.setData({
+      opacity: 0,
+      scale: 'translate(-50%,-50%) scale(0.3)'
+    }, () => {
+      setTimeout(() => {
+        this.setData({
+          agreement: false,
+          hide:true
+        })
+      }, 300)
+    })
+  },
+  // 确定说明
+  agree() {
+    this.closeWindow()
+  },
+  // 取消
+  cancel() {
+    this.closeWindow()
   },
   // 综合
   radioChange1(e) {

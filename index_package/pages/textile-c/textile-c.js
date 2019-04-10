@@ -2,6 +2,8 @@
 var $ = require('../../../utils/common.js')
 import { Submit_data } from './textile-c_model.js'
 var submit_data = new Submit_data()
+import { Common } from '../../../utils/common_model.js'
+const common = new Common()
 Page({
 
   /**
@@ -136,7 +138,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this._getServiceContent()
+    this._getServiceContent();
   },
   onShow(){
     //获取页面栈
@@ -151,6 +153,59 @@ Page({
         data3: prePage.data.data3
       })
     }
+  },
+  // 获取委托方信息说明
+  _getExample(status) {
+    // let status = 1
+    common.getExample(status, (res) => {
+      console.log(res)
+      this.setData({
+        sheetData1: res.data[0]
+      })
+    })
+  },
+  // 查看委托单信息
+  // lookExplain() {
+  //   this.setData({
+  //     opacity: 1,
+  //     scale: 'translate(-50%,-50%) scale(1)'
+  //   })
+  // },
+  show(e) {
+    let status = e.currentTarget.dataset.id
+    console.log(status)
+    this._getExample(status)
+    this.setData({
+      agreement1: true
+    }, () => {
+      this.setData({
+        opacity1: 1,
+        scale1: 'translate(-50%,-50%) scale(1)'
+      })
+    })
+  },
+  // 关闭协议弹窗
+  closeWindow1() {
+    this.setData({
+      opacity1: 0,
+      scale1: 'translate(-50%,-50%) scale(0.3)'
+    }, () => {
+      setTimeout(() => {
+        this.setData({
+          agreement1: false
+        })
+      }, 300)
+    })
+  },
+  // 确定说明
+  agreeA() {
+    console.log('confirm')
+    this.closeWindow1()
+  },
+  // 取消
+  cancelA() {
+    console.log('cancel')
+    this.closeWindow1()
   },
   // 获取服务协议说明
   _getServiceContent(){

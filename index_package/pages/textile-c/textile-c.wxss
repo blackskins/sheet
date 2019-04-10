@@ -20,7 +20,7 @@ page {
   border-bottom: 2rpx solid #e9e9e9;
 }
 
-.detail-info image {
+.sample-title image {
   width: 28rpx;
   height: 28rpx;
   margin-left: 10rpx;
@@ -196,6 +196,71 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   font-size: 26rpx;
   word-break: break-all;
   word-wrap: break-word;
+}
+.isAgree{
+  font-size: 30rpx;
+  color: #2090fe;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 2rpx solid #e9e9e9;
+  height: 92rpx;
+  margin-top: 20rpx;
+}
+.isAgree view{
+  width: 50%;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+.cancel-btn{
+  position: relative;
+}
+.cancel-btn::after{
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rpx;
+  background-color: #e9e9e9;
+  height: 40rpx;
+}
+
+/* 说明 */
+.mask{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  transition: all .3s;
+  z-index: 101;
+}
+.agreement,.agreement1{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* transform: translate(-50%,-50%); */
+  width: 500rpx;
+  height: 600rpx;
+  border-radius: 14rpx;
+  background-color: #fff;
+  padding: 30rpx 40rpx;
+  transition: all .3s;
+}
+.agreement1{
+  height:200rpx;
+}
+.agreement-title{
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.agreement-txt{
+  margin-top: 20rpx;
+  height: 440rpx;
+  font-size: 26rpx;
 }
 .isAgree{
   font-size: 30rpx;

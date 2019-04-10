@@ -3,7 +3,7 @@
   <view class='second-part'>
     <view class='detail-info'>
       <text>服务要求</text>
-      <image src='../../images/tips.png'></image>
+      <!-- <image src='../../images/tips.png'></image> -->
     </view>
 
     <!-- 测试方法 -->
