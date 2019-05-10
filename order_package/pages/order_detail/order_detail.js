@@ -123,8 +123,18 @@ Page({
   // 订单签名
   signName(e) {
     if (this.data.canvasImg == '') {
-      wx.navigateTo({
-        url: '../handwriting/handwriting',
+      wx.showModal({
+        content: '感谢您的委托，签名后顺丰快递将联系您收寄样品。',
+        showCancel:false,
+        confirmText: '确认',
+        confirmColor: '#2090FE',
+        success: (res) => {
+          if(res.confirm){
+            wx.navigateTo({
+              url: '../handwriting/handwriting',
+            })
+          }
+        }
       })
       return
     } else {

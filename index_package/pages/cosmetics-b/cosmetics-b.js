@@ -104,6 +104,7 @@ Page({
     agreement1: false,
     opacity1: 0,
     scale1: 'translate(-50%,-50%) scale(0.3)',
+    hide:false,
 
     testMethod: '', //测试方法
     judgementStandard: '', //判定标准
@@ -120,6 +121,7 @@ Page({
     reportSendMode: '',
     invoiceRise: '',
     invoiceType: '',
+    
   },
 
   /**
@@ -442,7 +444,8 @@ Page({
     }, () => {
       this.setData({
         opacity: 1,
-        scale: 'translate(-50%,-50%) scale(1)'
+        scale: 'translate(-50%,-50%) scale(1)',
+        hide:true
       })
     })
   },
@@ -454,7 +457,8 @@ Page({
     }, () => {
       setTimeout(() => {
         this.setData({
-          agreement: false
+          agreement: false,
+          hide:false
         })
       }, 300)
     })

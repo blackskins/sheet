@@ -182,7 +182,7 @@
   <view class='sample-info'>
     <view class='sample-title'>其他</view>
     <view class='head-txt'>
-      <textarea placeholder-class='holder' name='elseValue' placeholder='请输入'></textarea>
+      <textarea hidden='{{ hide }}' placeholder-class='holder' name='elseValue' placeholder='请输入'></textarea>
     </view>
   </view>
 

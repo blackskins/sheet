@@ -63,7 +63,7 @@
         "pages/textile-c/textile-c",
         "pages/news_detail/news_detail",
         "pages/get_coupon/get_coupon"
-  ]
+      ]
     },
     {
       "root": "profile_package/",
@@ -101,5 +101,6 @@
         "order_package/"
       ]
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
