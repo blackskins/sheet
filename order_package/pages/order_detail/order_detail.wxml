@@ -112,7 +112,7 @@
 <!-- 底部按钮 -->
 
 <view class='btn-box' wx:if='{{ orderData.status == 12 }}'>
-  <view class='cancel'>取消受理</view>
+  <view class='cancel' bindtap='cancelDeal'>取消受理</view>
   <view class='input-name' bindtap='signName' data-id='{{ orderData.orderId }}'>{{ canvasImg != "" ? "提交签名" : "签名"}}</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 14 }}'>

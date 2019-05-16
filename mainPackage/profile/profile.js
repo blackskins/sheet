@@ -23,7 +23,7 @@ Page({
       },
       {
         img: '/images/status3.png',
-        title: '待受理',
+        title: '待收样',
         id: '3'
       },
       {

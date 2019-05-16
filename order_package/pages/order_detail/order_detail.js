@@ -106,18 +106,28 @@ Page({
   // （订单）取消受理
   cancelDeal(){
     let _id = this.data.orderData.orderId
-    order_detail_model.cancelDeal(_id,(res)=>{
-      console.log(res)
-      if(res.code != 0){
-        $.prompt(res.msg,2500)
-        return
+    wx.showModal({
+      title: '提示',
+      content: '确定要取消受理这个订单吗？',
+      confirmColor:'#2090FE',
+      success:(res)=>{
+        if(res.confirm){
+          order_detail_model.cancelDeal(_id,(res)=>{
+            console.log(res)
+            if(res.code != 0){
+              $.prompt(res.msg,2500)
+              return
+            }
+            $.prompt('成功取消受理')
+            setTimeout(()=>{
+              console.log('dddddd666666')
+              wx.navigateBack({
+                delta:1
+              })
+            },1500)
+          })
+        }
       }
-      $.prompt('成功取消受理')
-      setTimeout(()=>{
-        wx.navigateBack({
-          delta: 1,
-        })
-      },1500)
     })
   },
   // 订单签名

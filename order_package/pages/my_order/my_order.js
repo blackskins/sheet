@@ -27,7 +27,7 @@ Page({
         status: 14,
       },
       {
-        title: '待受理',
+        title: '待收样',
         status: 20,
       },
       {
@@ -51,7 +51,7 @@ Page({
         status: 34,
       },
       {
-        title: '申诉中',
+        title: '改报告',
         status: 40,
       },
     ],
