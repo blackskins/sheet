@@ -11,8 +11,8 @@ Page({
     scrollHeight:'',
     smapleArr: [],
     index:0,
-    sampleElse: ['样品类别', '样品性状', '样品来源', '样品保存', '样品处理', '危险性'],
-    sampleElse1: ['综合', '纤维成分', '色牢度', '化学', '物理性能']
+    // sampleElse: ['样品类别', '样品性状', '样品来源', '样品保存', '样品处理', '危险性'],
+    // sampleElse1: ['综合', '纤维成分', '色牢度', '化学', '物理性能']
   },
 
   /**
@@ -184,9 +184,9 @@ Page({
 
   },
   // 禁止修改其他选项
-  stopModify(){
-    $.prompt('不能修改此选项哦~',2500)
-  },
+  // stopModify(){
+  //   $.prompt('不能修改此选项哦~',2500)
+  // },
   // 提交修改委托单
   formSubmit(e){
     let orderType = this.data.orderType

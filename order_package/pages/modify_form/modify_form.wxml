@@ -70,9 +70,9 @@
       </view>
     </view>
     <!-- 其他不可更改的样品项 -->
-    <view class='else-box' bindtap='stopModify'>
+    <!-- <view class='else-box' bindtap='stopModify'>
       <view class='sample-item' wx:for='{{ sampleElse }}' wx:key=''>{{ item }}</view>
-    </view>
+    </view> -->
   </scroll-view>
 
   <!-- 修改按钮 -->
