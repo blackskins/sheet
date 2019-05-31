@@ -2,6 +2,7 @@
 var $ = require('../../utils/common.js')
 import { Index_model } from './index_model.js'
 var index_model = new Index_model()
+// const app = getApp()
 Page({
 
   /**
@@ -21,13 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-
-    // console.log('11111111')
-    // console.log(options.scene)
-    // console.log('11111111')
-    // console.log(query)
-    // console.log('222222222')
+    // console.log(app.globalData.invitationCode,'我是邀请码邀请码..........')
 
     this._getIndexSliderImg()//获取轮播图
     this._getVideoInfo()//获取视频简介
@@ -103,7 +98,9 @@ Page({
   },
   // 获取最新的三条咨询
   _getLatestInfo(){
+    $.openLoad()
     index_model.getLatestInfo((res)=>{
+      $.closeLoad()
       if(res.code !=0 ){
         $.prompt(res.msg)
         return false

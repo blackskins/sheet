@@ -112,6 +112,43 @@ page{
   border-radius: 25rpx;
 }
 
+
+/* 发报告------物流信息 */
+.express{
+  margin-top: 16rpx;
+  background-color: #fff;
+  padding:16rpx 30rpx;
+}
+.ex-title{
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+.ex-info{
+  margin-top: 16rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ex-com{
+  font-size: 26rpx;
+  margin-right: 20rpx;
+  color: #999999;
+}
+.ex-num{
+  color: #2090FE;
+  text-decoration: underline;
+}
+.ex-right{
+  font-size: 28rpx;
+  color: #fff;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  background-color: #2090FE;
+  /* border: 2rpx solid #2090FE; */
+}
 /* 使用优惠券 */
 .coupon{
   display: flex;
@@ -282,6 +319,9 @@ page{
   text-align: center;
   line-height: 72rpx;
   font-size: 28rpx;
+}
+.btn-center{
+  justify-content: center;
 }
 /* 已完成状态是的按钮 */
 .done{

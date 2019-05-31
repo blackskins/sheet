@@ -2,6 +2,8 @@
 var $ = require('../../utils/common.js')
 import { Login } from 'login_model.js'
 var login = new Login()
+const app = getApp()
+
 Page({
   data: {
 
@@ -23,15 +25,13 @@ Page({
       } else {
         gender = ''
       }
+      // console.log(app.globalData.invitationCode, '我是邀请码邀请码..........')
       var data = {
         nick: userData.nickName,
         headImg: userData.avatarUrl,
-        gender: gender
+        gender: gender,
+        invitationCode:app.globalData.invitationCode
       }
-      // 获取授权状态
-      // login.getUserAuth(data,()=>{
-
-      // })
       login.getUserAuth(data, (res) => {
         console.log(res);
         $.prompt('授权登录成功');

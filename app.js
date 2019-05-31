@@ -15,25 +15,36 @@ App({
     vipPower: ''
   },
   onLaunch: function(options) {
-    console.log(options)
-    var codeId = '' //获取邀请码Id
+    console.log(options,"asdasdsa")
+    let codeId = ''; //获取邀请码Id
     if (options.scene == 1047) {
       if (options.query.scene) {
+        console.log('调借口，，，，，，，，')
         let sceneId = decodeURIComponent(options.query.scene)
-
         common.getCodeValue(sceneId, (res) => {
-          // console.log(res,"asdasd")
-          codeId = res.data.invitationCode
+          codeId = res.data.invitationCode;
+          this.globalData.invitationCode = codeId
+          this.login()
         })
       } else {
         console.log('sceneId不存在')
       }
+    } else{
+      this.login()
     }
-    let invitationCode = codeId
+    // 清除token缓存
+    wx.clearStorageSync()
+
+    // 更新小程序
+    this.updateMP()
+
+
+  },
+  login(){
     let wxAppId = this.globalData.wxAppId
     console.log(wxAppId)
     // 获取token
-    token.getTokenFromService(wxAppId, invitationCode, (res) => {
+    token.getTokenFromService(wxAppId,  (res) => {
       console.log(res)
       wx.setStorageSync('token', res.data.token)
       if (!res.data.isAuth) {
@@ -42,14 +53,6 @@ App({
         })
       }
     })
-
-    // 清除token缓存
-    wx.clearStorageSync()
-
-    // 更新小程序
-    this.updateMP()
-
-
   },
   // 小程序更新
   updateMP: function() {

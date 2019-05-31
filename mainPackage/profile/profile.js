@@ -10,48 +10,48 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderStatus:[
-      {
-        img:'/images/status1.png',
-        title:'待签名',
-        id:'1'
-      },
-      {
-        img: '/images/status2.png',
-        title: '待揽收',
-        id: '2'
-      },
-      {
-        img: '/images/status3.png',
-        title: '待收样',
-        id: '3'
-      },
-      {
-        img: '/images/status4.png',
-        title: '待付款',
-        id: '4'
-      },
-      {
-        img: '/images/status5.png',
-        title: '待报告',
-        id: '5'
-      },
-      {
-        img: '/images/status6.png',
-        title: '发报告',
-        id: '6'
-      },
-      {
-        img: '/images/status7.png',
-        title: '已完成',
-        id: '7'
-      },
-      {
-        img: '/images/status8.png',
-        title: '修改中',
-        id: '8'
-      },
-    ],
+    // orderStatus:[
+    //   {
+    //     img:'/images/status1.png',
+    //     title:'待签名',
+    //     id:'1'
+    //   },
+    //   {
+    //     img: '/images/status2.png',
+    //     title: '待揽收',
+    //     id: '2'
+    //   },
+    //   {
+    //     img: '/images/status3.png',
+    //     title: '待收样',
+    //     id: '3'
+    //   },
+    //   {
+    //     img: '/images/status4.png',
+    //     title: '待付款',
+    //     id: '4'
+    //   },
+    //   {
+    //     img: '/images/status5.png',
+    //     title: '待报告',
+    //     id: '5'
+    //   },
+    //   {
+    //     img: '/images/status6.png',
+    //     title: '发报告',
+    //     id: '6'
+    //   },
+    //   {
+    //     img: '/images/status7.png',
+    //     title: '已完成',
+    //     id: '7'
+    //   },
+    //   {
+    //     img: '/images/status8.png',
+    //     title: '修改中',
+    //     id: '8'
+    //   },
+    // ],
     listItem:[
       {
         img:'/images/order2.png',

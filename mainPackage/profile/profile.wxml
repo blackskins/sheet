@@ -22,12 +22,12 @@
 </view>
 
 <!-- 订单状态 -->
-<view class='order-status'>
+<!-- <view class='order-status'>
   <view class='item-status center' wx:for='{{ orderStatus }}' wx:key='' bindtap='toMyOrder' data-id='{{ item.id }}'>
     <image src='{{ item.img }}'></image>
     <text class='order-title'>{{ item.title }}</text>
   </view>
-</view>
+</view> -->
 
 <!-- 功能列表项 -->
 <block wx:for='{{ listItem }}' wx:key=''>

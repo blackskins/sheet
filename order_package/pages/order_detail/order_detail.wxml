@@ -11,7 +11,7 @@
         <text class='phone'>{{ orderData.phone }}</text>
       </view>
       <view class='detail-address'>
-        {{ orderData.location.province+' '+orderData.location.city+' '+orderData.location.district+' '+orderData.contactAddress }}
+        {{ orderData.location.province+' '+orderData.location.city+' '+orderData.location.district+' '+(orderData.entrusAddress || orderData.contactAddress)  }}
       </view>
     </view>
   </view>
@@ -29,7 +29,7 @@
       <view class='order-status' wx:if='{{ orderData.status == 10 }}'>待定价</view>
       <view class='order-status' wx:if='{{ orderData.status == 12 }}'>待签名</view>
       <view class='order-status' wx:if='{{ orderData.status == 14 }}'>待揽收</view>
-      <view class='order-status' wx:if='{{ orderData.status == 20 }}'>待受理</view>
+      <view class='order-status' wx:if='{{ orderData.status == 20 }}'>待收样</view>
       <view class='order-status' wx:if='{{ orderData.status == 22 }}'>待付款</view>
       <view class='order-status' wx:if='{{ orderData.status == 24 }}'>待报告</view>
       <view class='order-status else-status' wx:if='{{ orderData.status == 30 }}'>发报告</view>
@@ -43,7 +43,17 @@
       <view class='check-form' bindtap='viewForm' data-id='{{ orderData.orderId }}'>查看表单</view>
     </view>
   </view>
-
+  <!-- 发报告状态的物流信息 -->
+  <view class='express' wx:if='{{ orderData.status == 30 }}'>
+    <view class='ex-title'>物流信息</view>
+    <view class='ex-info'>
+      <view class='ex-left'>
+        <text class='ex-com'>顺丰快递</text>
+        <text class='ex-num' selectable='{{ true }}'>{{ orderData.sfWaybill ? orderData.sfWaybill : '暂未发货' }}</text>
+      </view>
+      <view class='ex-right' bindtap='copyExp' data-num='{{ orderData.sfWaybill }}' wx:if='{{ orderData.sfWaybill }}'>复制</view>
+    </view>
+  </view>
   <!-- 使用优惠券 -->
   <view class='coupon' wx:if='{{ orderData.status == 22 }}'>
     <view class='coupon-left'>
@@ -134,12 +144,13 @@
   <view class='input-name' bindtap='pay'>立即付款</view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 24 }}'>
-  <view class='cancel' bindtap='viewLogistics'>查看物流</view>
+  <view class='cancel' bindtap='back'>返回</view>
   <view class='input-name'>联系客服
     <button open-type='contact' class='contact'></button>
   </view>
 </view>
 <view class='btn-box' wx:if='{{ orderData.status == 30 }}'>
+  <!-- <view class='cancel' bindtap='viewLogistics'>查看物流</view> -->
   <view class='cancel' bindtap='download'>下载报告</view>
   <view class='input-name' bindtap='toModifyReport'>报告修改</view>
 </view>

@@ -11,21 +11,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isCoupon:'',
+    isCoupon: '',
     couponPrice: 0,
-    orderStatus:'',//订单状态
+    orderStatus: '', //订单状态
     proofImg: [], //交易凭证
-    couponData:'',//优惠券数据
+    couponData: '', //优惠券数据
     payType: '',
     canvasImg: '', //签名的临时路径
     orderData: '', //订单详情数据
     opacity: 0, //背景蒙层的透明度
     animate: '', //删除图片 动画弹窗
     showMask: false,
-    canvasForm:'',//委托单的临时路径
-    showCanvas:false,
-    fly:'-60%',
-    url:'',//下载报告的地址
+    canvasForm: '', //委托单的临时路径
+    showCanvas: false,
+    fly: '-60%',
+    url: '', //下载报告的地址
   },
 
   /**
@@ -44,19 +44,19 @@ Page({
     }
     this.setData({
       orderId: options.orderId,
-      orderStatus:options.status,
+      orderStatus: options.status,
       scrollHeight: height
     })
-    if(options.status == 22){
+    if (options.status == 22) {
       console.log('进来了.......')
       this._getPayOrderDetail(options.orderId) //获取立即支付订单详情
-    }else{
+    } else {
       this._getOrderDetail(options.orderId) //获取普通订单详情
     }
     this._getLookCoupon(options.orderId) //查看是否有优惠券可用
   },
-  onShow(){
-    if(this.data.isCoupon != '' && !this.data.isCoupon){//使用优惠券
+  onShow() {
+    if (this.data.isCoupon != '' && !this.data.isCoupon) { //使用优惠券
       order_detail_model.lookCoupon(_id, (res) => {
         console.log(res)
         if (res.code != 0) {
@@ -104,27 +104,27 @@ Page({
     })
   },
   // （订单）取消受理
-  cancelDeal(){
+  cancelDeal() {
     let _id = this.data.orderData.orderId
     wx.showModal({
       title: '提示',
       content: '确定要取消受理这个订单吗？',
-      confirmColor:'#2090FE',
-      success:(res)=>{
-        if(res.confirm){
-          order_detail_model.cancelDeal(_id,(res)=>{
+      confirmColor: '#2090FE',
+      success: (res) => {
+        if (res.confirm) {
+          order_detail_model.cancelDeal(_id, (res) => {
             console.log(res)
-            if(res.code != 0){
-              $.prompt(res.msg,2500)
+            if (res.code != 0) {
+              $.prompt(res.msg, 2500)
               return
             }
             $.prompt('成功取消受理')
-            setTimeout(()=>{
+            setTimeout(() => {
               console.log('dddddd666666')
               wx.navigateBack({
-                delta:1
+                delta: 1
               })
-            },1500)
+            }, 1500)
           })
         }
       }
@@ -135,11 +135,11 @@ Page({
     if (this.data.canvasImg == '') {
       wx.showModal({
         content: '感谢您的委托，签名后顺丰快递将联系您收寄样品。',
-        showCancel:false,
+        showCancel: false,
         confirmText: '确认',
         confirmColor: '#2090FE',
         success: (res) => {
-          if(res.confirm){
+          if (res.confirm) {
             wx.navigateTo({
               url: '../handwriting/handwriting',
             })
@@ -171,20 +171,20 @@ Page({
                 return false
               }
               $.prompt('签名成功')
-              setTimeout(()=>{
+              setTimeout(() => {
                 wx.navigateBack({
-                  delta:1
+                  delta: 1
                 })
-              },1500)
+              }, 1500)
             })
           }
         }
       })
     }
   },
-  back(){
+  back() {
     wx.navigateBack({
-      delta:1
+      delta: 1
     })
   },
   // 待付款----->查看是否有可用的优惠券
@@ -195,23 +195,23 @@ Page({
         $.prompt(res.msg, 2500)
         return
       }
-      if(res.data != '' || res.data != null){
+      if (res.data != '' || res.data != null) {
         this.setData({
-          couponData:res.data,
-          couponPrice:res.data.couponPrice,
-          isCoupon:true
+          couponData: res.data,
+          couponPrice: res.data.couponPrice,
+          isCoupon: true
         })
       }
     })
   },
   // 点击优惠的区域--->使用/不使用优惠券
-  useCoupon(){
-    if(this.data.couponData == ''){
+  useCoupon() {
+    if (this.data.couponData == '') {
       $.prompt('暂无优惠券可用')
       return
-    }else{
+    } else {
       let _id = this.data.orderData.orderId
-      if(this.data.isCoupon){
+      if (this.data.isCoupon) {
         let couponId = this.data.couponData.couponId
         order_detail_model.cancelUseCoupon(_id, couponId, (res) => {
           console.log(res)
@@ -225,7 +225,7 @@ Page({
           })
           $.prompt('取消使用优惠券')
         })
-      }else if(!this.data.isCoupon){
+      } else if (!this.data.isCoupon) {
         order_detail_model.lookCoupon(_id, (res) => {
           console.log(res)
           if (res.code != 0) {
@@ -236,7 +236,7 @@ Page({
             couponData: res.data,
             couponPrice: res.data.couponPrice,
             isCoupon: true
-          },()=>{
+          }, () => {
             $.prompt('使用优惠券')
           })
         })
@@ -257,7 +257,7 @@ Page({
     })
   },
   // 预览凭证
-  preImg(){
+  preImg() {
     $.previewImage(this.data.proofImg[0])
   },
   // 删除交易凭证
@@ -300,8 +300,8 @@ Page({
     })
   },
   // 下载报告
-  download(){
-    if(this.data.url != ''){
+  download() {
+    if (this.data.url != '') {
       if (this.data.fly == '-60%') {
         this.setData({
           fly: '12%'
@@ -314,21 +314,21 @@ Page({
       return
     }
     let _id = this.data.orderData.orderId
-    order_detail_model.downloadReport(_id,(res)=>{
+    order_detail_model.downloadReport(_id, (res) => {
       console.log(res)
       this.setData({
-        url:res.data
-      },()=>{
+        url: res.data
+      }, () => {
         this.setData({
-          fly:'12%'
+          fly: '12%'
         })
       })
     })
-    
-    
+
+
   },
   // 查看新报告
-  lookNewReport(){
+  lookNewReport() {
     if (this.data.url != '') {
       let src = this.data.url
       if (src.substring(src.length - 3) == 'pdf') {
@@ -336,21 +336,21 @@ Page({
         wx.downloadFile({
           url: src,
           // url: 'http://zhonguangce.oss-cn-shenzhen.aliyuncs.com/a955085f341843d7a3331aec6b3c70b9.jpg',
-          success: function (res) {
+          success: function(res) {
             console.log(res)
-            var Path = res.tempFilePath              //返回的文件临时地址，用于后面打开本地预览所用
+            var Path = res.tempFilePath //返回的文件临时地址，用于后面打开本地预览所用
             wx.openDocument({
               filePath: Path,
-              success: function (res) {
+              success: function(res) {
                 // console.log('打开文档成功')
               }
             })
           },
-          fail: function (res) {
+          fail: function(res) {
             console.log(res)
           }
         })
-      }else{
+      } else {
         let urls = [];
         urls.push(src)
         wx.previewImage({
@@ -371,17 +371,17 @@ Page({
           wx.downloadFile({
             url: src,
             // url: 'http://zhonguangce.oss-cn-shenzhen.aliyuncs.com/a955085f341843d7a3331aec6b3c70b9.jpg',
-            success: function (res) {
+            success: function(res) {
               console.log(res)
-              var Path = res.tempFilePath              //返回的文件临时地址，用于后面打开本地预览所用
+              var Path = res.tempFilePath //返回的文件临时地址，用于后面打开本地预览所用
               wx.openDocument({
                 filePath: Path,
-                success: function (res) {
+                success: function(res) {
                   // console.log('打开文档成功')
                 }
               })
             },
-            fail: function (res) {
+            fail: function(res) {
               console.log(res)
             }
           })
@@ -396,22 +396,32 @@ Page({
     })
   },
   // 关闭下载窗口
-  close(){
+  close() {
     this.setData({
-      fly:'-60%'
+      fly: '-60%'
     })
   },
   // 复制链接地址
-  copyUrl(){
+  copyUrl() {
     wx.setClipboardData({
       data: this.data.url,
-      success:(res)=> {
-        $.prompt('复制成功',2000,'success')
+      success: (res) => {
+        $.prompt('复制成功', 2000, 'success')
+      }
+    });
+  },
+  // 复制发报告的物流单号
+  copyExp(e){
+    let num = e.currentTarget.dataset.num
+    wx.setClipboardData({
+      data: num,
+      success: (res) => {
+        $.prompt('物流单号已复制', 2000, 'success')
       }
     });
   },
   // 订单未支付，页面卸载或者进入后台时，取消使用优惠券
-  cancelCoupon(){
+  cancelCoupon() {
     if (this.data.couponData != '') {
       let _id = this.data.orderData.orderId
       let couponId = this.data.couponData.couponId
@@ -425,14 +435,14 @@ Page({
     }
   },
   // 页面卸载
-  onUnload(){
+  onUnload() {
     if (this.data.orderStatus != 22) {
       return false
     }
-    this.cancelCoupon()//取消使用优惠券
+    this.cancelCoupon() //取消使用优惠券
   },
-  onHide() {//取消使用优惠券
-    if(this.data.orderStatus != 22){
+  onHide() { //取消使用优惠券
+    if (this.data.orderStatus != 22) {
       return false
     }
     let _id = this.data.orderData.orderId
@@ -452,34 +462,34 @@ Page({
     }
   },
   // 上传凭证
-  _upLoadProof(){
-    if(this.data.proofImg.length == 0){
+  _upLoadProof() {
+    if (this.data.proofImg.length == 0) {
       $.prompt('请上传您的交易凭证')
       return
     }
     let _id = this.data.orderData.orderId;
     let voucher = this.data.proofImg[0]
     console.log(voucher)
-    order_detail_model.upLoadProof(_id,voucher,(res)=>{
+    order_detail_model.upLoadProof(_id, voucher, (res) => {
       console.log(res)
-      if(res.code != 0){
-        $.prompt(res.msg,2500)
+      if (res.code != 0) {
+        $.prompt(res.msg, 2500)
         return
       }
       $.prompt('支付成功')
-      setTimeout(()=>{
+      setTimeout(() => {
         wx.navigateBack({
-          delta:1
+          delta: 1
         })
-      },1500)
+      }, 1500)
       // console.log('上传凭证成功')
     })
   },
 
   // 立即支付订单
-  pay(){
-    if(this.data.payType == 'iOS' ){
-      this._upLoadProof()//上传凭证
+  pay() {
+    if (this.data.payType == 'iOS') {
+      this._upLoadProof() //上传凭证
       return false
     }
     let appId = app.globalData.wxAppId
@@ -487,11 +497,11 @@ Page({
     let orderType = this.data.orderData.orderType
     let orderId = this.data.orderData.orderId
 
-    order_detail_model.payForOrder(appId,openId,orderType,orderId,(res)=>{
+    order_detail_model.payForOrder(appId, openId, orderType, orderId, (res) => {
       console.log(res)
-      if(res.code != 0){
+      if (res.code != 0) {
         // $.prompt('支付失败', 2500)
-        $.prompt(res.msg,2500)
+        $.prompt(res.msg, 2500)
         return false
       }
       let data = res.data
@@ -501,7 +511,7 @@ Page({
         package: data.package,
         signType: 'MD5',
         paySign: data.paySign,
-        success:(res)=>{
+        success: (res) => {
           $.prompt('支付成功')
           setTimeout(() => {
             wx.navigateBack({
@@ -509,7 +519,7 @@ Page({
             })
           }, 1500)
         },
-        fail:(res)=>{
+        fail: (res) => {
           $.prompt('支付失败')
         }
       })
@@ -517,7 +527,7 @@ Page({
   },
 
   // 报告修改
-  toModifyReport(){
+  toModifyReport() {
     let orderId = this.data.orderData.orderId
     wx.navigateTo({
       url: '../modify_report/modify_report?orderId=' + orderId,
@@ -531,17 +541,17 @@ Page({
     })
   },
   // 查看表单
-  viewForm(){
+  viewForm() {
     let _id = this.data.orderData.orderId
     let orderType = this.data.orderData.orderType
-    order_detail_model.viewForm(_id,orderType,(res)=>{
+    order_detail_model.viewForm(_id, orderType, (res) => {
       console.log(res)
       let data = res.data
       if (orderType == 10) {
         this.drawSth(data)
         let canvasId = 'canvas-1'
         this.saveImg1(canvasId)
-      } else if(orderType == 20) {
+      } else if (orderType == 20) {
         this.canvas2(data)
         let canvasId = 'canvas-2'
         this.saveImg1(canvasId)
@@ -550,12 +560,12 @@ Page({
     // return
   },
   // 预览表单报告
-  preView(){
+  preView() {
     $.previewImage(this.data.canvasForm)
   },
-  closeForm(){
+  closeForm() {
     this.setData({
-      showCanvas:false
+      showCanvas: false
     })
   },
   // 画布----绘制委托单表格
@@ -674,10 +684,10 @@ Page({
     ctx.setLineWidth(2)
     ctx.setStrokeStyle('#666')
     ctx.setFillStyle('#ccc')
-    if(data.reportHeader == '与委托方相同'){
+    if (data.reportHeader == '与委托方相同') {
       ctx.fillRect(340, 425, 20, 20);
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(340, 363, 20, 20)
     }
 
@@ -685,11 +695,11 @@ Page({
     ctx.setFillStyle('#333')
     ctx.fillText('与委托方相同', 384, 380)
     ctx.fillText('其他 :', 690, 380)
-    if (data.reportHeader != '与委托方相同'){
+    if (data.reportHeader != '与委托方相同') {
       ctx.fillRect(650, 363, 20, 20);
       ctx.fill()
       ctx.fillText(data.reportHeader, 760, 380)
-    }else{
+    } else {
       ctx.strokeRect(650, 363, 20, 20)
     }
     // 其他的值
@@ -963,10 +973,10 @@ Page({
     }
 
     // 样品性状
-    if(data.sampleCharacter == '颗粒'){
+    if (data.sampleCharacter == '颗粒') {
       ctx.fillRect(320, 752, 20, 20);
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(320, 752, 20, 20)
     }
 
@@ -1040,10 +1050,10 @@ Page({
       ctx.strokeRect(520, 787, 20, 20)
     }
     // 样品来源
-    if(data.source == '送检'){
+    if (data.source == '送检') {
       ctx.fillRect(1350, 752, 20, 20);
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(1350, 752, 20, 20)
     }
 
@@ -1055,10 +1065,10 @@ Page({
     }
 
     // 样品保存
-    if(data.storageType == '常规'){
+    if (data.storageType == '常规') {
       ctx.fillRect(320, 842, 20, 20);
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(320, 842, 20, 20)
     }
 
@@ -1082,10 +1092,10 @@ Page({
     ctx.strokeRect(1300, 842, 20, 20)
 
     // 危险性
-    if(data.danger == '无'){
+    if (data.danger == '无') {
       ctx.fillRect(320, 897, 20, 20);
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(320, 897, 20, 20)
     }
 
@@ -1165,7 +1175,7 @@ Page({
     } else {
       ctx.strokeRect(550, 932, 20, 20)
     }
-    
+
     // ctx.strokeRect(550, 932, 20, 20)
 
     // ctx.setFillStyle('#ccc')
@@ -1189,7 +1199,7 @@ Page({
     ctx.fillText('金属材料', 725, 727)
     ctx.fillText('其他：', 870, 727)
     // 其他的值
-    if (data.sampleType != '食品类' && data.sampleType != '保健品' && data.sampleType != '环境类' && data.sampleType != '医药及相关产品' && data.sampleType != '饮用水' && data.sampleType != '饲料及相关产品' && data.sampleType != '化工产品' && data.sampleType != '化学试剂' && data.sampleType != '肥料类' && data.sampleType != '农药类' && data.sampleType != '日化产品' && data.sampleType != '金属材料' ){
+    if (data.sampleType != '食品类' && data.sampleType != '保健品' && data.sampleType != '环境类' && data.sampleType != '医药及相关产品' && data.sampleType != '饮用水' && data.sampleType != '饲料及相关产品' && data.sampleType != '化工产品' && data.sampleType != '化学试剂' && data.sampleType != '肥料类' && data.sampleType != '农药类' && data.sampleType != '日化产品' && data.sampleType != '金属材料') {
       ctx.fillText(data.sampleType, 940, 727)
     }
 
@@ -1206,7 +1216,7 @@ Page({
     ctx.fillText('裹体', 450, 805)
     ctx.fillText('其他：', 550, 805)
     // 其他的值
-    if (data.sampleCharacter != '颗粒' && data.sampleCharacter != '粉末' && data.sampleCharacter != '块状' && data.sampleCharacter != '片状' && data.sampleCharacter != '棒状' && data.sampleCharacter != '液体' && data.sampleCharacter != '乳状液' && data.sampleCharacter != '粘稠液' && data.sampleCharacter != '气体' && data.sampleCharacter != '裹体'){
+    if (data.sampleCharacter != '颗粒' && data.sampleCharacter != '粉末' && data.sampleCharacter != '块状' && data.sampleCharacter != '片状' && data.sampleCharacter != '棒状' && data.sampleCharacter != '液体' && data.sampleCharacter != '乳状液' && data.sampleCharacter != '粘稠液' && data.sampleCharacter != '气体' && data.sampleCharacter != '裹体') {
       ctx.fillText(data.sampleCharacter, 630, 805)
     }
 
@@ -1219,9 +1229,9 @@ Page({
     // 样品保存
     ctx.fillText('常规', 350, 860)
     ctx.fillText('避光', 490, 860)
-    if (data.storageType != '常规' && data.storageType != '避光'){
-      ctx.fillText('低温( ' + data.storageType +' ℃)', 630, 860)
-    }else{
+    if (data.storageType != '常规' && data.storageType != '避光') {
+      ctx.fillText('低温( ' + data.storageType + ' ℃)', 630, 860)
+    } else {
       ctx.fillText('低温( 未知 ℃)', 630, 860)
     }
 
@@ -1246,7 +1256,7 @@ Page({
     ctx.fillText('磁性', 470, 950)
     ctx.fillText('其他：', 580, 950)
     // 其他的值
-    if (data.danger != '无' && data.danger != '未知' && data.danger != '易燃' && data.danger != '易爆' && data.danger != '刺激性气体' && data.danger != '氧化性' && data.danger != '毒性' && data.danger != '感染性' && data.danger != '放射性' && data.danger != '腐蚀性' && data.danger != '磁性'){
+    if (data.danger != '无' && data.danger != '未知' && data.danger != '易燃' && data.danger != '易爆' && data.danger != '刺激性气体' && data.danger != '氧化性' && data.danger != '毒性' && data.danger != '感染性' && data.danger != '放射性' && data.danger != '腐蚀性' && data.danger != '磁性') {
       ctx.fillText(data.danger, 660, 950)
     }
 
@@ -1268,10 +1278,10 @@ Page({
     let height = 965
     for (let i = 0; i < str.length; i++) {
       a += 54,
-      height += 35
+        height += 35
       let item = str.substring(a - 54, a)
-      if(i == 8){
-        item = item+'...'
+      if (i == 8) {
+        item = item + '...'
       }
       ctx.fillText(item, 150, height)
       console.log(str.length)
@@ -1362,7 +1372,7 @@ Page({
     for (let j = 0; j < str_a.length; j++) {
       a1 += 54,
         height1 += 35
-      let item = str_a.substring(a1 - 54, a)
+      let item = str_a.substring(a1 - 54, a1)
       if (j == 1) {
         item = item + '...'
       }
@@ -1487,14 +1497,14 @@ Page({
       ctx.strokeRect(660, 1470, 20, 20)
     }
 
-    if (str1[1].charAt(str1[1].length - 1) != '0') {//照片
+    if (str1[1].charAt(str1[1].length - 1) != '0') { //照片
       ctx.fillRect(860, 1470, 20, 20)
       ctx.fill()
     } else {
       ctx.strokeRect(860, 1470, 20, 20)
     }
 
-    if (str1[1].charAt(2) != '0') {//副本
+    if (str1[1].charAt(2) != '0') { //副本
       ctx.fillRect(1180, 1470, 20, 20)
       ctx.fill()
     } else {
@@ -1503,10 +1513,10 @@ Page({
 
 
     //服务------>报告类别
-    if(data.reportType == '非认证认可报告'){
+    if (data.reportType == '非认证认可报告') {
       ctx.fillRect(320, 1510, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(320, 1510, 20, 20)
     }
 
@@ -1621,9 +1631,9 @@ Page({
     ctx.fillText('判定（请在委托要求栏详细列出）', 530, 1370)
     ctx.fillText('判定（产品）标准：', 350, 1405)
     // 判断标准的值
-    if(data.judgementStandard != '不判定'){
-      ctx.fillText(data.judgementStandard,550,1405)
-    }else{
+    if (data.judgementStandard != '不判定') {
+      ctx.fillText(data.judgementStandard, 550, 1405)
+    } else {
       console.log('dddd')
     }
 
@@ -1636,12 +1646,12 @@ Page({
     ctx.fillText('英文（加收50元）', 450, 1488)
     ctx.fillText('中英文对照', 690, 1488)
     ctx.fillText('附照片（加收50/张）', 890, 1488)
-    if(str1[1].charAt(str1[1].length -1) != '0'){
-      ctx.fillText(str1[1].charAt(str1[1].length - 1)+'张', 1150, 1488)
+    if (str1[1].charAt(str1[1].length - 1) != '0') {
+      ctx.fillText(str1[1].charAt(str1[1].length - 1) + '张', 1150, 1488)
     }
     ctx.fillText('副本（20/份）', 1240, 1488)
-    if(str1[1].charAt(2) != '0'){
-      ctx.fillText(str1[1].charAt(2)+'份', 1340, 1488)
+    if (str1[1].charAt(2) != '0') {
+      ctx.fillText(str1[1].charAt(2) + '份', 1340, 1488)
     }
 
     ctx.fillText('非认证认可报告', 350, 1528)
@@ -1671,13 +1681,13 @@ Page({
     ctx.fillText('与委托方相同', 350, 1852)
     ctx.fillText('其他（必须与付款方一致）：', 600, 1852)
     // 其他的值
-    if (data.invoiceRise != '与委托方相同'){
+    if (data.invoiceRise != '与委托方相同') {
       ctx.fillText(data.invoiceRise, 920, 1852)
     }
 
     ctx.fillText('普票（税号：', 350, 1902)
     // 税号的值
-    if(data.invoiceType == '普票'){
+    if (data.invoiceType == '普票') {
       ctx.fillText(data.invoiceType, 480, 1902)
     }
     ctx.fillText('）', 900, 1902)
@@ -1780,8 +1790,8 @@ Page({
     ctx.stroke()
 
     // 竖线----------->委托单信息（email、联系人）
-    ctx.moveTo(800,460)
-    ctx.lineTo(800,520)
+    ctx.moveTo(800, 460)
+    ctx.lineTo(800, 520)
     ctx.setLineWidth(3.5)
     ctx.stroke()
 
@@ -2033,16 +2043,16 @@ Page({
     ctx.setStrokeStyle('#666')
 
     // 委托方-->生产单位s
-    if (data.productionUnit == '与委托方相同'){
+    if (data.productionUnit == '与委托方相同') {
       ctx.fillRect(270, 420, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(270, 420, 20, 20)
     }
-    if (data.productionUnit != '与委托方相同'){
+    if (data.productionUnit != '与委托方相同') {
       ctx.fillRect(570, 420, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(570, 420, 20, 20)
     }
 
@@ -2061,29 +2071,29 @@ Page({
     }
 
     // 样品信息---------->检测类型
-    if (data.testType == '送检'){
+    if (data.testType == '送检') {
       ctx.fillRect(980, 720, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(980, 720, 20, 20)
-      
+
     }
-    if(data.testType == '委托采样'){
+    if (data.testType == '委托采样') {
       ctx.fillRect(1160, 720, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(1160, 720, 20, 20)
     }
-    
+
 
     //委托要求----->综合
     let arr = new Array()
     arr = data.comprehensive.split(',');
-    for(let i = 0;i<arr.length;i++){
-      if(arr[i] == '常规套餐'){
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] == '常规套餐') {
         ctx.fillRect(270, 840, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 840, 20, 20)
       }
       if (arr[i] == 'GB18401') {
@@ -2119,11 +2129,11 @@ Page({
     //委托要求----->纤维含量
     let arr2 = [];
     arr2 = data.fiberContent.split(',')
-    for(let j = 0;j<arr2.length;j++){
-      if(arr2[j] == '纤维含量'){
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr2[j] == '纤维含量') {
         ctx.fillRect(270, 900, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 900, 20, 20)
       }
 
@@ -2145,28 +2155,28 @@ Page({
     //委托要求----->色牢度
     let arr3 = []
     arr3 = data.colorFastness.split(',')
-    for(let k = 0;k<arr3.length;k++){
-      if (arr3[k] == '耐摩擦'){
+    for (let k = 0; k < arr3.length; k++) {
+      if (arr3[k] == '耐摩擦') {
         ctx.fillRect(270, 960, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 960, 20, 20)
       }
-      if (arr3[k] == '干/湿'){
+      if (arr3[k] == '干/湿' || arr3[k] == '湿/干') {
         ctx.fillRect(270, 960, 20, 20)
         ctx.fillRect(420, 960, 20, 20)
         ctx.fillRect(500, 960, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 960, 20, 20)
         ctx.strokeRect(420, 960, 20, 20)
         ctx.strokeRect(500, 960, 20, 20)
       }
-      if(arr3[k] == '干'){
+      if (arr3[k] == '干') {
         ctx.fillRect(270, 960, 20, 20)
         ctx.fillRect(420, 960, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 960, 20, 20)
         ctx.strokeRect(420, 960, 20, 20)
       }
@@ -2186,7 +2196,22 @@ Page({
       } else {
         ctx.strokeRect(600, 960, 20, 20)
       }
-
+      if (arr3[k] == '耐汗渍') {
+        ctx.fillRect(700, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(700, 960, 20, 20)
+      }
+      if (arr3[k] == '碱/酸' || arr3[k] == '酸/碱') {
+        ctx.fillRect(700, 960, 20, 20)
+        ctx.fillRect(840, 960, 20, 20)
+        ctx.fillRect(920, 960, 20, 20)
+        ctx.fill()
+      } else {
+        ctx.strokeRect(700, 960, 20, 20)
+        ctx.strokeRect(840, 960, 20, 20)
+        ctx.strokeRect(920, 960, 20, 20)
+      }
       if (arr3[k] == '碱') {
         ctx.fillRect(700, 960, 20, 20)
         ctx.fillRect(840, 960, 20, 20)
@@ -2234,19 +2259,19 @@ Page({
       }
 
     }
-    
+
     //委托要求----->化学
     let arr4 = []
     arr4 = data.chem.split(',')
-    for(let l = 0;l<arr4.length;l++){
-      if(arr4[l] == '甲醛'){
+    for (let l = 0; l < arr4.length; l++) {
+      if (arr4[l] == '甲醛') {
         ctx.fillRect(270, 1020, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 1020, 20, 20)
       }
 
-      if (arr4[l] == 'pH值') {
+      if (arr4[l] == 'PH值') {
         ctx.fillRect(390, 1020, 20, 20)
         ctx.fill()
       } else {
@@ -2288,31 +2313,31 @@ Page({
         ctx.strokeRect(1360, 1020, 20, 20)
       }
     }
-   
+
     //委托要求----->物理性能
     let arr5 = []
     arr5 = data.physicsPerformance.split(',')
-    for(let m =0;m<arr5.length;m++){
-      if (arr5[m] == '撕破力强'){
+    for (let m = 0; m < arr5.length; m++) {
+      if (arr5[m] == '撕破力强') {
         ctx.fillRect(270, 1075, 20, 20)
-      }else{
+      } else {
         ctx.strokeRect(270, 1075, 20, 20)
       }
-      if (arr5[m] == '摆锤法/单舌法'){
+      if (arr5[m] == '摆锤法/单舌法' || arr5[m] == '单舌法/摆锤法') {
         ctx.fillRect(270, 1075, 20, 20)
         ctx.fillRect(430, 1075, 20, 20)
         ctx.fillRect(570, 1075, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 1075, 20, 20)
         ctx.strokeRect(430, 1075, 20, 20)
         ctx.strokeRect(570, 1075, 20, 20)
       }
-      if(arr5[m] == '摆锤法'){
+      if (arr5[m] == '摆锤法') {
         ctx.fillRect(270, 1075, 20, 20)
         ctx.fillRect(430, 1075, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 1075, 20, 20)
         ctx.strokeRect(430, 1075, 20, 20)
       }
@@ -2321,22 +2346,22 @@ Page({
         ctx.fillRect(270, 1075, 20, 20)
         ctx.fillRect(570, 1075, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 1075, 20, 20)
         ctx.strokeRect(570, 1075, 20, 20)
       }
 
-      if (arr5[m] == '断裂强力'){
+      if (arr5[m] == '断裂强力') {
         ctx.fillRect(720, 1075, 20, 20)
-      }else{
+      } else {
         ctx.strokeRect(720, 1075, 20, 20)
       }
-      if (arr5[m] == '条样法/抓样法'){
+      if (arr5[m] == '条样法/抓样法' || arr5[m] == '抓样法/条样法') {
         ctx.fillRect(720, 1075, 20, 20)
         ctx.fillRect(870, 1075, 20, 20)
         ctx.fillRect(980, 1075, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(720, 1075, 20, 20)
         ctx.strokeRect(870, 1075, 20, 20)
         ctx.strokeRect(980, 1075, 20, 20)
@@ -2359,44 +2384,74 @@ Page({
         ctx.strokeRect(980, 1075, 20, 20)
       }
 
-      if (arr5[m] == '炽热程度' ){
-        ctx.strokeRect(1120, 1075, 20, 20)
+      if (arr5[m] == '纰裂程度') {
+        ctx.fillRect(1120, 1075, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(1120, 1075, 20, 20)
       }
-      if (arr5[m] == '后档接缝能力') {
-        ctx.strokeRect(1270, 1075, 20, 20)
+      if (arr5[m] == '后档接缝强力') {
+        ctx.fillRect(1270, 1075, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(1270, 1075, 20, 20)
       }
       if (arr5[m] == '顶破强力') {
-        ctx.strokeRect(1460, 1075, 20, 20)
+        ctx.fillRect(1460, 1075, 20, 20)
         ctx.fill()
       } else {
         ctx.strokeRect(1460, 1075, 20, 20)
       }
-      
+
       // 物理性能----->第二行
-      if(arr5[m] == '马丁代尔'){
+      if (arr5[m] == '起毛起球'){
         ctx.fillRect(270, 1120, 20, 20)
-        ctx.fillRect(590, 1120, 20, 20)
         ctx.fill()
       }else{
         ctx.strokeRect(270, 1120, 20, 20)
-        ctx.strokeRect(590, 1120, 20, 20)
       }
+      if (arr5[m] == '马丁代尔/圆轨迹/箱式'){
+        ctx.fillRect(590, 1120, 20, 20)
+        ctx.fillRect(740, 1120, 20, 20)
+        ctx.fillRect(870, 1120, 20, 20)
+        ctx.fill()
+      }
+      if (arr5[m] == '马丁代尔/圆轨迹'){
+        ctx.fillRect(590, 1120, 20, 20)
+        ctx.fillRect(740, 1120, 20, 20)
+        ctx.fill()
+      }
+      if (arr5[m] == '马丁代尔/箱式') {
+        ctx.fillRect(590, 1120, 20, 20)
+        ctx.fillRect(870, 1120, 20, 20)
+        ctx.fill()
+      }
+      if (arr5[m] == '圆轨迹/箱式') {
+        ctx.fillRect(740, 1120, 20, 20)
+        ctx.fillRect(870, 1120, 20, 20)
+        ctx.fill()
+      }
+      if (arr5[m] == '马丁代尔') {
+        ctx.fillRect(270, 1120, 20, 20)
+        ctx.fillRect(590, 1120, 20, 20)
+        ctx.fill()
+      } 
 
       if (arr5[m] == '圆轨迹') {
         ctx.fillRect(270, 1120, 20, 20)
         ctx.fillRect(740, 1120, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(270, 1120, 20, 20)
-        ctx.strokeRect(740, 1120, 20, 20)
       }
-
+      if (arr5[m] == '箱式') {
+        ctx.fillRect(270, 1120, 20, 20)
+        ctx.fillRect(870, 1120, 20, 20)
+        ctx.fill()
+      }
+      if (arr5[m] == '精梳/粗梳' || arr5[m] == '粗梳/精梳'){
+        ctx.fillRect(980, 1120, 20, 20)
+        ctx.fillRect(1070, 1120, 20, 20)
+        ctx.fill()
+      }
       if (arr5[m] == '精梳') {
         ctx.fillRect(270, 1120, 20, 20)
         ctx.fillRect(870, 1120, 20, 20)
@@ -2419,83 +2474,57 @@ Page({
         ctx.strokeRect(1070, 1120, 20, 20)
       }
 
-      if (arr5[m] == '耐磨性能'){
+      if (arr5[m] == '耐磨性能') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(1175, 1120, 20, 20)
       }
-      if (arr5[m] == '破损/质损/外观'){
+      if (arr5[m] == '破损/质损/外观' || arr5[m] == '破损/外观/质损' || arr5[m] == '质损/破损/外观' || arr5[m] == '质损/外观/破损' || arr5[m] == '外观/质损/破损' || arr5[m] == '外观/破损/质损' ) {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
-      }else{
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1335, 1120, 20, 20)
-        ctx.strokeRect(1425, 1120, 20, 20)
-        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
-      if (arr5[m] == '破损/质损') {
+      if (arr5[m] == '破损/质损' || arr5[m] == '质损/破损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1335, 1120, 20, 20)
-        ctx.strokeRect(1425, 1120, 20, 20)
       }
 
-      if (arr5[m] == '破损/外观') {
+      if (arr5[m] == '破损/外观' || arr5[m] == '外观/破损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1335, 1120, 20, 20)
-        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
-      if (arr5[m] == '质损/外观') {
+      if (arr5[m] == '质损/外观' || arr5[m] == '外观/质损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1425, 1120, 20, 20)
-        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
-      if(arr5[m] == '破损'){
+      if (arr5[m] == '破损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fill()
-      }else{
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1335, 1120, 20, 20)
       }
 
       if (arr5[m] == '质损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1425, 1120, 20, 20)
-      }
+      } 
 
       if (arr5[m] == '外观') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1175, 1120, 20, 20)
-        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
       // 物理性能----->第三行
@@ -2534,18 +2563,18 @@ Page({
         ctx.strokeRect(1050, 1165, 20, 20)
       }
 
-      if (arr5[m] == '外观质量'){
+      if (arr5[m] == '外观质量') {
         ctx.fillRect(1250, 1165, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(1250, 1165, 20, 20)
       }
-      if (arr5[m] == '含规格/不含规格'){
+      if (arr5[m] == '含规格/不含规格' || arr5[m] == '不含规格/含规格') {
         ctx.fillRect(1250, 1165, 20, 20)
         ctx.fillRect(1400, 1165, 20, 20)
         ctx.fillRect(1510, 1165, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(1250, 1165, 20, 20)
         ctx.strokeRect(1400, 1165, 20, 20)
         ctx.strokeRect(1510, 1165, 20, 20)
@@ -2568,38 +2597,38 @@ Page({
         ctx.strokeRect(1510, 1165, 20, 20)
       }
     }
-   
-    
 
-    
 
-    
+
+
+
+
 
     // 委托要求------>检测方法
-    if(data.testMode == '服务方决定'){
+    if (data.testMode == '服务方决定') {
       ctx.fillRect(506, 1452, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(506, 1452, 20, 20)
-      
+
 
     }
-    
-    if (data.testMode != '服务方决定' ){
-      if (data.testMode == '中国GB/FZ等'){
+
+    if (data.testMode != '服务方决定') {
+      if (data.testMode == '中国GB/FZ等') {
         ctx.fillRect(270, 1452, 20, 20)
         ctx.fillRect(270, 1486, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 1452, 20, 20)
         ctx.strokeRect(270, 1486, 20, 20)
       }
 
-      if(data.testMode == '国际标准ISO'){
+      if (data.testMode == '国际标准ISO') {
         ctx.fillRect(270, 1452, 20, 20)
         ctx.fillRect(530, 1486, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(530, 1486, 20, 20)
       }
 
@@ -2626,13 +2655,13 @@ Page({
       } else {
         ctx.strokeRect(1166, 1486, 20, 20)
       }
-      if (data.testMode != '中国GB/FZ等' && data.testMode != '国际标准ISO' && data.testMode != '欧盟EN' && data.testMode != '德国DIN' && data.testMode != '美国AATCC/ASTM' ){
+      if (data.testMode != '中国GB/FZ等' && data.testMode != '国际标准ISO' && data.testMode != '欧盟EN' && data.testMode != '德国DIN' && data.testMode != '美国AATCC/ASTM') {
         ctx.fillRect(270, 1540, 20, 20)
         ctx.fill()
-      }else{
+      } else {
         ctx.strokeRect(270, 1540, 20, 20)
       }
-    }else{
+    } else {
       ctx.strokeRect(270, 1452, 20, 20)
       ctx.strokeRect(270, 1486, 20, 20)
       ctx.strokeRect(530, 1486, 20, 20)
@@ -2645,29 +2674,29 @@ Page({
 
 
     // 委托要求--------->判断标准
-    let arr6=[];
+    let arr6 = [];
     arr6 = data.determineMethod.split(',')
-    if (arr6[0] == '不判定'){
+    if (arr6[0] == '不判定') {
       ctx.fillRect(270, 1590, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(270, 1590, 20, 20)
     }
-    if (arr6[0] == '服务方指定' ){
+    if (arr6[0] == '服务方指定') {
       ctx.fillRect(410, 1590, 20, 20)
       ctx.fillRect(690, 1590, 20, 20)
       ctx.fill()
-    }else{
+    } else {
       ctx.strokeRect(410, 1590, 20, 20)
       ctx.strokeRect(690, 1590, 20, 20)
     }
-    if (arr6[0] != '不判定' && arr6[0] != '委托方指定' && arr6[0] != '服务方指定' ){
+    if (arr6[0] != '不判定' && arr6[0] != '委托方指定' && arr6[0] != '服务方指定') {
       ctx.fillRect(410, 1590, 20, 20)
       ctx.fillRect(520, 1590, 20, 20)
-      if(arr6[0] == '18401A'){
+      if (arr6[0] == '18401A') {
         ctx.fillRect(270, 1632, 20, 20)
         ctx.fillRect(440, 1632, 20, 20)
-      } else if (arr6[0] == '18401B'){
+      } else if (arr6[0] == '18401B') {
         ctx.fillRect(270, 1632, 20, 20)
         ctx.fillRect(500, 1632, 20, 20)
       } else if (arr6[0] == '18401C') {
@@ -2682,17 +2711,17 @@ Page({
       } else if (arr6[0] == '31701C') {
         ctx.fillRect(696, 1632, 20, 20)
         ctx.fillRect(996, 1632, 20, 20)
-      } else if (arr6[0] == '原色产品'){
+      } else if (arr6[0] == '原色产品') {
         ctx.fillRect(1180, 1632, 20, 20)
         ctx.fillRect(1366, 1632, 20, 20)
-      } else if (arr6[0] == '水洗产品'){
+      } else if (arr6[0] == '水洗产品') {
         ctx.fillRect(1180, 1632, 20, 20)
         ctx.fillRect(1522, 1632, 20, 20)
       }
       ctx.fill()
     }
 
-    ctx.strokeRect(520, 1590, 20, 20)//委托方指定
+    ctx.strokeRect(520, 1590, 20, 20) //委托方指定
 
 
     ctx.strokeRect(270, 1632, 20, 20)
@@ -2710,17 +2739,17 @@ Page({
     ctx.strokeRect(1366, 1632, 20, 20)
     ctx.strokeRect(1522, 1632, 20, 20)
 
-    if(arr6.length == 2){
+    if (arr6.length == 2) {
       let arr6a = [];
       arr6a = arr6[1].split('/');
       ctx.fillRect(270, 1668, 20, 20)
-      if(arr6a[1] == '优等品'){
+      if (arr6a[1] == '优等品') {
         ctx.fillRect(882, 1668, 20, 20)
-      } else if (arr6a[1] == '一等品'){
+      } else if (arr6a[1] == '一等品') {
         ctx.fillRect(1002, 1668, 20, 20)
       } else if (arr6a[1] == '合格品') {
         ctx.fillRect(1122, 1668, 20, 20)
-      } else if (arr6a[1] != '优等品' && arr6a[1] != '一等品' && arr6a[1] != '合格品' ) {
+      } else if (arr6a[1] != '优等品' && arr6a[1] != '一等品' && arr6a[1] != '合格品') {
         ctx.fillRect(1244, 1668, 20, 20)
       }
     }
@@ -2730,23 +2759,23 @@ Page({
     ctx.strokeRect(1122, 1668, 20, 20)
     ctx.strokeRect(1244, 1668, 20, 20)
 
-    
+
 
 
     // 服务要求------>是否退余样
-    if (data.isReturnSurplus == '是'){
+    if (data.isReturnSurplus == '是') {
       ctx.fillRect(270, 1720, 20, 20)
-    } else if (data.isReturnSurplus == '否'){
+    } else if (data.isReturnSurplus == '否') {
       ctx.fillRect(552, 1720, 20, 20)
     }
     ctx.strokeRect(270, 1720, 20, 20)
     ctx.strokeRect(552, 1720, 20, 20)
 
     // 服务要求------>报告类别
-    if (data.serviceTimeLimit == '5个工作日'){
+    if (data.serviceTimeLimit == '5个工作日') {
       ctx.fillRect(270, 1780, 20, 20)
       ctx.fillRect(460, 1780, 20, 20)
-    } else if (data.serviceTimeLimit == '3个工作日'){
+    } else if (data.serviceTimeLimit == '3个工作日') {
       ctx.fillRect(660, 1780, 20, 20)
       ctx.fillRect(760, 1780, 20, 20)
     } else if (data.serviceTimeLimit == '2个工作日') {
@@ -2766,21 +2795,21 @@ Page({
     // 服务要求------>报告格式
     let arr7 = [];
     arr7 = data.reportFormat.split('/');
-    if (arr7[0] == '中文'){
+    if (arr7[0] == '中文') {
       ctx.fillRect(270, 1840, 20, 20)
-    } else if (arr7[0] == '英文'){
+    } else if (arr7[0] == '英文') {
       ctx.fillRect(430, 1840, 20, 20)
-    } else if (arr7[0] == '中英文'){
+    } else if (arr7[0] == '中英文') {
       ctx.fillRect(760, 1840, 20, 20)
     }
-    if(arr7.length == 2){
-      
+    if (arr7.length == 2) {
+
       let arr7a = [];
       arr7a = arr7[1].split('-');
-      if(arr7a[0].substring(2) != 0){
+      if (arr7a[0].substring(2) != 0) {
         ctx.fillRect(1060, 1840, 20, 20)
       }
-      if(arr7a[1].substring(4) != 0){
+      if (arr7a[1].substring(4) != 0) {
         ctx.fillRect(1380, 1840, 20, 20)
       }
     }
@@ -2791,13 +2820,13 @@ Page({
     ctx.strokeRect(1380, 1840, 20, 20)
 
     // 服务要求------>报告发送
-    if (data.formatSend == '委托方自取'){
+    if (data.formatSend == '委托方自取') {
       ctx.fillRect(270, 1900, 20, 20)
-    } else if (data.formatSend == '快递到付'){
+    } else if (data.formatSend == '快递到付') {
       ctx.fillRect(540, 1900, 20, 20)
     } else if (data.formatSend == '已付') {
       ctx.fillRect(760, 1900, 20, 20)
-    } else if (data.formatSend == 'E-mail') {
+    } else if (data.formatSend == 'email') {
       ctx.fillRect(1060, 1900, 20, 20)
     }
     ctx.strokeRect(270, 1900, 20, 20)
@@ -2813,14 +2842,14 @@ Page({
     ctx.strokeRect(570, 2012, 20, 20)
 
     // 服务要求------>报告类别
-    if (data.formatType == '非认证认可报告'){
+    if (data.formatType == '非认证认可报告') {
       ctx.fillRect(270, 2082, 20, 20)
-    } else if (data.formatType == '认证报告'){
+    } else if (data.formatType == '认证报告') {
       ctx.fillRect(580, 2082, 20, 20)
-    } else if (data.formatType == '认证报告/含非认证项目'){
+    } else if (data.formatType == '认证报告/含非认证项目') {
       ctx.fillRect(580, 2082, 20, 20)
       ctx.fillRect(730, 2082, 20, 20)
-    } else if (data.formatType == '认证认可报告'){
+    } else if (data.formatType == '认证认可报告') {
       ctx.fillRect(1040, 2082, 20, 20)
     } else if (data.formatType == '认证认可报告/含非认证认可项目') {
       ctx.fillRect(1040, 2082, 20, 20)
@@ -2841,9 +2870,9 @@ Page({
     ctx.strokeRect(540, 2254, 20, 20)
 
     // 其他--------------->发票抬头
-    if (data.invoiceRise == '与委托方相同'){
+    if (data.invoiceRise == '与委托方相同') {
       ctx.fillRect(270, 2320, 20, 20)
-    } else if (data.invoiceRise != '与委托方相同'){
+    } else if (data.invoiceRise != '与委托方相同') {
       ctx.fillRect(540, 2320, 20, 20)
     }
     ctx.strokeRect(270, 2320, 20, 20)
@@ -2862,20 +2891,20 @@ Page({
     ctx.fillText('与委托方相同', 300, 438)
     ctx.fillText('其他：', 600, 438)
     // 其他的值
-    if (data.productionUnit != '与委托方相同'){
+    if (data.productionUnit != '与委托方相同') {
       ctx.fillText(data.productionUnit, 675, 438)
     }
 
     ctx.fillText(data.phone, 270, 498)
     ctx.fillText(data.emailOrQQ, 970, 498)
     ctx.fillText(data.linkMan, 1405, 498)
-    
+
     ctx.fillText('与委托方地址相同', 300, 558)
 
     ctx.fillText('其他：', 660, 558)
     // 其他的值
     if (data.reportSendingAddress != '与委托方地址相同') {
-      ctx.fillText(data.tocation+' '+data.reportSendingAddress, 740, 558)
+      ctx.fillText(data.tocation + ' ' + data.reportSendingAddress, 740, 558)
     }
 
     // 样品信息
@@ -2888,8 +2917,8 @@ Page({
     ctx.fillText(data.otherInfo, 270, 798)
 
     // 样品信息---->检测类型
-    ctx.fillText('送检', 1015,738)
-    ctx.fillText('委托采样',1195,738)
+    ctx.fillText('送检', 1015, 738)
+    ctx.fillText('委托采样', 1195, 738)
 
 
     // 委托要求
@@ -2936,7 +2965,7 @@ Page({
     ctx.fillText('断裂强力（', 750, 1093)
     ctx.fillText('条样法', 900, 1093)
     ctx.fillText('抓样法）', 1010, 1093)
-    ctx.fillText('炽烈程度', 1150, 1093)
+    ctx.fillText('纰裂程度', 1150, 1093)
     ctx.fillText('后档接缝强力', 1300, 1093)
     ctx.fillText('顶破强力', 1490, 1093)
 
@@ -2995,8 +3024,8 @@ Page({
 
     ctx.fillText('其他：', 300, 1558)
     // 其他的值
-    if(data.testMode != '服务方决定'){
-      if (data.testMode != '中国GB/FZ等' && data.testMode != '国际标准ISO' && data.testMode != '欧盟EN' && data.testMode != '德国DIN' && data.testMode != '美国AATCC/ASTM'){
+    if (data.testMode != '服务方决定') {
+      if (data.testMode != '中国GB/FZ等' && data.testMode != '国际标准ISO' && data.testMode != '欧盟EN' && data.testMode != '德国DIN' && data.testMode != '美国AATCC/ASTM') {
         ctx.fillText(data.testMode, 380, 1558)
       }
     }
@@ -3036,7 +3065,7 @@ Page({
     ctx.fillText('一等品', 1030, 1686)
     ctx.fillText('合格品', 1152, 1686)
     ctx.fillText('其他：', 1274, 1686)
-    
+
     ctx.fillText(')', 1644, 1686)
 
 
@@ -3061,9 +3090,9 @@ Page({
     ctx.fillText('中英文（加收50元）', 790, 1858)
     ctx.fillText('副本：', 1090, 1858)
     // 副本的值
-    if(arr7.length == 2){
+    if (arr7.length == 2) {
       let arr7b = arr7[1].split('-');
-      if(arr7b[0].substring(2) != 0){
+      if (arr7b[0].substring(2) != 0) {
         ctx.fillText(arr7b[0].substring(2), 1160, 1858)
       }
     }
@@ -3116,7 +3145,7 @@ Page({
     ctx.fillText('与委托方相同', 300, 2338)
     ctx.fillText('其他（必须与付款方一致）：', 570, 2338)
     // 其他的值
-    if (data.invoiceRise != '与委托方相同'){
+    if (data.invoiceRise != '与委托方相同') {
       ctx.fillText(data.invoiceRise, 890, 2338)
     }
 
@@ -3126,7 +3155,7 @@ Page({
     ctx.fillText('2、非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。', 270, 2458)
     ctx.fillText('2、非认证、认可报告或项目不具备社会证明作用，仅供委托方内部使用。', 271, 2459)
 
-    ctx.draw()//进行绘画
+    ctx.draw() //进行绘画
   },
   // 保存画布
   saveImg1(canvasId) {
@@ -3139,9 +3168,9 @@ Page({
         // 临时图片
         var canvasImg = res.tempFilePath
         this.setData({
-          canvasForm:canvasImg,
-          showCanvas:true
-        },()=>{
+          canvasForm: canvasImg,
+          showCanvas: true
+        }, () => {
           $.closeLoad()
         })
         // wx.saveImageToPhotosAlbum({
@@ -3162,12 +3191,12 @@ Page({
         //   }
         // })
       },
-      fail: function (res) {
+      fail: function(res) {
         $.closeLoad()
-        $.prompt('查看失败',2500)
+        $.prompt('查看失败', 2500)
         console.log(res)
       }
-    },this)
+    }, this)
   },
 
 })

@@ -7,7 +7,7 @@ class Token {
   }
 
   //获取token
-  getTokenFromService(wxAppId, invitationCode, callback) {
+  getTokenFromService(wxAppId, callback) {
     var that = this;
     // 登录
     wx.login({
@@ -19,8 +19,7 @@ class Token {
           url: that.tokenUrl,
           data: {
             'code': code,
-            'wxAppId': wxAppId,
-            'invitationCode': invitationCode
+            'wxAppId': wxAppId
           },
           method: 'POST',
           success: function (res) {

@@ -110,7 +110,9 @@ Page({
   },
   // 获取我的报告列表
   _getMyReport(){
+    $.openLoad()
     my_report_model.getMyReport((res)=>{
+      $.closeLoad()
       console.log(res)
       if(res.code != 0 ){
         $.propmt(res.msg,2500)
