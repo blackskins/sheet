@@ -11,7 +11,7 @@
         <text class='phone'>{{ orderData.phone }}</text>
       </view>
       <view class='detail-address'>
-        {{ orderData.location.province+' '+orderData.location.city+' '+orderData.location.district+' '+(orderData.entrusAddress || orderData.contactAddress)  }}
+        {{ orderData.location.province+' '+orderData.location.city+' '+orderData.location.district+' '+(orderData.entrusAddress || orderData.contactAddress) }}
       </view>
     </view>
   </view>
@@ -53,6 +53,10 @@
       </view>
       <view class='ex-right' bindtap='copyExp' data-num='{{ orderData.sfWaybill }}' wx:if='{{ orderData.sfWaybill }}'>复制</view>
     </view>
+  </view>
+  <view class='wait-confirm' wx:if='{{ orderData.status == 12 }}'>
+    <view>检测费用(元)</view>
+    <view class='wait-money'>{{ orderData.orderPrice }}</view>
   </view>
   <!-- 使用优惠券 -->
   <view class='coupon' wx:if='{{ orderData.status == 22 }}'>
@@ -204,5 +208,3 @@
     </view>
   </view>
 </view>
-
-

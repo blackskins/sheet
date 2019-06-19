@@ -49,6 +49,34 @@
       </view>
       <input type='text' name='address' placeholder-class='holder' placeholder='请填写联系地址'></input>
     </view>
+    <!-- 取样信息 -->
+    <view class='info-item fon'>
+      <view>取样联系人
+        <text class='import'>*</text>
+      </view>
+      <input type='text' name='getMan' placeholder-class='holder' placeholder='请填写取样联系人'></input>
+    </view>
+    <view class='info-item fon'>
+      <view>取样联系电话
+        <text class='import'>*</text>
+      </view>
+      <input type='number' name='getPhone' placeholder-class='holder' placeholder='请填写取样联系电话'></input>
+    </view>
+  </view>
+
+  <view class='basic-box'>
+    <view class='head'>快递取样地址
+      <text class='import'>*</text>
+    </view>
+    <picker mode='region' bindchange='bindRegionChange1' value='{{ region1 }}'>
+      <view class='area'>
+        <text class='a-title'> 省 市 区：</text>
+        <text class='region {{ region1.length > 0 ? "r-active" :"" }}'>{{ region1.length > 0 ? region1[0] +' '+region1[1] + ' ' + region1[2] : "请点击这里选择省市区..."}}</text>
+      </view>
+    </picker>
+    <view class='head-txt'>
+      <textarea placeholder-class='holder' name='getAddress' placeholder='请填写详细取样地址'></textarea>
+    </view>
   </view>
 
   <view class='basic-box'>
@@ -63,7 +91,7 @@
   </view>
 
   <view class='basic-box'>
-    <view class='head'>寄件地址
+    <view class='head'>报告寄送地址
       <text class='import'>*</text>
     </view>
     <picker mode='region' bindchange='bindRegionChange' value='{{ region }}'>

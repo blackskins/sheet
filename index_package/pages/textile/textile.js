@@ -11,7 +11,6 @@ Page({
     agreement1: false,
     opacity1: 0,
     scale1: 'translate(-50%,-50%) scale(0.3)',
-
     unit: [
       {
         name: 'same',
@@ -37,8 +36,10 @@ Page({
     scale: 'translate(-50%,-50%) scale(0.3)',
     hide:true,
     region: [], //省市区
+    region1: [], //取样的省市区
+    getAddress:'',//取样地址
     productionUnit:'',//生产单位
-    reportSendingAddress:'',//报告寄送地址
+    reportSendingAddress: '',//报告寄送地址
   },
 
   /**
@@ -111,6 +112,13 @@ Page({
       region: e.detail.value
     })
   },
+  // 选择取样地址的省市区
+  bindRegionChange1(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region1: e.detail.value
+    })
+  },
   // 下一页
   formSummt(e){
     if (this.data.productionUnit == '其他' && e.detail.value.productionUnit != ''){
@@ -135,7 +143,15 @@ Page({
       phone:e.detail.value.phone,
       emailOrQQ:e.detail.value.email,
       productionUnit: this.data.productionUnit,
-      reportSendingAddress: e.detail.value.reportSendingAddress
+      reportSendingAddress: e.detail.value.reportSendingAddress,
+      fetchLinkMan: e.detail.value.getMan,//取件联系人
+      fetchPhone: e.detail.value.getPhone,//取件联系电话
+      fetchAddress: e.detail.value.getAddress,//取件详细地址
+      fetchLocation: {//取件的省市区
+        province: this.data.region1[0],
+        city: this.data.region1[1],
+        district: this.data.region1[2],
+      },
     }
     var reg = /^1([38][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/;//详细的手机号匹配
     var mb = /^(0[0-9]{2,3})([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$/;//匹配固话
@@ -143,7 +159,7 @@ Page({
       $.prompt('请填写委托方')
       return
     } else if (data.entrusAddress == ''){
-      $.prompt('前填写委托方地址')
+      $.prompt('请填写委托方地址')
       return
     }else if(data.linkMan == ''){
       $.prompt('请填写联系人')
@@ -151,11 +167,23 @@ Page({
     } else if (!reg.test(data.phone) && !mb.test(data.phone)){
       $.prompt('请填写正确电话/手机号码')
       return
+    } else if (data.fetchLinkMan == '') {
+      $.prompt('请填写取样联系人')
+      return
+    } else if (!reg.test(data.fetchPhone) && !mb.test(data.fetchPhone)) {
+      $.prompt('请填写正确的取样电话/手机号码')
+      return
+    } else if (!this.data.region1.length) {
+      $.prompt('请选择取样地址的省市区')
+      return
+    } else if (e.detail.value.getAddress == '') {
+      $.prompt('请填写取样的详细地址')
+      return
     } else if (this.data.productionUnit == '其他' && e.detail.value.productionUnit == ''){
       $.prompt('请填写其他的生产单位')
       return
-    }else if (!this.data.region.length) {
-      $.prompt('请选择快递地址的省市区')
+    } else if (!this.data.region.length) {
+      $.prompt('请选择报告寄送地址的省市区')
       return
     } else if (e.detail.value.reportSendingAddress == ''){
         $.prompt('请填写报告寄送的详细地址')

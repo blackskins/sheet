@@ -30,6 +30,8 @@
               <view class='order-status' wx:if='{{ item.status == 34 }}'>修改中</view>
             </view>
             <view class='order-info'>
+              <!-- 待定价 -->
+              <view class='wait-confirm center' wx:if='{{ item.status == 12 }}'>检测费用(元)：<text class='wait-money'>{{ item.orderPrice }}</text></view>
               <view class='order-title'>{{ item.entrust }}</view>
               <view class='order-date'>
                 <view class='submit-time'>提交时间：{{ item.createTime }}</view>

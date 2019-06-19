@@ -66,6 +66,12 @@ page{
   width: 160rpx;
   /* background-color: cyan; */
 }
+.fon{
+  font-size: 24rpx;
+}
+.fon input{
+  font-size: 28rpx;
+}
 .import{
   color: #FF5062;
 }

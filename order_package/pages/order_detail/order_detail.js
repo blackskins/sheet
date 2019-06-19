@@ -1389,10 +1389,10 @@ Page({
 
     ctx.fillText('服务费用', 100, 1694)
     // 服务费用的值
-    ctx.fillText('测试费用：', 320, 1694)
-    ctx.fillText('元', 600, 1694)
-    ctx.fillText('其他费用：', 750, 1694)
-    ctx.fillText('元', 1000, 1694)
+    ctx.fillText('以微信小程序中双方确认的价格为准', 320, 1694)
+    // ctx.fillText('元', 600, 1694)
+    // ctx.fillText('其他费用：', 750, 1694)
+    // ctx.fillText('元', 1000, 1694)
 
     ctx.fillText('付费方式', 100, 1775)
     ctx.fillText('*发票抬头', 100, 1852)
@@ -1708,7 +1708,7 @@ Page({
     ctx.fillText('NACC MS(p)/701.01.03-H00', 1300, 50);
     ctx.moveTo(18, 70);
     ctx.lineTo(1682, 70);
-    ctx.setLineWidth(2.5);
+    ctx.setLineWidth(2);
     ctx.setStrokeStyle('#000')
     ctx.stroke()
     // const textLength = parseInt(ctx.measureText(`¥${this.data.GoodMsg.otherPrice}`).width);
@@ -2076,7 +2076,6 @@ Page({
       ctx.fill()
     } else {
       ctx.strokeRect(980, 720, 20, 20)
-
     }
     if (data.testType == '委托采样') {
       ctx.fillRect(1160, 720, 20, 20)
@@ -2096,7 +2095,7 @@ Page({
       } else {
         ctx.strokeRect(270, 840, 20, 20)
       }
-      if (arr[i] == 'GB18401') {
+      if (arr[i] == 'GB18401全项') {
         ctx.fillRect(750, 840, 20, 20)
         ctx.fill()
       } else {
@@ -2112,17 +2111,11 @@ Page({
         ctx.fillRect(1160, 840, 20, 20)
         ctx.fillRect(1330, 840, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1160, 840, 20, 20)
-        ctx.strokeRect(1330, 840, 20, 20)
       }
-      if (arr[i] == '物理性能') {
+      if (arr[i] == '理化性能') {
         ctx.fillRect(1160, 840, 20, 20)
         ctx.fillRect(1450, 840, 20, 20)
         ctx.fill()
-      } else {
-        ctx.strokeRect(1160, 840, 20, 20)
-        ctx.strokeRect(1450, 840, 20, 20)
       }
     }
 
@@ -3130,9 +3123,9 @@ Page({
     // 其他分类（如下）
 
     // 服务费用
-    ctx.fillText('测试费：', 270, 2160)
-    ctx.fillText('元，其他费用：', 500, 2160)
-    ctx.fillText('元', 800, 2160)
+    ctx.fillText('以微信小程序中双方确认的价格为准', 270, 2160)
+    // ctx.fillText('元，其他费用：', 500, 2160)
+    // ctx.fillText('元', 800, 2160)
 
     // 付费方式
     ctx.fillText('现场付费（现金、支票、刷卡）', 300, 2224)

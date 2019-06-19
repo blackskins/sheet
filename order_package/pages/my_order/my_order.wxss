@@ -59,7 +59,6 @@ page {
   margin-top: 20rpx;
 }
 
-
 .num-box {
   display: flex;
   justify-content: space-between;
@@ -78,6 +77,7 @@ page {
   width: 26rpx;
   height: 30rpx;
 }
+
 .order-num1 {
   margin-left: 14rpx;
   color: #333;
@@ -93,9 +93,11 @@ page {
   text-align: center;
   line-height: 42rpx;
 }
-.else-status{
-  background-color: #FF8A4F !important;
+
+.else-status {
+  background-color: #ff8a4f !important;
 }
+
 .order-title {
   font-size: 28rpx;
   font-weight: 600;
@@ -112,18 +114,21 @@ page {
   font-size: 24rpx;
   color: #9b9b9b;
 }
-.change-status{
+
+.change-status {
   font-size: 30rpx;
-  color: #2090FE;
+  color: #2090fe;
 }
-.bottom-box{
+
+.bottom-box {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   font-size: 24rpx;
   margin-top: 46rpx;
 }
-.bottom-box view{
+
+.bottom-box view {
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
@@ -131,28 +136,32 @@ page {
   border-radius: 10rpx;
   margin-left: 20rpx;
 }
+
 /* .update-info,.link{
   border: 2rpx #CDCDCD solid;
   color: #CDCDCD;
 } */
-.link{
+
+.link {
   position: relative;
 }
-.link button{
+
+.link button {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
 }
-.check-detail,.link,.update-info{
-  border: 2rpx #2090FE solid;
-  color: #2090FE;
+
+.check-detail, .link, .update-info {
+  border: 2rpx #2090fe solid;
+  color: #2090fe;
 }
 
-
 /* 画布 */
-.canvas{
+
+.canvas {
   position: fixed;
   left: 0;
   top: 0;
@@ -162,7 +171,7 @@ page {
   overflow: scroll;
 }
 
-.save{
+.save {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -176,4 +185,24 @@ page {
   text-align: center;
   line-height: 50rpx;
   margin: 10rpx auto;
+}
+
+.order-info {
+  position: relative;
+}
+
+.wait-confirm {
+  position: absolute;
+  right: 0rpx;
+  top: 60rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.wait-money{
+  color: #ff5062;
+  font-size: 32rpx;
+}
+.wait-money::before{
+  content: '￥';
+  font-size: 26rpx;
 }

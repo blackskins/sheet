@@ -157,7 +157,7 @@
 					"id": 16,
 					"name": "订单详情",
 					"pathName": "order_package/pages/order_detail/order_detail",
-					"query": "orderId=L4P5WX190523095032898&status=0",
+					"query": "orderId=ZWQHP1190605095906970&status=0",
 					"scene": null
 				},
 				{

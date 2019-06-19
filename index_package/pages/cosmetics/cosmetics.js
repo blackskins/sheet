@@ -16,6 +16,7 @@ Page({
     scale1: 'translate(-50%,-50%) scale(0.3)',
 
     region: [], //省市区
+    region1: [], //省市区
     rhStatus: '', //报告抬头 0：与委托方相同   1:其他抬头
     reportHeader: '',//报告抬头的值
     exStatus: '', //快递地址状态 0:与联系地址相同  1:其他地址
@@ -79,6 +80,13 @@ Page({
       region: e.detail.value
     })
   },
+  // 选择取样的省市区
+  bindRegionChange1(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region1: e.detail.value
+    })
+  },
   // 报告抬头、
   radioChange1(e) {
     console.log(e)
@@ -113,7 +121,15 @@ Page({
       contactAddress: e.detail.value.address,
       fax: e.detail.value.fax,
       postalCode: e.detail.value.postCode,
-      expressAddress: e.detail.value.expressAddress
+      expressAddress: e.detail.value.expressAddress,
+      fetchLinkMan: e.detail.value.getMan,
+      fetchPhone: e.detail.value.getPhone,
+      fetchAddress: e.detail.value.getAddress,
+      fetchLocation: {
+        province: this.data.region1[0],
+        city: this.data.region1[1],
+        district: this.data.region1[2],
+      },
     }
 
     // var reg = /^1(3|4|5|7|8)\d{9}$/; //简略的正则匹配手机号
@@ -146,12 +162,24 @@ Page({
     } else if (data1.contactAddress == '') {
       $.prompt('请填写联系人地址')
       return 
-    } else if(!this.data.region.length){
+    } else if (data1.fetchLinkMan == '') {
+      $.prompt('请填写取样联系人')
+      return
+    } else if (!reg.test(data1.fetchPhone) && !mb.test(data1.fetchPhone)) {
+      $.prompt('请填写正确的取样电话/手机号码')
+      return
+    } else if (!this.data.region1.length) {
+      $.prompt('请选择取样地址的省市区')
+      return
+    } else if (e.detail.value.getAddress == '') {
+      $.prompt('请填写取样的详细地址')
+      return
+    } else if (!this.data.region.length) {
       $.prompt('请选择快递地址的省市区')
-      return 
+      return
     } else if (e.detail.value.expressAddress == '') {
       $.prompt('请填写详细的快递地址')
-      return 
+      return
     }
     // console.log(data1)
     this.setData({

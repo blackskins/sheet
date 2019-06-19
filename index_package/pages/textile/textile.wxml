@@ -34,6 +34,42 @@
       <view>E-mail/QQ</view>
       <input hidden='{{ !hide }}' type='text' name='email' placeholder-class='holder' placeholder='请填写E-mail/QQ'></input>
     </view>
+    <!-- 取样联系人 -->
+    <view class='info-item fon'>
+      <view>取样联系人
+        <text class='import'>*</text>
+      </view>
+      <input hidden='{{ !hide }}' type='text' name='getMan' placeholder-class='holder' placeholder='请填写取样联系人'></input>
+    </view>
+    <!-- 取样联系电话 -->
+    <view class='info-item fon'>
+      <view>取样联系电话
+        <text class='import'>*</text>
+      </view>
+      <input hidden='{{ !hide }}' type='number' name='getPhone' placeholder-class='holder' placeholder='请填写取样联系电话'></input>
+    </view>
+    <!-- 取样地址 -->
+    <!-- <view class='info-item fon'>
+      <view>样品取样地址
+        <text class='import'>*</text>
+      </view>
+      <input hidden='{{ !hide }}' type='text' name='getAddress' placeholder-class='holder' placeholder='请填写取样地址'></input>
+    </view> -->
+  </view>
+  <!-- 取件地址信息 -->
+  <view class='sample-info'>
+    <view class='sample-title'>快递取样地址
+      <text class='import'>*</text>
+    </view>
+    <picker mode='region' bindchange='bindRegionChange1' value='{{ region1 }}'>
+      <view class='area'>
+        <text class='a-title'> 省 市 区：</text>
+        <text class='region {{ region1.length > 0 ? "r-active" :"" }}'>{{ region1.length > 0 ? region1[0] +' '+region1[1] + ' ' + region1[2] : "请点击这里选择省市区..."}}</text>
+      </view>
+    </picker>
+    <view class='head-txt'>
+      <textarea name='getAddress' placeholder-class='holder' placeholder='请填写详细取样地址' cursor-spacing='90rpx'></textarea>
+    </view>
   </view>
 
   <!-- 生产单位 -->
