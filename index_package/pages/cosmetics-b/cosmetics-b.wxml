@@ -39,7 +39,7 @@
         </radio>
         <input type='text' wx:if='{{ judgementStandard != "不判定" && judgementStandard != ""   }}' name='judge' placeholder-class='holder' maxlength='12' placeholder='请填写标准'></input>
       </radio-group>
-    </view>
+    </view> 
   </view>
 
   <!-- 服务时限 -->

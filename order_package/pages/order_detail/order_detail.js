@@ -2111,11 +2111,17 @@ Page({
         ctx.fillRect(1160, 840, 20, 20)
         ctx.fillRect(1330, 840, 20, 20)
         ctx.fill()
+      } else {
+        ctx.strokeRect(1160, 840, 20, 20)
+        ctx.strokeRect(1330, 840, 20, 20)
       }
-      if (arr[i] == '理化性能') {
+      if (arr[i] == '物理性能') {
         ctx.fillRect(1160, 840, 20, 20)
         ctx.fillRect(1450, 840, 20, 20)
         ctx.fill()
+      } else {
+        ctx.strokeRect(1160, 840, 20, 20)
+        ctx.strokeRect(1450, 840, 20, 20)
       }
     }
 
@@ -2408,21 +2414,34 @@ Page({
         ctx.fillRect(740, 1120, 20, 20)
         ctx.fillRect(870, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(590, 1120, 20, 20)
+        ctx.strokeRect(740, 1120, 20, 20)
+        ctx.strokeRect(870, 1120, 20, 20)
       }
       if (arr5[m] == '马丁代尔/圆轨迹'){
         ctx.fillRect(590, 1120, 20, 20)
         ctx.fillRect(740, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(590, 1120, 20, 20)
+        ctx.strokeRect(740, 1120, 20, 20)
       }
       if (arr5[m] == '马丁代尔/箱式') {
         ctx.fillRect(590, 1120, 20, 20)
         ctx.fillRect(870, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(590, 1120, 20, 20)
+        ctx.strokeRect(870, 1120, 20, 20)
       }
       if (arr5[m] == '圆轨迹/箱式') {
         ctx.fillRect(740, 1120, 20, 20)
         ctx.fillRect(870, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(740, 1120, 20, 20)
+        ctx.strokeRect(870, 1120, 20, 20)
       }
       if (arr5[m] == '马丁代尔') {
         ctx.fillRect(270, 1120, 20, 20)
@@ -2479,6 +2498,11 @@ Page({
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1335, 1120, 20, 20)
+        ctx.strokeRect(1425, 1120, 20, 20)
+        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
       if (arr5[m] == '破损/质损' || arr5[m] == '质损/破损') {
@@ -2486,6 +2510,10 @@ Page({
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1335, 1120, 20, 20)
+        ctx.strokeRect(1425, 1120, 20, 20)
       }
 
       if (arr5[m] == '破损/外观' || arr5[m] == '外观/破损') {
@@ -2493,6 +2521,10 @@ Page({
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1335, 1120, 20, 20)
+        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
       if (arr5[m] == '质损/外观' || arr5[m] == '外观/质损') {
@@ -2500,24 +2532,37 @@ Page({
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1425, 1120, 20, 20)
+        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
       if (arr5[m] == '破损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1335, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1335, 1120, 20, 20)
       }
 
       if (arr5[m] == '质损') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1425, 1120, 20, 20)
         ctx.fill()
-      } 
+      } else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1425, 1120, 20, 20)
+      }
 
       if (arr5[m] == '外观') {
         ctx.fillRect(1175, 1120, 20, 20)
         ctx.fillRect(1515, 1120, 20, 20)
         ctx.fill()
+      }else{
+        ctx.strokeRect(1175, 1120, 20, 20)
+        ctx.strokeRect(1515, 1120, 20, 20)
       }
 
       // 物理性能----->第三行

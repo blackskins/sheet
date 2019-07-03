@@ -134,7 +134,7 @@
         <radio class="radio" color='#2090FE' wx:for="{{ticketType}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
           <text>{{item.value}}</text>
         </radio>
-        <input wx:if='{{ invoiceRise == "其他" }}' type='text' name='invoiceRise' placeholder-class='holder' maxlength='12' placeholder='请填写'></input>
+        <input wx:if='{{ invoiceRise == "其他" }}' type='text' name='invoiceRise' placeholder-class='holder' placeholder='请填写'></input>
       </radio-group>
     </view>
   </view>
